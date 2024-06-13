@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 {
-    public abstract class RepositorioBase<T> where T : EntidadeBase
+    public abstract class RepositorioBaseEmMemoria<T> where T : EntidadeBase
     {
         protected List<T> registros = new List<T>();
 
