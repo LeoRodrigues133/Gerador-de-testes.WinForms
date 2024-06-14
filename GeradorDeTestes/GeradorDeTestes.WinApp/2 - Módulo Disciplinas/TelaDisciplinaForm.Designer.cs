@@ -57,11 +57,11 @@
             // lblDisciplina
             // 
             lblDisciplina.AutoSize = true;
-            lblDisciplina.Location = new Point(44, 118);
+            lblDisciplina.Location = new Point(59, 118);
             lblDisciplina.Name = "lblDisciplina";
-            lblDisciplina.Size = new Size(58, 15);
+            lblDisciplina.Size = new Size(43, 15);
             lblDisciplina.TabIndex = 0;
-            lblDisciplina.Text = "Disciplina";
+            lblDisciplina.Text = "Nome:";
             // 
             // txtDisciplina
             // 

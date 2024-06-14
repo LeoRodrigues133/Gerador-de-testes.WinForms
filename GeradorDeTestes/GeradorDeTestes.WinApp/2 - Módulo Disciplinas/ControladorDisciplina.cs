@@ -21,8 +21,19 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
             if (resultado != DialogResult.OK)
                 return;
 
+            Disciplinas Verificador = iRepositorio.SelecionarTodos().FirstOrDefault(D => D.nomeDisciplina == telaDisciplina.Disciplina.nomeDisciplina);
+
             Disciplinas novaDisciplina = telaDisciplina.Disciplina;
 
+            if (Verificador.nomeDisciplina == novaDisciplina.nomeDisciplina)
+            {
+                MessageBox.Show(
+                 "Não é possível realizar esta ação, já existe um registro com este nome cadastrado.",
+                 "Aviso",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Warning
+                 ); return;
+            };
 
             iRepositorio.Cadastrar(novaDisciplina);
 

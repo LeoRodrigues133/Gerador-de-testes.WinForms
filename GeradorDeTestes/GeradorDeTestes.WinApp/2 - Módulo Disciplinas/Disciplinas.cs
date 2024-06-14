@@ -9,25 +9,25 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 {
     public class Disciplinas : EntidadeBase
     {
-         public string Disciplina { get; set; } // Nome da Disciplina (Complicado de achar um nome)
+         public string nomeDisciplina { get; set; } // Nome da Disciplina (Complicado de achar um nome)
 
         public Disciplinas(string disciplina)
         {
-            Disciplina = disciplina;
+            nomeDisciplina = disciplina;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
             Disciplinas Atualizar = (Disciplinas)novoRegistro;
 
-            Disciplina = Atualizar.Disciplina;
+            nomeDisciplina = Atualizar.nomeDisciplina;
         }
 
         public override List<string> Validar()
         {
             List<string> erros = new List<string>();
-
-            if (string.IsNullOrEmpty(Disciplina.Trim()))
+            
+            if (string.IsNullOrEmpty(nomeDisciplina.Trim()))
                 erros.Add("O campo \"disciplina\" precisa ser preenchido");
 
             return erros;

@@ -14,14 +14,13 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 {
     public partial class TelaDisciplinaForm : Form
     {
-        string DisciplinaNome { get; set; }
         Disciplinas disciplina;
         public Disciplinas Disciplina
         {
             set
             {
                 txtId.Text = value.Id.ToString();
-                txtDisciplina.Text = value.Disciplina;
+                txtDisciplina.Text = value.nomeDisciplina;
             }
 
             get => disciplina;
@@ -35,9 +34,10 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            string Disciplina = txtDisciplina.Text;
+            string nomeDisciplina = txtDisciplina.Text;
 
-            disciplina = new Disciplinas(Disciplina);
+
+            disciplina = new Disciplinas(nomeDisciplina);
         }
     }
 }
