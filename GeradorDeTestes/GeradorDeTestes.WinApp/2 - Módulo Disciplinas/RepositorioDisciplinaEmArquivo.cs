@@ -13,6 +13,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 
         public RepositorioDisciplinaEmArquivo(ContextoDados contexto) : base(contexto)
         {
+
         }
 
         protected override List<Disciplinas> ObterRegistros()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 {
-    internal interface IRepositorioDisciplina
+    public interface IRepositorioDisciplina
     {
         void Cadastrar(Disciplinas novaDisciplina);
         bool Editar(int id,Disciplinas atualizarDisciplina);

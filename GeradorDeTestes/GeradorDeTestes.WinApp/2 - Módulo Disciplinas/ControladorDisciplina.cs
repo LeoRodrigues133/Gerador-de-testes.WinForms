@@ -8,10 +8,22 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 {
-    internal class ControladorDisciplina : ControladorBase
+    public class ControladorDisciplina : ControladorBase
     {
         IRepositorioDisciplina iRepositorio;
         TabelaDisciplinasControl tabelaDisciplinas;
+
+        public ControladorDisciplina(IRepositorioDisciplina repositorio)
+        {
+            iRepositorio = repositorio;
+        }
+        public override string TipoCadastro { get { return "Disciplina"; } }
+
+        public override string ToolTipAdicionar { get { return "Adicionar uma nova disciplina"; } }
+
+        public override string ToolTipEditar { get { return "Editar uma disciplina existente"; } }
+
+        public override string ToolTipExcluir { get { return "Excluir uma disciplina"; } }
 
         public override void Adicionar()
         {
