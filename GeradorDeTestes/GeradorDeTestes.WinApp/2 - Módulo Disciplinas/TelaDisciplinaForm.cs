@@ -15,20 +15,23 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
     public partial class TelaDisciplinaForm : Form
     {
         Disciplinas disciplina;
+        List<Disciplinas> rDisciplinas;
         public Disciplinas Disciplina
         {
             set
             {
                 txtId.Text = value.Id.ToString();
-                txtDisciplina.Text = value.nomeDisciplina;
+                txtDisciplina.Text = value.Nome;
             }
 
             get => disciplina;
         }
 
-        public TelaDisciplinaForm()
+        public TelaDisciplinaForm(List<Disciplinas> disciplinas)
         {
             InitializeComponent();
+
+            this.rDisciplinas = disciplinas;
         }
 
 
@@ -36,8 +39,20 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
         {
             string nomeDisciplina = txtDisciplina.Text;
 
-
             disciplina = new Disciplinas(nomeDisciplina);
+
+            if (!disciplina.VerificarRegistros(rDisciplinas, disciplina))
+            {
+                MessageBox.Show(
+                     "Não é possível realizar esta ação, já existe um registro com este nome cadastrado.",
+                     "Aviso",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Warning
+                     );
+                DialogResult = DialogResult.Cancel;
+            }
+
+
         }
     }
 }

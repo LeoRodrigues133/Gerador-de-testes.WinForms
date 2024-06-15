@@ -17,13 +17,18 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
         public TabelaDisciplinasControl()
         {
             InitializeComponent();
+            grid.Columns.AddRange(CriarColunas());
+
+            grid.ConfigurarGridSomenteLeitura();
+            grid.ConfigurarGridZebrado();
+
         }
         public void AtualizarRegistros(List<Disciplinas> disciplinas)
         {
             grid.Rows.Clear();
 
             foreach (Disciplinas d in disciplinas)
-                grid.Rows.Add(d);
+                grid.Rows.Add(d.Id.ToString(), d.Nome);
         }
 
         public int ObterRegistroSelecionado()
@@ -31,5 +36,12 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
             return grid.SelecionarId();
         }
 
+        private DataGridViewColumn[] CriarColunas()
+        {
+            return new DataGridViewColumn[]                 {
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Disciplina" }
+                };
+        }
     }
 }

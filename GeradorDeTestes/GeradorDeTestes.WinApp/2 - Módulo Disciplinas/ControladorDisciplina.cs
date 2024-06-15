@@ -27,25 +27,13 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
         public override void Adicionar()
         {
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm();
+            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(iRepositorio.SelecionarTodos());
+
             DialogResult resultado = telaDisciplina.ShowDialog();
 
-            if (resultado != DialogResult.OK)
-                return;
-
-            Disciplinas Verificador = iRepositorio.SelecionarTodos().FirstOrDefault(D => D.nomeDisciplina == telaDisciplina.Disciplina.nomeDisciplina);
+            if (resultado != DialogResult.OK) return;
 
             Disciplinas novaDisciplina = telaDisciplina.Disciplina;
-
-            if (Verificador.nomeDisciplina == novaDisciplina.nomeDisciplina)
-            {
-                MessageBox.Show(
-                 "Não é possível realizar esta ação, já existe um registro com este nome cadastrado.",
-                 "Aviso",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning
-                 ); return;
-            };
 
             iRepositorio.Cadastrar(novaDisciplina);
 
@@ -55,7 +43,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
         public override void Editar()
         {
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm();
+            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(iRepositorio.SelecionarTodos());
 
             int idSelecionado = tabelaDisciplinas.ObterRegistroSelecionado();
 
@@ -126,5 +114,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             tabelaDisciplinas.AtualizarRegistros(disciplinas);
         }
+
+   
     }
 }

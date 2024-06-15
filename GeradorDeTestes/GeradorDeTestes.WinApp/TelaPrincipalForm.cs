@@ -13,10 +13,10 @@ namespace GeradorDeTestes.WinApp
         public TelaPrincipalForm()
         {
             InitializeComponent();
+            contexto = new ContextoDados(true);
 
             lblTipoCadastro.Text = string.Empty;
             Instancia = this;
-            contexto = new ContextoDados(true);
             repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contexto);
         }
 

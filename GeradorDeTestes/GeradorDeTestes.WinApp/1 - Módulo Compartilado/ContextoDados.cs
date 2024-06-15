@@ -11,7 +11,8 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 {
     public class ContextoDados
     {
-        private string caminho = $"C:\\Users\\himat\\source\repos\\Gerador-de-testes-2024\\GeradorDeTestesdados.json";
+        private string caminho = Directory.GetCurrentDirectory().Split("bin")[0] + "\\Dados\\Data.json";
+
 
         public List<Disciplinas> Disciplina { get; set; }
 
