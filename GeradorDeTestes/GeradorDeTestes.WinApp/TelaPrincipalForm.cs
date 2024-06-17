@@ -1,6 +1,7 @@
 using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
+using GeradorDeTestes.WinApp._4___Módulo_Testes;
 
 namespace GeradorDeTestes.WinApp
 {
@@ -8,6 +9,7 @@ namespace GeradorDeTestes.WinApp
     {
         ControladorBase controlador;
         IRepositorioDisciplina repositorioDisciplina;
+        IRepositorioTestes repositorioTestes;
         ContextoDados contexto;
         public static TelaPrincipalForm Instancia { get; private set; }
         public TelaPrincipalForm()
@@ -18,6 +20,8 @@ namespace GeradorDeTestes.WinApp
             lblTipoCadastro.Text = string.Empty;
             Instancia = this;
             repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contexto);
+            repositorioTestes = new RepositorioTestesEmArquivo(contexto);
+
         }
 
         public void AtualizarRodape(string texto)
@@ -68,6 +72,12 @@ namespace GeradorDeTestes.WinApp
             ConfigurarTelaPrincipal(controlador);
         }
 
+        private void testesMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorTestes(repositorioTestes);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             controlador.Adicionar();
@@ -82,5 +92,6 @@ namespace GeradorDeTestes.WinApp
         {
             controlador.Excluir();
         }
+
     }
 }
