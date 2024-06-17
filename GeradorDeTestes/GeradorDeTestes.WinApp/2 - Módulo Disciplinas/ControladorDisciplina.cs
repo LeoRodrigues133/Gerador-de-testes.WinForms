@@ -114,7 +114,5 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             tabelaDisciplinas.AtualizarRegistros(disciplinas);
         }
-
-   
     }
 }
