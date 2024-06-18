@@ -14,9 +14,9 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 {
     public partial class TelaDisciplinaForm : Form
     {
-        Disciplina disciplina;
-        List<Disciplina> rDisciplinas;
-        public Disciplina Disciplina
+        Disciplinas disciplina;
+        List<Disciplinas> rDisciplinas;
+        public Disciplinas Disciplina
         {
             set
             {
@@ -27,7 +27,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
             get => disciplina;
         }
 
-        public TelaDisciplinaForm(List<Disciplina> disciplinas)
+        public TelaDisciplinaForm(List<Disciplinas> disciplinas)
         {
             InitializeComponent();
 
@@ -39,7 +39,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
         {
             string nomeDisciplina = txtDisciplina.Text;
 
-            disciplina = new Disciplina(nomeDisciplina);
+            disciplina = new Disciplinas(nomeDisciplina);
 
             if (!disciplina.VerificarRegistros(rDisciplinas, disciplina))
             {

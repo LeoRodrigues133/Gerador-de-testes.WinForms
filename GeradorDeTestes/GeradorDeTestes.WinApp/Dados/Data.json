@@ -1,6 +1,6 @@
 {
   "$id": "1",
-  "Disciplinas": {
+  "Disciplina": {
     "$id": "2",
     "$values": [
       {
@@ -15,7 +15,7 @@
       },
       {
         "$id": "5",
-        "Nome": "Geografia",
+        "Nome": "Ed.Fis",
         "Id": 3
       }
     ]
@@ -36,6 +36,39 @@
         "Serie": "",
         "NumQuestoes": 1,
         "Id": 2
+      },
+      {
+        "$id": "9",
+        "Titulo": "teste",
+        "Serie": "",
+        "NumQuestoes": 0,
+        "Id": 4
+      }
+    ]
+  },
+  "Materia": {
+    "$id": "10",
+    "$values": [
+      {
+        "$id": "11",
+        "Nome": "aaaaaaaa",
+        "Disciplina": null,
+        "Serie": 0,
+        "Id": 2
+      },
+      {
+        "$id": "12",
+        "Nome": "aaaa",
+        "Disciplina": null,
+        "Serie": 0,
+        "Id": 3
+      },
+      {
+        "$id": "13",
+        "Nome": "aaaa",
+        "Disciplina": null,
+        "Serie": 2,
+        "Id": 4
       }
     ]
   }

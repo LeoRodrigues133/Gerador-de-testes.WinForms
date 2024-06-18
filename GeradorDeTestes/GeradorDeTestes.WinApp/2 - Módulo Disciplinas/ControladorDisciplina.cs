@@ -33,7 +33,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             if (resultado != DialogResult.OK) return;
 
-            Disciplina novaDisciplina = telaDisciplina.Disciplina;
+            Disciplinas novaDisciplina = telaDisciplina.Disciplina;
 
             iRepositorio.Cadastrar(novaDisciplina);
 
@@ -47,7 +47,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             int idSelecionado = tabelaDisciplinas.ObterRegistroSelecionado();
 
-            Disciplina Selecionado = iRepositorio.SelecionarPorId(idSelecionado);
+            Disciplinas Selecionado = iRepositorio.SelecionarPorId(idSelecionado);
 
             if (Selecionado == null)
             {
@@ -65,7 +65,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             if (resultado != DialogResult.OK) return;
 
-            Disciplina disciplinaEditada = telaDisciplina.Disciplina;
+            Disciplinas disciplinaEditada = telaDisciplina.Disciplina;
 
             iRepositorio.Editar(disciplinaEditada.Id, disciplinaEditada);
             CarregarDisciplinas();
@@ -76,7 +76,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
         {
             int idSelecionado = tabelaDisciplinas.ObterRegistroSelecionado();
 
-            Disciplina Selecionado = iRepositorio.SelecionarPorId(idSelecionado);
+            Disciplinas Selecionado = iRepositorio.SelecionarPorId(idSelecionado);
             if (Selecionado == null)
             {
                 MessageBox.Show(
@@ -110,11 +110,9 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
         }
         private void CarregarDisciplinas()
         {
-            List<Disciplina> disciplinas = iRepositorio.SelecionarTodos();
+            List<Disciplinas> disciplinas = iRepositorio.SelecionarTodos();
 
             tabelaDisciplinas.AtualizarRegistros(disciplinas);
         }
-
-   
     }
 }

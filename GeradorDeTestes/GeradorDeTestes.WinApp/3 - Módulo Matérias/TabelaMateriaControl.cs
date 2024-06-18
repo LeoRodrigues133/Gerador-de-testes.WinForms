@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,11 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GeradorDeTestes.WinApp._4___Módulo_Testes
+namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 {
-    public partial class TabelaTesteControl : UserControl
+    public partial class TabelaMateriaControl : UserControl
     {
-        public TabelaTesteControl()
+        public TabelaMateriaControl()
         {
             InitializeComponent();
             grid.Columns.AddRange(CriarColunas());
@@ -22,15 +23,17 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             grid.ConfigurarGridZebrado();
         }
 
-        internal void AtualizarRegistros(List<Teste> testes)
+        internal void AtualizarRegistros(List<Materias> materias)
         {
             grid.Rows.Clear();
 
-            foreach (Teste t in testes)
-                grid.Rows.Add(t.Id.ToString(), t.Titulo);
+            foreach (Materias m in materias)
+            {
+                grid.Rows.Add(m.Id.ToString(), m.Nome,m.Disciplina);
+            }
         }
 
-        public int ObterRegistroSelecionado()
+        internal int ObterRegistroSelecionado()
         {
             return grid.SelecionarId();
         }
@@ -38,9 +41,9 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
             return new DataGridViewColumn[]                 {
                 new DataGridViewTextBoxColumn{DataPropertyName =  "Id", HeaderText = "Id" },
-                new DataGridViewTextBoxColumn{DataPropertyName =  "Titulo", HeaderText = "Titulo" }
+                new DataGridViewTextBoxColumn{DataPropertyName =  "Titulo", HeaderText = "Titulo" },
+                new DataGridViewTextBoxColumn{DataPropertyName =  "Disciplina", HeaderText = "Disciplina" },
             };
         }
-
     }
 }

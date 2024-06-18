@@ -23,11 +23,11 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
             grid.ConfigurarGridZebrado();
 
         }
-        public void AtualizarRegistros(List<Disciplina> disciplinas)
+        public void AtualizarRegistros(List<Disciplinas> disciplinas)
         {
             grid.Rows.Clear();
 
-            foreach (Disciplina d in disciplinas)
+            foreach (Disciplinas d in disciplinas)
                 grid.Rows.Add(d.Id.ToString(), d.Nome);
         }
 

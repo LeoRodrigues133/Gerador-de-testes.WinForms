@@ -1,6 +1,7 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,14 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         private TabelaTesteControl tabelaTeste;
         public IRepositorioDisciplina repositorioDisciplina;
         //private IRepositorioQuestao repositorioQuestao;
-        //private IRepositorioMateria repositorioMateria;
+        private IRepositorioMateria repositorioMateria;
 
         public ControladorTestes() { } // Ctor para deserialização;
-        public ControladorTestes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio/*, IRepositorioMateria materiaRepositorio*/)
+        public ControladorTestes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio)
         {
             repositorioTeste = testeRepositorio;
             repositorioDisciplina = disciplinaRepositorio;
-            //repositorioMateria = materiaRepositorio;
+            repositorioMateria = materiaRepositorio;
         }
         public override string TipoCadastro { get { return "Testes"; } }
         public override string ToolTipAdicionar { get { return "Cadastrar um novo teste"; } }
@@ -34,10 +35,10 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public override void Adicionar()
         {
 
-            TelaTesteForm telaTeste = new TelaTesteForm();
+            TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria);
 
             CarregarDisciplinas(telaTeste);
-            //CarregarMaterias(telaTeste);
+            CarregarMaterias(telaTeste);
 
             DialogResult resultado = telaTeste.ShowDialog();
 
@@ -54,7 +55,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         public override void Editar()
         {
-            TelaTesteForm telaTeste = new TelaTesteForm();
+            TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria);
 
             int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
 
@@ -129,16 +130,16 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         }
         void CarregarDisciplinas(TelaTesteForm telaTeste)
         {
-            List<Disciplina> disciplinas = repositorioDisciplina.SelecionarTodos();
+            List<Disciplinas> disciplinas = repositorioDisciplina.SelecionarTodos();
 
             telaTeste.MostrarDisciplinas(disciplinas);
         }
 
-        //void CarregarMaterias(TelaTesteForm telaTeste)
-        //{
-        //    List<Materia> materias = repositorioMaterias.SelecionarTodos();
+        void CarregarMaterias(TelaTesteForm telaTeste)
+        {
+            List<Materias> materias = repositorioMateria.SelecionarTodos();
 
-        //    telaTeste.MostrarMaterias(materias);
-        //}
+            telaTeste.MostrarMaterias(materias);
+        }
     }
 }

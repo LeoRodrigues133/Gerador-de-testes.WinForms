@@ -1,5 +1,6 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
-using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
+using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -11,19 +12,19 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 {
     public class Teste : EntidadeBase
     {
-        public string Titulo {  get; set; }
-        public Disciplina Disciplina;
-        //public Materias Materia;
-        public string Serie {  get; set; }
-        public decimal NumQuestoes {  get; set; }
+        public string Titulo { get; set; }
+        public Disciplinas Disciplina;
+        public Materias Materia;
+        public string Serie { get; set; }
+        public decimal NumQuestoes { get; set; }
 
-        public Teste( ) { } //Ctor para Deserializar
-        public Teste(string titulo, Disciplina disciplina,/*Materias materia*/decimal questoes)
+        public Teste() { } //Ctor para Deserializar
+        public Teste(string titulo, Disciplinas disciplina, Materias materia, decimal questoes)
         {
             Titulo = titulo;
             Serie = "";
             Disciplina = disciplina;
-            //Materia = materia;
+            Materia = materia;
             NumQuestoes = questoes;
         }
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
@@ -32,7 +33,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             Titulo = A.Titulo;
             Disciplina = A.Disciplina;
-            //Materia = teste.Materia;
+            Materia = A.Materia;
             Serie = A.Serie;
             NumQuestoes = A.NumQuestoes;
         }
@@ -46,10 +47,10 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             return erros;
         }
-        public bool VerificarRegistros(List<Disciplina> repositorio, Disciplina d)
+        public bool VerificarRegistros(List<Disciplinas> repositorio, Disciplinas d)
         {
 
-            foreach (Disciplina D in repositorio)
+            foreach (Disciplinas D in repositorio)
                 if (D.Nome == d.Nome)
                     return false;
 

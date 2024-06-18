@@ -1,5 +1,5 @@
-﻿using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
-using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
+﻿using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,12 +30,12 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
                 txtId.Text = value.Id.ToString();
                 txtTitulo.Text = value.Titulo;
                 cmbBoxDisciplina.Text = value.Disciplina.Nome;
-                //cmbBoxMateria.Text = value.Materia.Nome;
+                cmbBoxMateria.Text = value.Materia.Nome;
                 numQuestoes.Value = value.NumQuestoes;
             }
             get => teste;
         }
-        public TelaTesteForm()
+        public TelaTesteForm(IRepositorioDisciplina d, IRepositorioMateria m)
         {
             InitializeComponent();
         }
@@ -43,15 +43,15 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         private void btnGravar_Click(object sender, EventArgs e)
         {
             string titulo = txtTitulo.Text.Trim();
-            Disciplina disciplina = (Disciplina)cmbBoxDisciplina.SelectedItem;
-            //Materias materia = (Materias)cmbBoxMateria.SelectedItem;
+            Disciplinas disciplina = (Disciplinas)cmbBoxDisciplina.SelectedItem;
+            Materias materia = (Materias)cmbBoxMateria.SelectedItem;
             decimal NumQuestoes = numQuestoes.Value;
-            teste = new Teste(titulo,disciplina/*,materia*/, NumQuestoes);
+            teste = new Teste(titulo, disciplina, materia, NumQuestoes);
         }
 
-        public void MostrarDisciplinas(List<Disciplina> disciplinas)
+        public void MostrarDisciplinas(List<Disciplinas> disciplinas)
         {
-            foreach (Disciplina d in disciplinas)
+            foreach (Disciplinas d in disciplinas)
                 cmbBoxDisciplina.Items.Add(d.Nome);
         }
 
@@ -64,11 +64,11 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         }
 
-        //public void mostrarmaterias(list<materia> materias)
-        //{
-        //    foreach (materia m in materias)
-        //        cmbboxmateria.items.add(m.nome);
-        //}
+        public void MostrarMaterias(List<Materias> materias)
+        {
+            foreach (Materias m in materias)
+                cmbBoxMateria.Items.Add(m.Nome);
+        }
 
         public List<string> questao()
         {

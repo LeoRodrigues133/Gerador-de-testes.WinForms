@@ -1,6 +1,7 @@
 using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using GeradorDeTestes.WinApp._4___Módulo_Testes;
 
 namespace GeradorDeTestes.WinApp
@@ -10,7 +11,9 @@ namespace GeradorDeTestes.WinApp
         ControladorBase controlador;
         IRepositorioDisciplina repositorioDisciplina;
         IRepositorioTestes repositorioTestes;
+        private IRepositorioMateria repositorioMaterias;
         ContextoDados contexto;
+
         public static TelaPrincipalForm Instancia { get; private set; }
         public TelaPrincipalForm()
         {
@@ -20,6 +23,7 @@ namespace GeradorDeTestes.WinApp
             lblTipoCadastro.Text = string.Empty;
             Instancia = this;
             repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contexto);
+            repositorioMaterias = new RepositorioMateriasEmArquivo(contexto);
             repositorioTestes = new RepositorioTestesEmArquivo(contexto);
 
         }
@@ -75,10 +79,18 @@ namespace GeradorDeTestes.WinApp
         private void testesMenuItem_Click(object sender, EventArgs e)
         {
 
-            controlador = new ControladorTestes(repositorioTestes, repositorioDisciplina);
+            controlador = new ControladorTestes(repositorioTestes, repositorioDisciplina, repositorioMaterias);
 
             ConfigurarTelaPrincipal(controlador);
         }
+
+        private void materiasMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorMateria(repositorioMaterias,repositorioDisciplina);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             controlador.Adicionar();
@@ -93,6 +105,7 @@ namespace GeradorDeTestes.WinApp
         {
             controlador.Excluir();
         }
+
 
     }
 }

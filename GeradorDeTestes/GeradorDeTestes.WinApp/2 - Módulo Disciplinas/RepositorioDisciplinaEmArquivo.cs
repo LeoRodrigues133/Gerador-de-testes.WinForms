@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 {
-    internal class RepositorioDisciplinaEmArquivo : RepositorioBaseEmArquivo<Disciplina>, IRepositorioDisciplina
+    internal class RepositorioDisciplinaEmArquivo : RepositorioBaseEmArquivo<Disciplinas>, IRepositorioDisciplina
     {
 
         public RepositorioDisciplinaEmArquivo(ContextoDados contexto) : base(contexto)
@@ -16,9 +16,9 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 
         }
 
-        protected override List<Disciplina> ObterRegistros()
+        protected override List<Disciplinas> ObterRegistros()
         {
-            return contexto.Disciplinas;
+            return contexto.Disciplina;
         }
     }
 }

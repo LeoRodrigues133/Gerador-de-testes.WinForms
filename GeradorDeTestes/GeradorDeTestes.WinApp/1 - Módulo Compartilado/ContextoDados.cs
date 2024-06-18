@@ -6,7 +6,9 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using GeradorDeTestes.WinApp._4___Módulo_Testes;
+using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
 
 namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 {
@@ -15,13 +17,16 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
         private string caminho = Directory.GetCurrentDirectory().Split("bin")[0] + "\\Dados\\Data.json";
 
 
-        public List<Disciplina> Disciplinas { get; set; }
+        public List<Disciplinas> Disciplina { get; set; }
         public List<Teste> Teste { get; set; }
+
+        public List<Materias> Materia { get; set; }
 
         public ContextoDados()
         {
-            Disciplinas = new List<Disciplina>();
+            Disciplina = new List<Disciplinas>();
             Teste = new List<Teste>();
+            Materia = new List<Materias>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -66,8 +71,9 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
             if (ctx == null)
                 return;
 
-            Disciplinas = ctx.Disciplinas;
+            Disciplina = ctx.Disciplina;
             Teste = ctx.Teste;
+            Materia = ctx.Materia;
         }
     }
 }
