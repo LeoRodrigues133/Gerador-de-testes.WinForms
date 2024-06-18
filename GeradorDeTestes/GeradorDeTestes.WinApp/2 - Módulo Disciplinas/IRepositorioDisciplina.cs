@@ -9,10 +9,10 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 {
     public interface IRepositorioDisciplina
     {
-        void Cadastrar(Disciplinas novaDisciplina);
-        bool Editar(int id,Disciplinas atualizarDisciplina);
+        void Cadastrar(Disciplina novaDisciplina);
+        bool Editar(int id,Disciplina atualizarDisciplina);
         bool Excluir(int id);
-        Disciplinas SelecionarPorId(int id);
-        List<Disciplinas> SelecionarTodos();
+        Disciplina SelecionarPorId(int id);
+        List<Disciplina> SelecionarTodos();
     }
 }

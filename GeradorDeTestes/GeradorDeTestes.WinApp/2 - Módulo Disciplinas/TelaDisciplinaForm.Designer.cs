@@ -39,43 +39,47 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(82, 89);
+            lblId.Location = new Point(94, 119);
             lblId.Name = "lblId";
-            lblId.Size = new Size(20, 15);
+            lblId.Size = new Size(25, 20);
             lblId.TabIndex = 0;
             lblId.Text = "Id:";
             // 
             // txtId
             // 
             txtId.Enabled = false;
-            txtId.Location = new Point(108, 86);
+            txtId.Location = new Point(123, 115);
+            txtId.Margin = new Padding(3, 4, 3, 4);
             txtId.Name = "txtId";
-            txtId.Size = new Size(100, 23);
+            txtId.Size = new Size(48, 27);
             txtId.TabIndex = 1;
+            txtId.Text = "0";
             txtId.TextAlign = HorizontalAlignment.Right;
             // 
             // lblDisciplina
             // 
             lblDisciplina.AutoSize = true;
-            lblDisciplina.Location = new Point(59, 118);
+            lblDisciplina.Location = new Point(67, 157);
             lblDisciplina.Name = "lblDisciplina";
-            lblDisciplina.Size = new Size(43, 15);
+            lblDisciplina.Size = new Size(53, 20);
             lblDisciplina.TabIndex = 0;
             lblDisciplina.Text = "Nome:";
             // 
             // txtDisciplina
             // 
-            txtDisciplina.Location = new Point(108, 115);
+            txtDisciplina.Location = new Point(123, 153);
+            txtDisciplina.Margin = new Padding(3, 4, 3, 4);
             txtDisciplina.Name = "txtDisciplina";
-            txtDisciplina.Size = new Size(351, 23);
+            txtDisciplina.Size = new Size(401, 27);
             txtDisciplina.TabIndex = 1;
             // 
             // btnGravar
             // 
             btnGravar.DialogResult = DialogResult.OK;
-            btnGravar.Location = new Point(295, 244);
+            btnGravar.Location = new Point(337, 325);
+            btnGravar.Margin = new Padding(3, 4, 3, 4);
             btnGravar.Name = "btnGravar";
-            btnGravar.Size = new Size(95, 43);
+            btnGravar.Size = new Size(109, 57);
             btnGravar.TabIndex = 2;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
@@ -84,18 +88,19 @@
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(396, 244);
+            btnCancelar.Location = new Point(453, 325);
+            btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(95, 43);
+            btnCancelar.Size = new Size(109, 57);
             btnCancelar.TabIndex = 2;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
             // TelaDisciplinaForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(522, 299);
+            ClientSize = new Size(597, 399);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(txtDisciplina);
@@ -103,6 +108,7 @@
             Controls.Add(txtId);
             Controls.Add(lblId);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "TelaDisciplinaForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Cadastro de disciplinas";

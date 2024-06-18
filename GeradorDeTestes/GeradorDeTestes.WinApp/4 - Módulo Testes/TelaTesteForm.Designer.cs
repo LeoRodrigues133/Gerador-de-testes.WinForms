@@ -189,8 +189,11 @@
             txtId.Enabled = false;
             txtId.Location = new Point(90, 32);
             txtId.Name = "txtId";
+            txtId.ReadOnly = true;
             txtId.Size = new Size(50, 27);
             txtId.TabIndex = 1;
+            txtId.Text = "0";
+            txtId.TextAlign = HorizontalAlignment.Right;
             // 
             // TelaTesteForm
             // 

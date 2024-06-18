@@ -1,11 +1,33 @@
 {
   "$id": "1",
-  "Disciplina": {
+  "Disciplinas": {
     "$id": "2",
     "$values": [
       {
         "$id": "3",
-        "Nome": "aa",
+        "Nome": "Portugu\u00EAs",
+        "Id": 1
+      },
+      {
+        "$id": "4",
+        "Nome": "Matem\u00E1tica",
+        "Id": 2
+      },
+      {
+        "$id": "5",
+        "Nome": "Geografia",
+        "Id": 3
+      }
+    ]
+  },
+  "Teste": {
+    "$id": "6",
+    "$values": [
+      {
+        "$id": "7",
+        "Titulo": "sdasd",
+        "Serie": "",
+        "NumQuestoes": 12,
         "Id": 1
       }
     ]

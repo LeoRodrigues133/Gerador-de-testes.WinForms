@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 {
-    public class Disciplinas : EntidadeBase
+    public class Disciplina : EntidadeBase
     {
         public string Nome { get; set; } // Nome da Disciplina (Complicado de achar um nome)
 
-        public Disciplinas() { } //Ctor para Deserializar
+        public Disciplina() { } //Ctor para Deserializar
 
-        public Disciplinas(string disciplina)
+        public Disciplina(string disciplina)
         {
             Nome = disciplina;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
-            Disciplinas Atualizar = (Disciplinas)novoRegistro;
+            Disciplina Atualizar = (Disciplina)novoRegistro;
 
             Nome = Atualizar.Nome;
         }
@@ -34,14 +34,19 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             return erros;
         }
-        public bool VerificarRegistros(List<Disciplinas> repositorio, Disciplinas d)
+        public bool VerificarRegistros(List<Disciplina> repositorio, Disciplina d)
         {
 
-            foreach (Disciplinas D in repositorio)
+            foreach (Disciplina D in repositorio)
                 if (D.Nome == d.Nome)
                     return false;
 
             return true;
+        }
+
+        public override string ToString()
+        {
+            return $"{Nome}";
         }
     }
 }

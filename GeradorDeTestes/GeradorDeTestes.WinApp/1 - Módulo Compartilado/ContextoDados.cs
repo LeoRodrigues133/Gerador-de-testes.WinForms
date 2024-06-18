@@ -15,12 +15,12 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
         private string caminho = Directory.GetCurrentDirectory().Split("bin")[0] + "\\Dados\\Data.json";
 
 
-        public List<Disciplinas> Disciplina { get; set; }
+        public List<Disciplina> Disciplinas { get; set; }
         public List<Teste> Teste { get; set; }
 
         public ContextoDados()
         {
-            Disciplina = new List<Disciplinas>();
+            Disciplinas = new List<Disciplina>();
             Teste = new List<Teste>();
         }
 
@@ -66,7 +66,7 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
             if (ctx == null)
                 return;
 
-            Disciplina = ctx.Disciplina;
+            Disciplinas = ctx.Disciplinas;
             Teste = ctx.Teste;
         }
     }

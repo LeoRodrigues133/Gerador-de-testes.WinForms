@@ -14,14 +14,16 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         private IRepositorioTestes repositorioTeste;
         private TabelaTesteControl tabelaTeste;
-        private IRepositorioDisciplina repositorioDisciplina;
+        public IRepositorioDisciplina repositorioDisciplina;
         //private IRepositorioQuestao repositorioQuestao;
         //private IRepositorioMateria repositorioMateria;
 
         public ControladorTestes() { } // Ctor para deserialização;
-        public ControladorTestes(IRepositorioTestes testeRepositorio)
+        public ControladorTestes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio/*, IRepositorioMateria materiaRepositorio*/)
         {
             repositorioTeste = testeRepositorio;
+            repositorioDisciplina = disciplinaRepositorio;
+            //repositorioMateria = materiaRepositorio;
         }
         public override string TipoCadastro { get { return "Testes"; } }
         public override string ToolTipAdicionar { get { return "Cadastrar um novo teste"; } }
@@ -33,6 +35,9 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
 
             TelaTesteForm telaTeste = new TelaTesteForm();
+
+            CarregarDisciplinas(telaTeste);
+            //CarregarMaterias(telaTeste);
 
             DialogResult resultado = telaTeste.ShowDialog();
 
@@ -122,6 +127,18 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             tabelaTeste.AtualizarRegistros(testes);
         }
+        void CarregarDisciplinas(TelaTesteForm telaTeste)
+        {
+            List<Disciplina> disciplinas = repositorioDisciplina.SelecionarTodos();
 
+            telaTeste.MostrarDisciplinas(disciplinas);
+        }
+
+        //void CarregarMaterias(TelaTesteForm telaTeste)
+        //{
+        //    List<Materia> materias = repositorioMaterias.SelecionarTodos();
+
+        //    telaTeste.MostrarMaterias(materias);
+        //}
     }
 }
