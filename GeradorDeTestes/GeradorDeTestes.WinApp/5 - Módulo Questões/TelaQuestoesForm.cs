@@ -12,13 +12,15 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 {
     public partial class TelaQuestoesForm : Form
     {
-        public Questoes Questao;
-        Questoes questao
+        Questoes questao;
+        List<Alternativas> alternativas;
+        Materia materia;
+        public Questoes Questao
         {
             set
             {
-                txtAlternativa.Text = 
-                cmbBoxMateria.Text = value.Materia.ToString();
+                txtAlternativa.Text = alternativas.Count().ToString();
+                cmbBoxMateria.Text = materia.Nome;
                 txtEnunciado.Text = value.Enunciado.ToString();
             }
             get => questao;
