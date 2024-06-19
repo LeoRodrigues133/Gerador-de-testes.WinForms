@@ -12,9 +12,30 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 {
     public partial class TelaQuestoesForm : Form
     {
+        public Questoes Questao;
+        Questoes questao
+        {
+            set
+            {
+                txtAlternativa.Text = 
+                cmbBoxMateria.Text = value.Materia.ToString();
+                txtEnunciado.Text = value.Enunciado.ToString();
+            }
+            get => questao;
+        }
         public TelaQuestoesForm()
         {
             InitializeComponent();
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

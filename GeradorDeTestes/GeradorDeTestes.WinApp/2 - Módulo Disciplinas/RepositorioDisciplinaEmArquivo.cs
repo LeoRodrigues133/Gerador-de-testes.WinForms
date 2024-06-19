@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 {
-    internal class RepositorioDisciplinaEmArquivo : RepositorioBaseEmArquivo<Disciplinas>, IRepositorioDisciplina
+    public class RepositorioDisciplinaEmArquivo : RepositorioBaseEmArquivo<Disciplinas>, IRepositorioDisciplina
     {
 
         public RepositorioDisciplinaEmArquivo(ContextoDados contexto) : base(contexto)

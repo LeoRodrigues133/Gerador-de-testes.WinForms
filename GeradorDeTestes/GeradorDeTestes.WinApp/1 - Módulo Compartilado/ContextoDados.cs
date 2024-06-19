@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
+using GeradorDeTestes.WinApp._5___Módulo_Questões;
 
 namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 {
@@ -16,9 +17,17 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 
         public List<Disciplinas> Disciplina { get; set; }
 
+
+
+        public List<Questoes> Questoes { get; set; }
+
         public ContextoDados()
         {
             Disciplina = new List<Disciplinas>();
+
+
+            Questoes = new List<Questoes>();
+
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -64,6 +73,10 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
                 return;
 
             Disciplina = ctx.Disciplina;
+
+
+
+            Questoes = ctx.Questoes;
         }
     }
 }

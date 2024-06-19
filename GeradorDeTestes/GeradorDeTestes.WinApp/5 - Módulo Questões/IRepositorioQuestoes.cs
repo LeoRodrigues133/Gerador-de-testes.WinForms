@@ -9,9 +9,9 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
     public interface IRepositorioQuestoes
     {
         void Cadastrar(Questoes novaQuestao);
-        bool Editar(int id, Disciplinas atualizarDisciplina);
+        bool Editar(int id, Questoes atualizaQuestao);
         bool Excluir(int id);
-        Disciplinas SelecionarPorId(int id);
-        List<Disciplinas> SelecionarTodos();
+        Questoes SelecionarPorId(int id);
+        List<Questoes> SelecionarTodos();
     }
 }
