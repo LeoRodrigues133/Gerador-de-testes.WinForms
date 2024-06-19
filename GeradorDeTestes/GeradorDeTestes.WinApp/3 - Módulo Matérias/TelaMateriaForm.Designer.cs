@@ -84,8 +84,10 @@
             // txtId
             // 
             txtId.BackColor = SystemColors.ScrollBar;
+            txtId.Enabled = false;
             txtId.Location = new Point(81, 25);
             txtId.Name = "txtId";
+            txtId.ReadOnly = true;
             txtId.Size = new Size(61, 23);
             txtId.TabIndex = 4;
             // 

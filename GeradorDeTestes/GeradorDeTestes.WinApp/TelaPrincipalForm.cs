@@ -15,6 +15,7 @@ namespace GeradorDeTestes.WinApp
         ContextoDados contexto;
 
         public static TelaPrincipalForm Instancia { get; private set; }
+
         public TelaPrincipalForm()
         {
             InitializeComponent();
