@@ -36,7 +36,7 @@
             txtMateria = new TextBox();
             rdb1Serie = new RadioButton();
             rdb2Serie = new RadioButton();
-            cmbBoxDiscplina = new ComboBox();
+            cbDisciplina = new ComboBox();
             btnSalvar = new Button();
             btnCancelar = new Button();
             SuspendLayout();
@@ -84,8 +84,10 @@
             // txtId
             // 
             txtId.BackColor = SystemColors.ScrollBar;
+            txtId.Enabled = false;
             txtId.Location = new Point(81, 25);
             txtId.Name = "txtId";
+            txtId.ReadOnly = true;
             txtId.Size = new Size(61, 23);
             txtId.TabIndex = 4;
             // 
@@ -118,13 +120,13 @@
             rdb2Serie.Text = "2º Série";
             rdb2Serie.UseVisualStyleBackColor = true;
             // 
-            // cmbBoxDiscplina
+            // cbDisciplina
             // 
-            cmbBoxDiscplina.FormattingEnabled = true;
-            cmbBoxDiscplina.Location = new Point(81, 107);
-            cmbBoxDiscplina.Name = "cmbBoxDiscplina";
-            cmbBoxDiscplina.Size = new Size(121, 23);
-            cmbBoxDiscplina.TabIndex = 8;
+            cbDisciplina.FormattingEnabled = true;
+            cbDisciplina.Location = new Point(81, 107);
+            cbDisciplina.Name = "cbDisciplina";
+            cbDisciplina.Size = new Size(121, 23);
+            cbDisciplina.TabIndex = 8;
             // 
             // btnSalvar
             // 
@@ -154,7 +156,7 @@
             ClientSize = new Size(500, 179);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
-            Controls.Add(cmbBoxDiscplina);
+            Controls.Add(cbDisciplina);
             Controls.Add(rdb2Serie);
             Controls.Add(rdb1Serie);
             Controls.Add(txtMateria);
@@ -183,7 +185,7 @@
         private TextBox txtMateria;
         private RadioButton rdb1Serie;
         private RadioButton rdb2Serie;
-        private ComboBox cmbBoxDiscplina;
+        private ComboBox cbDisciplina;
         private Button btnSalvar;
         private Button btnCancelar;
     }

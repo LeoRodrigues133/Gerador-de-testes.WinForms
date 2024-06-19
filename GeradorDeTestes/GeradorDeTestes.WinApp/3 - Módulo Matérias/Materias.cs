@@ -8,40 +8,40 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._2___Módulo_Matérias
 {
-        public class Materias : EntidadeBase
-        {
-
+    public class Materias : EntidadeBase
+    {
+        
         public string Nome { get; set; }
-            public Disciplinas Disciplina { get; set; }
-            public int Serie { get; set; }
-            public Materias() { }
-            public Materias(string nome, Disciplinas disciplina, int serie)
-            {
-                Nome = nome;
-                Disciplina = disciplina;
-                Serie = serie;
-            }
+        public Disciplinas Disciplina { get; set; }
+        public int Serie { get; set; }
+        public Materias() { }
+        public Materias(string nome, Disciplinas disciplina, int serie)
+        {
+            Nome = nome;
+            Disciplina = disciplina;
+            Serie = serie;
+        }
 
-            public override List<string> Validar()
-            {
-                List<string> erros = new List<string>();
+        public override List<string> Validar()
+        {
+            List<string> erros = new List<string>();
 
-                if (string.IsNullOrEmpty(Nome.Trim()))
-                    erros.Add("O campo \"nome\" é obrigatório");
-                if (Serie == 0)
-                    erros.Add("O campo \"série\" é obrigatório");
+            if (string.IsNullOrEmpty(Nome.Trim()))
+                erros.Add("O campo \"nome\" é obrigatório");
+            if (Serie == 0)
+                erros.Add("O campo \"série\" é obrigatório");
 
-                return erros;
-            }
+            return erros;
+        }
 
-            public override void AtualizarRegistro(EntidadeBase novoRegistro)
-            {
-                Materias atualizado = (Materias)novoRegistro;
+        public override void AtualizarRegistro(EntidadeBase novoRegistro)
+        {
+            Materias atualizado = (Materias)novoRegistro;
 
-                Nome = atualizado.Nome;
-                Disciplina = atualizado.Disciplina;
-                Serie = atualizado.Serie;
-            }
+            Nome = atualizado.Nome;
+            Disciplina = atualizado.Disciplina;
+            Serie = atualizado.Serie;
+        }
 
         public bool VerificarRegistros(List<Materias> repositorio, Materias d)
         {
@@ -53,4 +53,4 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Matérias
             return true;
         }
     }
-    }
+}

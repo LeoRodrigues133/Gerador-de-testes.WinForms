@@ -30,10 +30,18 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Matérias
             InitializeComponent();
         }
 
+        public void CarregarDisciplinas(List<Disciplinas> disciplinas)
+        {
+            cbDisciplina.Items.Clear();
+
+            foreach (Disciplinas d in disciplinas)
+                cbDisciplina.Items.Add(d);
+        }
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             string nomeMateria = txtMateria.Text;
-            Disciplinas disciplina = (Disciplinas)cmbBoxDiscplina.SelectedItem;
+            Disciplinas disciplina = (Disciplinas)cbDisciplina.SelectedItem;
             int serie = 0;
 
             if (rdb1Serie.Checked)
@@ -49,17 +57,17 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Matérias
 
             materia = new Materias(nomeMateria, disciplina, serie);
 
-            if (!materia.VerificarRegistros(rMaterias, materia))
-            {
-                MessageBox.Show(
-                     "Não é possível realizar esta ação, já existe um registro com este nome cadastrado.",
-                     "Aviso",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Warning
-                     );
-                DialogResult = DialogResult.Cancel;
+            //if (!materia.VerificarRegistros(rMaterias, materia))
+            //{
+            //    MessageBox.Show(
+            //         "Não é possível realizar esta ação, já existe um registro com este nome cadastrado.",
+            //         "Aviso",
+            //         MessageBoxButtons.OK,
+            //         MessageBoxIcon.Warning
+            //         );
+            //    DialogResult = DialogResult.Cancel;
 
-            }
+            //}
         }
     }
 }

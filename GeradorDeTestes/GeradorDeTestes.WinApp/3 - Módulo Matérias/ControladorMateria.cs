@@ -13,7 +13,12 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
     public class ControladorMateria : ControladorBase
     {
         public IRepositorioMaterias repositorioMaterias;
-        
+
+        public ControladorMateria(IRepositorioMaterias repositorio)
+        {
+            repositorioMaterias = repositorio;
+        }
+
         TabelaMateriaControl tabelaMateria;
 
         public override string TipoCadastro { get { return "Matérias"; } }

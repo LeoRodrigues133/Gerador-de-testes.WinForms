@@ -11,6 +11,8 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
     {
         public string Nome { get; set; } // Nome da Disciplina (Complicado de achar um nome)
 
+        public Disciplinas() { }
+
         public Disciplinas(string disciplina)
         {
             Nome = disciplina;

@@ -1,4 +1,5 @@
-﻿using GeradorDeTestes.WinApp._2___Módulo_Matérias;
+﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
+using GeradorDeTestes.WinApp._2___Módulo_Matérias;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
         internal int ObterRegistroSelecionado()
         {
-            throw new NotImplementedException();
+            return grid.SelecionarId();
         }
     }
 }

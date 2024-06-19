@@ -7,7 +7,21 @@
         "$id": "3",
         "Nome": "aa",
         "Id": 1
+      },
+      {
+        "$id": "4",
+        "Nome": "matematica",
+        "Id": 2
+      },
+      {
+        "$id": "5",
+        "Nome": "filosofia",
+        "Id": 3
       }
     ]
+  },
+  "Materias": {
+    "$id": "6",
+    "$values": []
   }
 }

@@ -76,6 +76,7 @@
             materiasMenuItem.Name = "materiasMenuItem";
             materiasMenuItem.Size = new Size(197, 24);
             materiasMenuItem.Text = "Matérias";
+            materiasMenuItem.Click += materiasMenuItem_Click;
             // 
             // testesMenuItem
             // 
