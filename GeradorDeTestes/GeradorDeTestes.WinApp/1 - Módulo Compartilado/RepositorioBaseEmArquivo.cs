@@ -31,7 +31,7 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
             contexto.Gravar();
         }
 
-        public bool Editar(int id, T novaEntidade)
+        public bool Editar(int id, T novaEntidade) //Bug a resolver
         {
             T registro = SelecionarPorId(id);
 
