@@ -36,66 +36,73 @@
             txtAlternativa = new TextBox();
             btnAdicionar = new Button();
             gpBoxAlternativas = new GroupBox();
+            listAlternativas = new CheckedListBox();
             btnRemover = new Button();
+            btnCancelar = new Button();
+            btnGravar = new Button();
             gpBoxAlternativas.SuspendLayout();
             SuspendLayout();
             // 
             // cmbBoxMateria
             // 
             cmbBoxMateria.FormattingEnabled = true;
-            cmbBoxMateria.Location = new Point(83, 35);
+            cmbBoxMateria.Location = new Point(95, 47);
+            cmbBoxMateria.Margin = new Padding(3, 4, 3, 4);
             cmbBoxMateria.Name = "cmbBoxMateria";
-            cmbBoxMateria.Size = new Size(247, 23);
+            cmbBoxMateria.Size = new Size(282, 28);
             cmbBoxMateria.TabIndex = 0;
             // 
             // lblMateria
             // 
             lblMateria.AutoSize = true;
-            lblMateria.Location = new Point(27, 35);
+            lblMateria.Location = new Point(31, 47);
             lblMateria.Name = "lblMateria";
-            lblMateria.Size = new Size(50, 15);
+            lblMateria.Size = new Size(63, 20);
             lblMateria.TabIndex = 1;
             lblMateria.Text = "Matéria:";
             // 
             // txtEnunciado
             // 
-            txtEnunciado.Location = new Point(83, 88);
+            txtEnunciado.Location = new Point(95, 117);
+            txtEnunciado.Margin = new Padding(3, 4, 3, 4);
             txtEnunciado.Multiline = true;
             txtEnunciado.Name = "txtEnunciado";
-            txtEnunciado.Size = new Size(351, 92);
+            txtEnunciado.Size = new Size(401, 121);
             txtEnunciado.TabIndex = 2;
             // 
             // lblAlternativa
             // 
             lblAlternativa.AutoSize = true;
-            lblAlternativa.Location = new Point(10, 199);
+            lblAlternativa.Location = new Point(11, 265);
             lblAlternativa.Name = "lblAlternativa";
-            lblAlternativa.Size = new Size(67, 15);
+            lblAlternativa.Size = new Size(84, 20);
             lblAlternativa.TabIndex = 1;
             lblAlternativa.Text = "Alternativa:";
             // 
             // lblEnunciado
             // 
             lblEnunciado.AutoSize = true;
-            lblEnunciado.Location = new Point(11, 114);
+            lblEnunciado.Location = new Point(13, 152);
             lblEnunciado.Name = "lblEnunciado";
-            lblEnunciado.Size = new Size(66, 15);
+            lblEnunciado.Size = new Size(81, 20);
             lblEnunciado.TabIndex = 1;
             lblEnunciado.Text = "Enunciado:";
             // 
             // txtAlternativa
             // 
-            txtAlternativa.Location = new Point(83, 186);
+            txtAlternativa.Location = new Point(95, 248);
+            txtAlternativa.Margin = new Padding(3, 4, 3, 4);
             txtAlternativa.Multiline = true;
             txtAlternativa.Name = "txtAlternativa";
-            txtAlternativa.Size = new Size(247, 51);
+            txtAlternativa.Size = new Size(282, 67);
             txtAlternativa.TabIndex = 2;
             // 
             // btnAdicionar
             // 
-            btnAdicionar.Location = new Point(343, 200);
+            btnAdicionar.Location = new Point(392, 267);
+            btnAdicionar.Margin = new Padding(3, 4, 3, 4);
             btnAdicionar.Name = "btnAdicionar";
-            btnAdicionar.Size = new Size(86, 37);
+            btnAdicionar.Size = new Size(98, 49);
             btnAdicionar.TabIndex = 3;
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.UseVisualStyleBackColor = true;
@@ -103,29 +110,66 @@
             // 
             // gpBoxAlternativas
             // 
+            gpBoxAlternativas.Controls.Add(listAlternativas);
             gpBoxAlternativas.Controls.Add(btnRemover);
-            gpBoxAlternativas.Location = new Point(77, 256);
+            gpBoxAlternativas.Location = new Point(88, 341);
+            gpBoxAlternativas.Margin = new Padding(3, 4, 3, 4);
             gpBoxAlternativas.Name = "gpBoxAlternativas";
-            gpBoxAlternativas.Size = new Size(357, 201);
+            gpBoxAlternativas.Padding = new Padding(3, 4, 3, 4);
+            gpBoxAlternativas.Size = new Size(408, 283);
             gpBoxAlternativas.TabIndex = 4;
             gpBoxAlternativas.TabStop = false;
             gpBoxAlternativas.Text = "Alternativas:";
             // 
+            // listAlternativas
+            // 
+            listAlternativas.FormattingEnabled = true;
+            listAlternativas.Location = new Point(0, 67);
+            listAlternativas.Name = "listAlternativas";
+            listAlternativas.Size = new Size(408, 202);
+            listAlternativas.TabIndex = 4;
+            // 
             // btnRemover
             // 
-            btnRemover.Location = new Point(21, 22);
+            btnRemover.Location = new Point(24, 29);
+            btnRemover.Margin = new Padding(3, 4, 3, 4);
             btnRemover.Name = "btnRemover";
-            btnRemover.Size = new Size(110, 23);
+            btnRemover.Size = new Size(126, 31);
             btnRemover.TabIndex = 3;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = true;
             btnRemover.Click += btnRemover_Click;
             // 
+            // btnCancelar
+            // 
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(429, 632);
+            btnCancelar.Margin = new Padding(3, 4, 3, 4);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(109, 57);
+            btnCancelar.TabIndex = 10;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnGravar
+            // 
+            btnGravar.DialogResult = DialogResult.OK;
+            btnGravar.Location = new Point(313, 632);
+            btnGravar.Margin = new Padding(3, 4, 3, 4);
+            btnGravar.Name = "btnGravar";
+            btnGravar.Size = new Size(109, 57);
+            btnGravar.TabIndex = 11;
+            btnGravar.Text = "Gravar";
+            btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
+            // 
             // TelaQuestoesForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(481, 483);
+            ClientSize = new Size(550, 702);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGravar);
             Controls.Add(gpBoxAlternativas);
             Controls.Add(btnAdicionar);
             Controls.Add(txtAlternativa);
@@ -134,7 +178,9 @@
             Controls.Add(lblAlternativa);
             Controls.Add(lblMateria);
             Controls.Add(cmbBoxMateria);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "TelaQuestoesForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "TelaQuestoesForm";
             gpBoxAlternativas.ResumeLayout(false);
             ResumeLayout(false);
@@ -152,5 +198,8 @@
         private Button btnAdicionar;
         private GroupBox gpBoxAlternativas;
         private Button btnRemover;
+        private Button btnCancelar;
+        private Button btnGravar;
+        private CheckedListBox listAlternativas;
     }
 }

@@ -10,13 +10,13 @@
       },
       {
         "$id": "4",
-        "Nome": "Matem\u00E1tica",
-        "Id": 2
+        "Nome": "Ed.Fis",
+        "Id": 3
       },
       {
         "$id": "5",
-        "Nome": "Ed.Fis",
-        "Id": 3
+        "Nome": "Matem\u00E1tica",
+        "Id": 4
       }
     ]
   },
@@ -25,55 +25,78 @@
     "$values": [
       {
         "$id": "7",
-        "Titulo": "sdasd",
-        "Serie": "",
-        "NumQuestoes": 12,
-        "Id": 1
-      },
-      {
-        "$id": "8",
-        "Titulo": "",
-        "Serie": "",
-        "NumQuestoes": 1,
-        "Id": 2
-      },
-      {
-        "$id": "9",
-        "Titulo": "teste",
+        "Titulo": "Teste",
         "Serie": "",
         "NumQuestoes": 0,
-        "Id": 4
+        "Id": 7
       }
     ]
   },
   "Materia": {
+    "$id": "8",
+    "$values": [
+      {
+        "$id": "9",
+        "Nome": "Rech \u00E9 um deus?",
+        "Disciplina": {
+          "$ref": "4"
+        },
+        "Serie": 1,
+        "Id": 1
+      }
+    ]
+  },
+  "Questoes": {
     "$id": "10",
     "$values": [
       {
         "$id": "11",
-        "Nome": "aaaaaaaa",
-        "Disciplina": null,
-        "Serie": 0,
-        "Id": 2
+        "Enunciado": "sadsa",
+        "Materia": {
+          "$ref": "9"
+        },
+        "Testes": {
+          "$id": "12",
+          "$values": []
+        },
+        "Alternativas": {
+          "$id": "13",
+          "$values": []
+        },
+        "Id": 7
       },
       {
-        "$id": "12",
-        "Nome": "aaaa",
-        "Disciplina": null,
-        "Serie": 0,
-        "Id": 3
+        "$id": "14",
+        "Enunciado": "aass",
+        "Materia": {
+          "$ref": "9"
+        },
+        "Testes": {
+          "$id": "15",
+          "$values": []
+        },
+        "Alternativas": {
+          "$id": "16",
+          "$values": []
+        },
+        "Id": 8
       },
       {
-        "$id": "13",
-        "Nome": "aaaa",
-        "Disciplina": null,
-        "Serie": 2,
-        "Id": 4
+        "$id": "17",
+        "Enunciado": "a",
+        "Materia": {
+          "$ref": "9"
+        },
+        "Testes": {
+          "$id": "18",
+          "$values": []
+        },
+        "Alternativas": {
+          "$id": "19",
+          "$values": []
+        },
+        "Id": 9
       }
     ]
-  },
-  "Materias": {
-    "$id": "6",
-    "$values": []
   }
 }

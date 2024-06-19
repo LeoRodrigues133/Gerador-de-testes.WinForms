@@ -3,6 +3,7 @@ using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
 using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using GeradorDeTestes.WinApp._4___Módulo_Testes;
+using GeradorDeTestes.WinApp._5___Módulo_Questões;
 
 namespace GeradorDeTestes.WinApp
 {
@@ -11,7 +12,8 @@ namespace GeradorDeTestes.WinApp
         ControladorBase controlador;
         IRepositorioDisciplina repositorioDisciplina;
         IRepositorioTestes repositorioTestes;
-        private IRepositorioMateria repositorioMaterias;
+        IRepositorioMateria repositorioMaterias;
+        IRepositorioQuestoes repositorioQuestoes;
         ContextoDados contexto;
 
         public static TelaPrincipalForm Instancia { get; private set; }
@@ -26,6 +28,7 @@ namespace GeradorDeTestes.WinApp
             repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contexto);
             repositorioMaterias = new RepositorioMateriasEmArquivo(contexto);
             repositorioTestes = new RepositorioTestesEmArquivo(contexto);
+            repositorioQuestoes = new RepositorioQuestoesEmArquivo(contexto);
 
         }
 
@@ -87,7 +90,13 @@ namespace GeradorDeTestes.WinApp
 
         private void materiasMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorMateria(repositorioMaterias,repositorioDisciplina);
+            controlador = new ControladorMateria(repositorioMaterias, repositorioDisciplina);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+        private void questõesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorQuestoes(repositorioTestes, repositorioDisciplina, repositorioMaterias, repositorioQuestoes);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -106,7 +115,6 @@ namespace GeradorDeTestes.WinApp
         {
             controlador.Excluir();
         }
-
 
     }
 }

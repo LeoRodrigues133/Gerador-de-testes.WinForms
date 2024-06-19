@@ -111,7 +111,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             tabelaMateria.AtualizarRegistros(materias);
         }
 
-        void CarregarDisciplinas(TelaMateriaForm telaMateria)
+        public void CarregarDisciplinas(TelaMateriaForm telaMateria)
         {
             List<Disciplinas> disciplinas = repositorioDisciplina.SelecionarTodos();
 

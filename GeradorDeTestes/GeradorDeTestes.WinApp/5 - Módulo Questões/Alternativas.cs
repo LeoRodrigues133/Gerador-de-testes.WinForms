@@ -2,24 +2,28 @@
 
 namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 {
-    public class Alternativas : EntidadeBase
+    public class Alternativas
     {
-        public string Resposta { get; set; }
-        public override void AtualizarRegistro(EntidadeBase novoRegistro)
-        {
-            Alternativas atualizar = (Alternativas)novoRegistro;
+        public string Enunciado { get; set; }
 
-            Resposta = atualizar.Resposta;
+        public bool Reposta {  get; set; }
+
+        public Alternativas(string enunciado)
+        {
+            Enunciado = enunciado;
+            Reposta = false;
         }
 
-        public override List<string> Validar()
+        public void RefatorarModeloAlternativa(int count)
         {
-            List<string> erros = new List<string>();
+            if (Enunciado.Contains(":"))
+                Enunciado = Enunciado.Split(" ")[2];
+            Enunciado = $"({(char)(65 + count)}) : {Enunciado}";
+        }
 
-            if (string.IsNullOrEmpty(Resposta.Trim()))
-                erros.Add("O campo \"reposta\" deve ser preenchido");
-
-            return erros;
+        public override string ToString()
+        {
+            return $"{Enunciado}";
         }
     }
 }

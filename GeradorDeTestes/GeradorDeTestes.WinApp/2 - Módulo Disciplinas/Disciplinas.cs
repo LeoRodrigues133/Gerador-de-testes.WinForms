@@ -9,7 +9,6 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 {
     public class Disciplinas : EntidadeBase
     {
-        public Disciplinas() { }
        
         public string Nome { get; set; } // Nome da Disciplina (Complicado de achar um nome)
 

@@ -29,8 +29,8 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             {
                 txtId.Text = value.Id.ToString();
                 txtTitulo.Text = value.Titulo;
-                cmbBoxDisciplina.Text = value.Disciplina.Nome;
-                cmbBoxMateria.Text = value.Materia.Nome;
+                cmbBoxDisciplina.SelectedItem = value.Disciplina;
+                cmbBoxMateria.SelectedItem = value.Materia;
                 numQuestoes.Value = value.NumQuestoes;
             }
             get => teste;
@@ -52,7 +52,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public void MostrarDisciplinas(List<Disciplinas> disciplinas)
         {
             foreach (Disciplinas d in disciplinas)
-                cmbBoxDisciplina.Items.Add(d.Nome);
+                cmbBoxDisciplina.Items.Add(d);
         }
 
         private void btnSortearQuestoes_Click(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public void MostrarMaterias(List<Materias> materias)
         {
             foreach (Materias m in materias)
-                cmbBoxMateria.Items.Add(m.Nome);
+                cmbBoxMateria.Items.Add(m);
         }
 
         public List<string> questao()

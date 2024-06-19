@@ -1,6 +1,8 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
+using GeradorDeTestes.WinApp._4___Módulo_Testes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,12 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 {
     public class ControladorQuestoes : ControladorBase
     {
-        IRepositorioQuestoes iRepositorio;
+        IRepositorioQuestoes repositorioQuestoes;
         TabelaQuestoesControl tabelaQuestoes;
+        private IRepositorioTestes repositorioTestes;
+        private IRepositorioDisciplina repositorioDisciplina;
+        private IRepositorioMateria repositorioMaterias;
+
         public override string TipoCadastro { get { return "Questões"; } }
 
         public override string ToolTipAdicionar { get { return "Adicionar uma nova questão"; } }
@@ -21,25 +27,42 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
         public override string ToolTipExcluir { get { return "Excluir uma questão"; } }
 
+
+
+        public ControladorQuestoes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio,IRepositorioQuestoes questoesRepositorio)
+        {
+            repositorioTestes = testeRepositorio;
+            repositorioDisciplina = disciplinaRepositorio;
+            repositorioMaterias = materiaRepositorio;
+            repositorioQuestoes = questoesRepositorio;
+            
+            AtualizarRodape();
+        }
+
         public override void Adicionar()
         {
             TelaQuestoesForm telaQuestoes = new TelaQuestoesForm();
 
+            CarregarMaterias(telaQuestoes);
+            
             DialogResult resultado = telaQuestoes.ShowDialog();
 
             if (resultado != DialogResult.OK) return;
 
             Questoes novaQuestao = telaQuestoes.Questao;
 
-            iRepositorio.Cadastrar(novaQuestao);
+            repositorioQuestoes.Cadastrar(novaQuestao);
 
             CarregarQuestoes();
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{novaQuestao.Enunciado}\" foi criado com sucesso!");
+
 
         }
 
         private void CarregarQuestoes()
         {
-            List<Questoes> questaos = iRepositorio.SelecionarTodos();
+            List<Questoes> questaos = repositorioQuestoes.SelecionarTodos();
 
             tabelaQuestoes.AtualizarRegistros(questaos);
         }
@@ -48,9 +71,12 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
         {
             TelaQuestoesForm telaQuestoes = new TelaQuestoesForm();
 
+            CarregarMaterias(telaQuestoes);
+
+
             int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
 
-            Questoes Selecionado = iRepositorio.SelecionarPorId(idSelecionado);
+            Questoes Selecionado = repositorioQuestoes.SelecionarPorId(idSelecionado);
 
             if (Selecionado == null)
             {
@@ -72,14 +98,17 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             Questoes questaoEditada = telaQuestoes.Questao;
 
-            iRepositorio.Editar(idSelecionado, questaoEditada);
+            repositorioQuestoes.Editar(idSelecionado, questaoEditada);
+
             CarregarQuestoes();
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{questaoEditada.Enunciado}\" foi editado com sucesso!");
         }
         public override void Excluir()
         {
             int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
 
-            Questoes Selecionado = iRepositorio.SelecionarPorId(idSelecionado);
+            Questoes Selecionado = repositorioQuestoes.SelecionarPorId(idSelecionado);
 
             if (Selecionado == null)
             {
@@ -98,9 +127,11 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
                MessageBoxIcon.Warning
                );
 
-            iRepositorio.Excluir(idSelecionado);
+            repositorioQuestoes.Excluir(idSelecionado);
+
             CarregarQuestoes();
 
+            TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{Selecionado.Enunciado}\" foi excluído com sucesso!");
 
         }
 
@@ -109,16 +140,21 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             if (tabelaQuestoes == null)
                 tabelaQuestoes = new TabelaQuestoesControl();
 
+            List<Questoes> questoes = repositorioQuestoes.SelecionarTodos();
+
             CarregarQuestoes();
 
             return tabelaQuestoes;
         }
-
-        private void CarregarMaterias()
+        private void AtualizarRodape()
         {
-            List<Questoes>  questoes = iRepositorio.SelecionarTodos();
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {repositorioQuestoes.SelecionarTodos().Count} registro(s)...");
+        }
+        void CarregarMaterias(TelaQuestoesForm telaQuestoes)
+        {
+            List<Materias> materias = repositorioMaterias.SelecionarTodos();
 
-            tabelaQuestoes.AtualizarRegistros(questoes);
+            telaQuestoes.MostrarMaterias(materias);
         }
     }
 }

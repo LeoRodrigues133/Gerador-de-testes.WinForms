@@ -1,19 +1,26 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
+using GeradorDeTestes.WinApp._4___Módulo_Testes;
 
 namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 {
     public class Questoes : EntidadeBase
     {
         public string Enunciado { get; set; }
-        Materia Materia { get; set; }
+        public Materias Materia { get; set; }
+        public List<Teste> Testes { get; set; }
 
-        List<Alternativas> Alternativa;
+        public List<Alternativas> alternativas { get; set; }
+
         public Questoes() { }
-        public Questoes(string enunciado, Materia materia, List<Alternativas> alternativa)
+
+        public Questoes(string enunciado, Materias materia, List<Alternativas> alternativa)
         {
             Enunciado = enunciado;
             Materia = materia;
-            Alternativa = alternativa;
+            alternativas = alternativa;
+            Testes = new List<Teste>();
+
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
@@ -22,6 +29,16 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             Enunciado = atualizar.Enunciado;
             Materia = atualizar.Materia;
+            alternativas = atualizar.alternativas;
+        }
+        public Alternativas RespostaValida()
+        {
+            foreach (Alternativas a in alternativas)
+            {
+                if (a.Reposta)
+                    return a;
+            }
+            return null;
         }
 
         public override List<string> Validar()
@@ -33,6 +50,11 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
 
             return erros;
+        }
+
+        public override string ToString()
+        {
+            return $"{Enunciado}";
         }
     }
 }

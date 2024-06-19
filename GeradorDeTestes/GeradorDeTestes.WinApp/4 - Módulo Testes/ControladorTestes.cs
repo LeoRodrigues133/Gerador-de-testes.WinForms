@@ -57,6 +57,9 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
             TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria);
 
+            CarregarDisciplinas(telaTeste);
+            CarregarMaterias(telaTeste);
+
             int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
 
             Teste Selecionado = repositorioTeste.SelecionarPorId(idSelecionado);

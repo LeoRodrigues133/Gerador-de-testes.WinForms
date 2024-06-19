@@ -16,13 +16,18 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
         public TabelaQuestoesControl()
         {
             InitializeComponent();
+
+            grid.Columns.AddRange(CriarColunas());
+
+            grid.ConfigurarGridSomenteLeitura();
+            grid.ConfigurarGridZebrado();
         }
         public void AtualizarRegistros(List<Questoes> questoes)
         {
             grid.Rows.Clear();
 
             foreach (Questoes q in questoes)
-                grid.Rows.Add();
+                grid.Rows.Add(q.Id, q.Enunciado, q.Materia, q.RespostaValida());
         }
 
         public int ObterRegistroSelecionado()
@@ -34,7 +39,9 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
         {
             return new DataGridViewColumn[]                 {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Disciplina" }
+                new DataGridViewTextBoxColumn { DataPropertyName = "Enunciado", HeaderText = "Teste" },
+                new DataGridViewTextBoxColumn { DataPropertyName = "Materia", HeaderText = "Materia" },
+                new DataGridViewTextBoxColumn { DataPropertyName = "Resposta", HeaderText = "Resposta" }
                 };
         }
     }

@@ -27,7 +27,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             grid.Rows.Clear();
 
             foreach (Teste t in testes)
-                grid.Rows.Add(t.Id.ToString(), t.Titulo);
+                grid.Rows.Add(t.Id.ToString(), t.Titulo,t.Disciplina,t.Materia,t.NumQuestoes);
         }
 
         public int ObterRegistroSelecionado()
@@ -38,7 +38,10 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
             return new DataGridViewColumn[]                 {
                 new DataGridViewTextBoxColumn{DataPropertyName =  "Id", HeaderText = "Id" },
-                new DataGridViewTextBoxColumn{DataPropertyName =  "Titulo", HeaderText = "Titulo" }
+                new DataGridViewTextBoxColumn{DataPropertyName =  "Titulo", HeaderText = "Titulo" },
+                new DataGridViewTextBoxColumn{DataPropertyName =  "Disciplina", HeaderText = "Disciplina" },
+                new DataGridViewTextBoxColumn{DataPropertyName =  "Materia", HeaderText = "Matéria" },
+                new DataGridViewTextBoxColumn{DataPropertyName =  "Questoes", HeaderText = "Qtd. Questões" },
             };
         }
 

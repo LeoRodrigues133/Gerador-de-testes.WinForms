@@ -33,10 +33,10 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
         public void CarregarDisciplinas(List<Disciplinas> disciplinas)
         {
-            cbDisciplina.Items.Clear();
+            cmbBoxDisciplina.Items.Clear();
 
             foreach (Disciplinas d in disciplinas)
-                cbDisciplina.Items.Add(d);
+                cmbBoxDisciplina.Items.Add(d);
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
         public void MostrarDisciplinas(List<Disciplinas> disciplinas)
         {
             foreach (Disciplinas d in disciplinas)
-                cmbBoxDisciplina.Items.Add(d.Nome);
+                cmbBoxDisciplina.Items.Add(d);
         }
     }
 }
