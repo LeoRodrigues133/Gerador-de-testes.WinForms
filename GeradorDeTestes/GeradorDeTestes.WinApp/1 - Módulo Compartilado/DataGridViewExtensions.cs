@@ -69,7 +69,12 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
             if (valorSelecionado == null)
                 return -1;
 
-            return (int)valorSelecionado;
+            if (int.TryParse(valorSelecionado.ToString(), out int id))
+            {
+                return id;
+            }
+
+            return -1;
         }
     }
 }
