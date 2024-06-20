@@ -105,10 +105,22 @@ Mariana deseja informatizar os exercícios preparatórios para suas filhas, poss
 
 ## Requisitos Não Funcionais
 
-- **Persistência das Informações:** Os dados devem ser salvos e recuperados em arquivo.
-- **Arquitetura:** Utilização do padrão MVC para a estruturação do projeto.
-- **Interfaces com o Usuário:** Detalhamento dos critérios para as telas de cadastro e listagem.
-- 
+- **A visualização dos registros deve ser apresentada utilizando o componente DataGridView**
+- **As telas de cadastro devem aparecer centralizadas**
+- **Não deve permitir redimensionar telas de cadastro**
+- **Não deve permitir minimizar ou maximizar telas de cadastro**
+- **As telas de cadastro devem ser dialogs**
+- **As telas de cadastro devem ter um título**
+- **Os elementos das telas de cadastro devem seguir um padrão de posicionamento**
+- **Os elementos das telas de cadastro devem estar alinhados**
+- **O nome do sistema deve ser apresentado na tela principal**
+- **As notificações para usuário devem ser apresentadas seguindo um padrão**
+- **As telas de cadastro devem ter uma opção que fecha a janela e não grava as alterações**
+- **As telas de cadastro devem ter uma opção que grava as alterações**
+- **A tabulação dos campos deve seguir uma sequência lógica iniciando pelos campos superiores**
+- **As alterações realizadas devem ser gravadas e devem manter uma referência única em todas as telas**
+- **As telas de listagem devem permitir selecionar apenas um registro**
+
 ---
 
 ## Requisitos
