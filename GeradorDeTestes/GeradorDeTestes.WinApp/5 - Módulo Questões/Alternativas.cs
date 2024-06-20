@@ -6,19 +6,18 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
     {
         public string Enunciado { get; set; }
 
-        public bool Reposta {  get; set; }
+        public bool Resposta { get; set; }
 
         public Alternativas(string enunciado)
         {
             Enunciado = enunciado;
-            Reposta = false;
+            Resposta = false;
         }
 
         public void RefatorarModeloAlternativa(int count)
         {
             if (Enunciado.Contains(":"))
-                Enunciado = Enunciado.Split(" ")[2];
-            Enunciado = $"({(char)(65 + count)}) : {Enunciado}";
+                Enunciado = $"{(char)(97 + count)} : {Enunciado}";
         }
 
         public override string ToString()

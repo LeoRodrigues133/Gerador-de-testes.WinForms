@@ -51,7 +51,7 @@ namespace GeradorDeTestes.WinApp
             btnEditar.Enabled = controladorSelecionado is ControladorBase;
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
 
-            //btnFiltrar.Enabled = controladorSelecionado is IControladorFiltravel;
+            btnVisualizarAlternativas.Enabled = controladorSelecionado is IControladorVisualizar;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -62,6 +62,8 @@ namespace GeradorDeTestes.WinApp
             btnEditar.ToolTipText = controladorSelecionado.ToolTipEditar;
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
 
+            if (controladorSelecionado is IControladorVisualizar controladorVisualizar)
+                btnVisualizarAlternativas.ToolTipText = controladorVisualizar.ToolTipVisualizar;
         }
 
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
@@ -83,7 +85,7 @@ namespace GeradorDeTestes.WinApp
         private void testesMenuItem_Click(object sender, EventArgs e)
         {
 
-            controlador = new ControladorTestes(repositorioTestes, repositorioDisciplina, repositorioMaterias);
+            controlador = new ControladorTestes(repositorioTestes, repositorioDisciplina, repositorioMaterias, repositorioQuestoes);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -96,6 +98,7 @@ namespace GeradorDeTestes.WinApp
         }
         private void questõesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             controlador = new ControladorQuestoes(repositorioTestes, repositorioDisciplina, repositorioMaterias, repositorioQuestoes);
 
             ConfigurarTelaPrincipal(controlador);
@@ -116,5 +119,10 @@ namespace GeradorDeTestes.WinApp
             controlador.Excluir();
         }
 
+        private void btnVisualizarAlternativa_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorVisualizar controladorVisualizar)
+                controladorVisualizar.Visualizar();
+        }
     }
 }

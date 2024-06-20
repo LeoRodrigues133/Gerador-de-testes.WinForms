@@ -2,6 +2,7 @@
 using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
 using GeradorDeTestes.WinApp._3___Módulo_Matérias;
+using GeradorDeTestes.WinApp._5___Módulo_Questões;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,16 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         private IRepositorioTestes repositorioTeste;
         private TabelaTesteControl tabelaTeste;
         public IRepositorioDisciplina repositorioDisciplina;
-        //private IRepositorioQuestao repositorioQuestao;
+        private IRepositorioQuestoes repositorioQuestao;
         private IRepositorioMateria repositorioMateria;
 
         public ControladorTestes() { } // Ctor para deserialização;
-        public ControladorTestes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio)
+        public ControladorTestes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio, IRepositorioQuestoes questoesRepositorio)
         {
             repositorioTeste = testeRepositorio;
             repositorioDisciplina = disciplinaRepositorio;
             repositorioMateria = materiaRepositorio;
+            repositorioQuestao = questoesRepositorio;
         }
         public override string TipoCadastro { get { return "Testes"; } }
         public override string ToolTipAdicionar { get { return "Cadastrar um novo teste"; } }

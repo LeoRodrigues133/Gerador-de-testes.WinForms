@@ -8,19 +8,15 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
     {
         public string Enunciado { get; set; }
         public Materias Materia { get; set; }
-        public List<Teste> Testes { get; set; }
-
-        public List<Alternativas> alternativas { get; set; }
+        public List<Alternativas> Alternativas { get; set; } = new List<Alternativas>();
 
         public Questoes() { }
 
-        public Questoes(string enunciado, Materias materia, List<Alternativas> alternativa)
+        public Questoes(string enunciado, Materias materia, List<Alternativas> alternativas)
         {
             Enunciado = enunciado;
             Materia = materia;
-            alternativas = alternativa;
-            Testes = new List<Teste>();
-
+            Alternativas = alternativas;
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
@@ -29,13 +25,13 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             Enunciado = atualizar.Enunciado;
             Materia = atualizar.Materia;
-            alternativas = atualizar.alternativas;
+            Alternativas = atualizar.Alternativas;
         }
         public Alternativas RespostaValida()
         {
-            foreach (Alternativas a in alternativas)
+            foreach (Alternativas a in Alternativas)
             {
-                if (a.Reposta)
+                if (a.Resposta == true)
                     return a;
             }
             return null;

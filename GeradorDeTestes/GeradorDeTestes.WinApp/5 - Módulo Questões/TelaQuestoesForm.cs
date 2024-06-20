@@ -16,23 +16,22 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
     public partial class TelaQuestoesForm : Form
     {
         Questoes questao;
-        List<Alternativas> alternativas {  get; set; }
         Alternativas alternativa;
         public Questoes Questao
         {
             set
             {
-                txtAlternativa.Text = alternativas.Count().ToString();
                 cmbBoxMateria.SelectedItem = value.Materia;
                 txtEnunciado.Text = value.Enunciado.ToString();
-                CarregarLista(value);
 
             }
             get => questao;
         }
+
         public TelaQuestoesForm()
         {
             InitializeComponent();
+
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -44,47 +43,50 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
                 TelaPrincipalForm.Instancia.AtualizarRodape("Não é possível adicionar uma alternativa vazia.");
                 return;
             }
+
             alternativa = new Alternativas(resposta);
 
             listAlternativas.Items.Add(alternativa);
 
-            RefatorarAlternativasDinamicamente();
+            EnumerarAlternativa();
 
+            txtAlternativa.Clear();
         }
-        private void CarregarLista(Questoes questao)
-        {
-            int i = 0;
-            foreach (Alternativas a in questao.alternativas)
-            {
-                listAlternativas.Items.Add(a);
-                if(a.Reposta)
-                    listAlternativas.SetItemChecked(i, true);
 
-                i++;
-            }
-        }
         private void btnRemover_Click(object sender, EventArgs e)
         {
-
-        }
-
-        public void MostrarMaterias(List<Materias> materias)
-        {
-            foreach (Materias m in materias)
-                cmbBoxMateria.Items.Add(m);
+                listAlternativas.Items.Remove(listAlternativas.SelectedItem);
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+
+
             Materias materia = (Materias)cmbBoxMateria.SelectedItem;
+
             string enunciado = txtEnunciado.Text.Trim();
 
-            List<Alternativas> alternativas = new List<Alternativas>();
+            List<Alternativas> alternativas = listAlternativas.Items.Cast<Alternativas>().ToList();
+
+            foreach (Alternativas a in listAlternativas.CheckedItems)
+            {
+                a.Resposta = true;
+            }
+
+            if (listAlternativas.CheckedItems.Count != 1)
+            {
+                MessageBox.Show(
+                    "Selecione UMA resposta para o enunciado!",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    ); return;
+            }
 
             questao = new Questoes(enunciado, materia, alternativas);
         }
 
-        private void RefatorarAlternativasDinamicamente()
+        private void EnumerarAlternativa()
         {
             int i = 0;
             foreach (Alternativas a in listAlternativas.Items)
@@ -94,6 +96,10 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             }
         }
 
-    
+        public void MostrarMaterias(List<Materias> materias)
+        {
+            foreach (Materias m in materias)
+                cmbBoxMateria.Items.Add(m);
+        }
     }
 }

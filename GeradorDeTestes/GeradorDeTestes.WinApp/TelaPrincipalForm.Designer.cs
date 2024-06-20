@@ -32,14 +32,15 @@
             cadastrosToolStripMenuItem = new ToolStripMenuItem();
             disciplinasMenuItem = new ToolStripMenuItem();
             materiasMenuItem = new ToolStripMenuItem();
-            testesMenuItem = new ToolStripMenuItem();
             questõesToolStripMenuItem = new ToolStripMenuItem();
+            testesMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             statusLabelPrincipal = new ToolStripStatusLabel();
             toolStrip1 = new ToolStrip();
             btnAdicionar = new ToolStripButton();
             btnEditar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
+            btnVisualizarAlternativas = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             pnlRegistros = new Panel();
@@ -81,19 +82,19 @@
             materiasMenuItem.Text = "Matérias";
             materiasMenuItem.Click += materiasMenuItem_Click;
             // 
-            // testesMenuItem
-            // 
-            testesMenuItem.Name = "testesMenuItem";
-            testesMenuItem.Size = new Size(248, 30);
-            testesMenuItem.Text = "Gerador de Testes";
-            testesMenuItem.Click += testesMenuItem_Click;
-            // 
             // questõesToolStripMenuItem
             // 
             questõesToolStripMenuItem.Name = "questõesToolStripMenuItem";
             questõesToolStripMenuItem.Size = new Size(248, 30);
             questõesToolStripMenuItem.Text = "Questões";
             questõesToolStripMenuItem.Click += questõesToolStripMenuItem_Click;
+            // 
+            // testesMenuItem
+            // 
+            testesMenuItem.Name = "testesMenuItem";
+            testesMenuItem.Size = new Size(248, 30);
+            testesMenuItem.Text = "Gerador de Testes";
+            testesMenuItem.Click += testesMenuItem_Click;
             // 
             // statusStrip1
             // 
@@ -116,7 +117,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator4, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnVisualizarAlternativas, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 35);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(914, 41);
@@ -158,6 +159,17 @@
             btnExcluir.Padding = new Padding(5);
             btnExcluir.Size = new Size(38, 38);
             btnExcluir.Click += btnExcluir_Click;
+            // 
+            // btnVisualizarAlternativas
+            // 
+            btnVisualizarAlternativas.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnVisualizarAlternativas.Enabled = false;
+            btnVisualizarAlternativas.Image = Properties.Resources.btnConfigurar;
+            btnVisualizarAlternativas.ImageTransparentColor = Color.Magenta;
+            btnVisualizarAlternativas.Name = "btnVisualizarAlternativas";
+            btnVisualizarAlternativas.Size = new Size(29, 38);
+            btnVisualizarAlternativas.Text = "toolStripButton1";
+            btnVisualizarAlternativas.Click += btnVisualizarAlternativa_Click;
             // 
             // toolStripSeparator4
             // 
@@ -225,5 +237,6 @@
         private ToolStripMenuItem testesMenuItem;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem questõesToolStripMenuItem;
+        private ToolStripButton btnVisualizarAlternativas;
     }
 }

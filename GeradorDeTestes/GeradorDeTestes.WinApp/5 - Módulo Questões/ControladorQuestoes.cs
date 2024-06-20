@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 {
-    public class ControladorQuestoes : ControladorBase
+    public class ControladorQuestoes : ControladorBase, IControladorVisualizar
     {
         IRepositorioQuestoes repositorioQuestoes;
         TabelaQuestoesControl tabelaQuestoes;
@@ -27,15 +27,15 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
         public override string ToolTipExcluir { get { return "Excluir uma questão"; } }
 
+        public string ToolTipVisualizar { get { return "Visualizar Alternativas"; } }
 
-
-        public ControladorQuestoes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio,IRepositorioQuestoes questoesRepositorio)
+        public ControladorQuestoes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio, IRepositorioQuestoes questoesRepositorio)
         {
             repositorioTestes = testeRepositorio;
             repositorioDisciplina = disciplinaRepositorio;
             repositorioMaterias = materiaRepositorio;
             repositorioQuestoes = questoesRepositorio;
-            
+
             AtualizarRodape();
         }
 
@@ -44,7 +44,7 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             TelaQuestoesForm telaQuestoes = new TelaQuestoesForm();
 
             CarregarMaterias(telaQuestoes);
-            
+
             DialogResult resultado = telaQuestoes.ShowDialog();
 
             if (resultado != DialogResult.OK) return;
@@ -57,14 +57,13 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{novaQuestao.Enunciado}\" foi criado com sucesso!");
 
-
         }
 
         private void CarregarQuestoes()
         {
-            List<Questoes> questaos = repositorioQuestoes.SelecionarTodos();
+            List<Questoes> questoes = repositorioQuestoes.SelecionarTodos();
 
-            tabelaQuestoes.AtualizarRegistros(questaos);
+            tabelaQuestoes.AtualizarRegistros(questoes);
         }
 
         public override void Editar()
@@ -155,6 +154,15 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             List<Materias> materias = repositorioMaterias.SelecionarTodos();
 
             telaQuestoes.MostrarMaterias(materias);
+        }
+
+        public void Visualizar()
+        {
+            int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
+
+            Questoes questaoSelecionada = repositorioQuestoes.SelecionarPorId(idSelecionado);
+
+
         }
     }
 }
