@@ -1,0 +1,60 @@
+{
+  "$id": "1",
+  "Disciplina": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "Nome": "teste",
+        "Id": 1
+      }
+    ]
+  },
+  "Teste": {
+    "$id": "4",
+    "$values": []
+  },
+  "Materia": {
+    "$id": "5",
+    "$values": [
+      {
+        "$id": "6",
+        "Nome": "teste2",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 1,
+        "Id": 1
+      },
+      {
+        "$id": "7",
+        "Nome": "23232",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 2,
+        "Id": 2
+      },
+      {
+        "$id": "8",
+        "Nome": "3232",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 2,
+        "Id": 3
+      },
+      {
+        "$id": "9",
+        "Nome": "",
+        "Disciplina": null,
+        "Serie": 0,
+        "Id": 4
+      }
+    ]
+  },
+  "Questoes": {
+    "$id": "10",
+    "$values": []
+  }
+}

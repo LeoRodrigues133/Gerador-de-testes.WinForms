@@ -46,12 +46,14 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
             repositorioMaterias.Cadastrar(novaMateria);
 
-            CarregarMateria();
+            CarregarMaterias();
         }
 
         public override void Editar()
         {
             TelaMateriaForm telaMateria = new TelaMateriaForm();
+
+            CarregarDisciplinas(telaMateria);
 
             int idSelecionado = tabelaMateria.ObterRegistroSelecionado();
 
@@ -66,6 +68,18 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
                  MessageBoxIcon.Warning
                  ); return;
             }
+
+            telaMateria.Materia= Selecionado;
+
+            DialogResult resultado = telaMateria.ShowDialog();
+
+            if (resultado != DialogResult.OK) return;
+
+            Materias materiaEditada = telaMateria.Materia;
+
+            repositorioMaterias.Editar(materiaEditada.Id, materiaEditada);
+
+            CarregarMaterias();
         }
 
         public override void Excluir()
@@ -91,7 +105,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             if (resultado != DialogResult.Yes) return;
 
             repositorioMaterias.Excluir(Selecionado.Id);
-            CarregarMateria();
+            CarregarMaterias();
         }
 
         public override UserControl ObterListagem()
@@ -99,12 +113,12 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             if (tabelaMateria == null)
                 tabelaMateria = new TabelaMateriaControl();
 
-            CarregarMateria();
+            CarregarMaterias();
 
             return tabelaMateria;
         }
 
-        private void CarregarMateria()
+        private void CarregarMaterias()
         {
             List<Materias> materias = repositorioMaterias.SelecionarTodos();
 
