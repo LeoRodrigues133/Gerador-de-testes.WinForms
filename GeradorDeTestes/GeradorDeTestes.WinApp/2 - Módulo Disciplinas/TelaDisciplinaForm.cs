@@ -52,7 +52,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
                 DialogResult = DialogResult.Cancel;
             }
 
-            TelaPrincipalForm.Instancia.AtualizarRodape("É necessário selecionar uma \"Série\" para sortear questões");
+            TelaPrincipalForm.Instancia.AtualizarRodape("Um novo registro de Disciplina foi adicionado.");
 
         }
     }

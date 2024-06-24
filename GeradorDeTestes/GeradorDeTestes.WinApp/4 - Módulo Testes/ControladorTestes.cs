@@ -1,13 +1,8 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
-using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
 using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using GeradorDeTestes.WinApp._5___Módulo_Questões;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 {
@@ -58,13 +53,12 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
             TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria, repositorioQuestao);
 
-            CarregarDisciplinas(telaTeste);
-            CarregarMaterias(telaTeste);
-            //CarregarQ(telaTeste);
 
             int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
 
             Teste Selecionado = repositorioTeste.SelecionarPorId(idSelecionado);
+
+            CarregarDisciplinas(telaTeste);
 
             if (Selecionado == null)
             {
@@ -83,7 +77,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             Teste testeEditado = telaTeste.Teste;
 
-            repositorioTeste.Editar(testeEditado.Id, testeEditado);
+            repositorioTeste.Editar(Selecionado.Id, testeEditado);
 
             CarregarTestes();
 

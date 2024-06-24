@@ -1,0 +1,91 @@
+{
+  "$id": "1",
+  "Disciplina": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "Nome": "sadasds",
+        "Id": 2
+      },
+      {
+        "$id": "4",
+        "Nome": "sssadsa",
+        "Id": 3
+      }
+    ]
+  },
+  "Teste": {
+    "$id": "5",
+    "$values": [
+      {
+        "$id": "6",
+        "Titulo": "sadas",
+        "Serie": "",
+        "NumQuestoes": 2,
+        "Id": 1
+      }
+    ]
+  },
+  "Materia": {
+    "$id": "7",
+    "$values": [
+      {
+        "$id": "8",
+        "Nome": "sadas",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 0,
+        "Id": 1
+      },
+      {
+        "$id": "9",
+        "Nome": "aaaaaaaaaa",
+        "Disciplina": {
+          "$ref": "4"
+        },
+        "Serie": 2,
+        "Id": 2
+      }
+    ]
+  },
+  "Questoes": {
+    "$id": "10",
+    "$values": [
+      {
+        "$id": "11",
+        "Enunciado": "B -\u003E dsadasdas",
+        "Materia": {
+          "$ref": "8"
+        },
+        "Alternativas": {
+          "$id": "12",
+          "$values": [
+            {
+              "$id": "13",
+              "Enunciado": "a : sadasdas",
+              "Resposta": false
+            },
+            {
+              "$id": "14",
+              "Enunciado": "b : dsadsadsa",
+              "Resposta": true
+            },
+            {
+              "$id": "15",
+              "Enunciado": "c : sadssss",
+              "Resposta": false
+            },
+            {
+              "$id": "16",
+              "Enunciado": "d : ssaaa",
+              "Resposta": true
+            }
+          ]
+        },
+        "Id": 1
+      }
+    ]
+  }
+}

@@ -72,20 +72,11 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             CarregarMaterias(telaQuestoes);
 
-
             int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
 
             Questoes Selecionado = repositorioQuestoes.SelecionarPorId(idSelecionado);
 
-            if (Selecionado == null)
-            {
-                MessageBox.Show(
-                             "Não é possível realizar esta ação sem um registro selecionado.",
-                             "Aviso",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Warning
-                     ); return;
-            }
+            CarregarAlternativas(Selecionado, telaQuestoes);
 
             telaQuestoes.Questao = Selecionado;
 
@@ -94,15 +85,18 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             if (resultado != DialogResult.OK) return;
 
+            CarregarMaterias(telaQuestoes);
 
             Questoes questaoEditada = telaQuestoes.Questao;
 
-            repositorioQuestoes.Editar(idSelecionado, questaoEditada);
+            repositorioQuestoes.Editar(Selecionado.Id, questaoEditada);
 
             CarregarQuestoes();
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{questaoEditada.Enunciado}\" foi editado com sucesso!");
         }
+
+
         public override void Excluir()
         {
             int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
@@ -154,6 +148,13 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             List<Materias> materias = repositorioMaterias.SelecionarTodos();
 
             telaQuestoes.MostrarMaterias(materias);
+        }
+        private void CarregarAlternativas(Questoes Selecionado, TelaQuestoesForm telaQuestoes)
+        {
+            List<Alternativas> alternativas = Selecionado.Alternativas;
+
+            telaQuestoes.MostrarAlternativas(alternativas);
+
         }
 
         public void Visualizar()
