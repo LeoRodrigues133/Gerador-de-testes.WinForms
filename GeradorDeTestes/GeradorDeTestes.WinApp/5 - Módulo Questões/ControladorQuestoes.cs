@@ -36,7 +36,7 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             repositorioMaterias = materiaRepositorio;
             repositorioQuestoes = questoesRepositorio;
 
-            AtualizarRodape();
+            //AtualizarRodape();
         }
 
         public override void Adicionar()
@@ -145,10 +145,10 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             return tabelaQuestoes;
         }
-        private void AtualizarRodape()
-        {
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {repositorioQuestoes.SelecionarTodos().Count} registro(s)...");
-        }
+        //private void AtualizarRodape()
+        //{
+        //    TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {repositorioQuestoes.SelecionarTodos().Count} registro(s)...");
+        //}
         void CarregarMaterias(TelaQuestoesForm telaQuestoes)
         {
             List<Materias> materias = repositorioMaterias.SelecionarTodos();

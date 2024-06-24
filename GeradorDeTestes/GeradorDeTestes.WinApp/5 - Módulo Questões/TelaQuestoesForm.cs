@@ -46,6 +46,7 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             alternativa = new Alternativas(resposta);
 
+
             listAlternativas.Items.Add(alternativa);
 
             EnumerarAlternativa();
@@ -55,7 +56,7 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-                listAlternativas.Items.Remove(listAlternativas.SelectedItem);
+            listAlternativas.Items.Remove(listAlternativas.SelectedItem);
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -84,6 +85,8 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             }
 
             questao = new Questoes(enunciado, materia, alternativas);
+
+
         }
 
         private void EnumerarAlternativa()

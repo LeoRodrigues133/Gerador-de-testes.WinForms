@@ -1,4 +1,5 @@
-﻿using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
+﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
+using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,10 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             }
             get => materia;
         }
-        public TelaMateriaForm()
+        public TelaMateriaForm(List<Materias> m)
         {
             InitializeComponent();
+            this.rMaterias = m;
         }
 
         public void CarregarDisciplinas(List<Disciplinas> disciplinas)
@@ -45,30 +47,24 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             Disciplinas disciplina = (Disciplinas)cmbBoxDisciplina.SelectedItem;
             int serie = 0;
 
-            if (rdb1Serie.Checked)
-            {
-                serie = 1;
-            }
-
-            if (rdb2Serie.Checked)
-            {
-                serie = 2;
-            }
-
-
+            if (rdb1Serie.Checked)serie = 1;
+            else if (rdb2Serie.Checked)serie = 2;
+            
             materia = new Materias(nomeMateria, disciplina, serie);
+            
+            if (!materia.VerificarRegistros(rMaterias, materia))
+            {
+                MessageBox.Show(
+                     "Não é possível realizar esta ação, já existe um registro com este nome cadastrado.",
+                     "Aviso",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Warning
+                     );
+                DialogResult = DialogResult.Cancel;
+            }
 
-            //if (!materia.VerificarRegistros(rMaterias, materia))
-            //{
-            //    MessageBox.Show(
-            //         "Não é possível realizar esta ação, já existe um registro com este nome cadastrado.",
-            //         "Aviso",
-            //         MessageBoxButtons.OK,
-            //         MessageBoxIcon.Warning
-            //         );
-            //    DialogResult = DialogResult.Cancel;
+            
 
-            //}
         }
         public void MostrarDisciplinas(List<Disciplinas> disciplinas)
         {

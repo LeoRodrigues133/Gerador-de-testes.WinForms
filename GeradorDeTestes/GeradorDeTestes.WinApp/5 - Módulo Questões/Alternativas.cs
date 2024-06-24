@@ -14,10 +14,11 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             Resposta = false;
         }
 
-        public void RefatorarModeloAlternativa(int count)
+        public void RefatorarModeloAlternativa(int i)
         {
             if (Enunciado.Contains(":"))
-                Enunciado = $"{(char)(97 + count)} : {Enunciado}";
+                Enunciado = Enunciado.Split(" ")[2];
+            Enunciado = $"{(char)(97 + i)} : {Enunciado}";
         }
 
         public override string ToString()

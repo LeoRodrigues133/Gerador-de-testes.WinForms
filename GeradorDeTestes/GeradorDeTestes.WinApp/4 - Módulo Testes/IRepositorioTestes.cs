@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
+using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using System;
 using System.Collections.Generic;
 using System.Linq;

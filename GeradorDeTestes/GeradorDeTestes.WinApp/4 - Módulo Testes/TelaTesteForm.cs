@@ -1,26 +1,21 @@
 ﻿using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
 using GeradorDeTestes.WinApp._3___Módulo_Matérias;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
+using GeradorDeTestes.WinApp._5___Módulo_Questões;
+
 
 namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 {
 
     public partial class TelaTesteForm : Form
     {
+        IRepositorioQuestoes repositorioQuestoes;
+        IRepositorioTestes repositorioTestes;
+        IRepositorioMateria repositorioMateria;
         IRepositorioDisciplina repositorioDisciplina;
+        public List<Questoes> questoes;
         TelaTesteForm telaTeste;
-        ControladorTestes controlador = new();
+        ControladorTestes controlador;
+        TabelaQuestoesControl tabelaQuestoes;
         Teste teste;
         public Teste Teste
         {
@@ -35,17 +30,26 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             }
             get => teste;
         }
-        public TelaTesteForm(IRepositorioDisciplina d, IRepositorioMateria m)
+        public TelaTesteForm(IRepositorioDisciplina d, IRepositorioMateria m, IRepositorioQuestoes q)
         {
             InitializeComponent();
+            repositorioDisciplina = d;
+            repositorioMateria = m;
+            repositorioQuestoes = q;
+
+            cmbBoxMateria.Enabled = false;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
             string titulo = txtTitulo.Text.Trim();
+
             Disciplinas disciplina = (Disciplinas)cmbBoxDisciplina.SelectedItem;
+
             Materias materia = (Materias)cmbBoxMateria.SelectedItem;
+
             decimal NumQuestoes = numQuestoes.Value;
+
             teste = new Teste(titulo, disciplina, materia, NumQuestoes);
         }
 
@@ -59,30 +63,90 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
             listQuestoes.Items.Clear();
 
-            for (int i = 0; i < numQuestoes.Value; i++)
-                listQuestoes.Items.Add(questao());
+            int i = 0;
+            foreach (Questoes q in SortearQuestoes())
+            {
 
+                q.ModeloQuestao(i);
+                i++;
+                listQuestoes.Items.Add(q);
+                foreach (Alternativas a in q.Alternativas)
+                {
+                    listQuestoes.Items.Add(a);
+                }
+            }
+        }
+
+        private List<Questoes> SortearQuestoes()
+        {
+            int qtdQuestoesTeste = Convert.ToInt32(numQuestoes.Value);
+
+            List<Questoes> Selecionadas = new List<Questoes>();
+
+
+            for (int i = 0; i < qtdQuestoesTeste; i++)
+            {
+                Random r = new();
+
+                List<Questoes> todasAsQuestoes = new List<Questoes>();
+
+                todasAsQuestoes = repositorioQuestoes.SelecionarTodos();
+
+
+                var filtradas = todasAsQuestoes.Where(q => q.Materia == cmbBoxMateria.SelectedItem).ToList();
+
+                if (filtradas == null)
+                {
+                    MessageBox.Show(
+                        "Selecione uma matéria para criar o teste!",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                        );
+                };
+
+
+                int indexLista = r.Next(filtradas.ToList().Count());
+
+                Questoes questaoSelecionada = filtradas[indexLista];
+
+
+                Selecionadas.Add(questaoSelecionada);
+            }
+
+            return Selecionadas;
         }
 
         public void MostrarMaterias(List<Materias> materias)
         {
-            foreach (Materias m in materias)
+            List<Materias> filtradas = materias.Where(x => x.Disciplina == cmbBoxDisciplina.SelectedItem).ToList();
+
+
+            foreach (Materias m in filtradas)
                 cmbBoxMateria.Items.Add(m);
         }
 
-        public List<string> questao()
+        public void MostrarQ(List<Questoes> questoes)
         {
 
-            Random r = new Random();
-            string[] teste2 = { "a", "a4", "a3", "a2", "b" };
-            int teste4 = r.Next(teste2.Length);
-            string teste3 = teste2[teste4].ToString();
+            foreach (Questoes q in questoes)
+            {
+                listQuestoes.Items.Add(q);
+            }
+        }
 
-            List<string> teste = new List<string>();
+        private void cmbBoxDisciplina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbBoxMateria.Items.Clear();
 
-            teste.Add(teste3);
+            cmbBoxMateria.Text = null;
 
-            return teste;
+            if (cmbBoxDisciplina.SelectedItem != null)
+                cmbBoxMateria.Enabled = true;
+
+            List<Materias> materias = repositorioMateria.SelecionarTodos();
+            MostrarMaterias(materias);
+
         }
     }
 }

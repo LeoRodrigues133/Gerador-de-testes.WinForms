@@ -1,6 +1,7 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
 using GeradorDeTestes.WinApp._3___Módulo_Matérias;
+using GeradorDeTestes.WinApp._5___Módulo_Questões;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -17,15 +18,16 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public Materias Materia;
         public string Serie { get; set; }
         public decimal NumQuestoes { get; set; }
+        public List<Questoes> questoes = new List<Questoes>();
 
         public Teste() { } //Ctor para Deserializar
-        public Teste(string titulo, Disciplinas disciplina, Materias materia, decimal questoes)
+        public Teste(string titulo, Disciplinas disciplina, Materias materia, decimal numQuestoes)
         {
             Titulo = titulo;
             Serie = "";
             Disciplina = disciplina;
             Materia = materia;
-            NumQuestoes = questoes;
+            NumQuestoes = numQuestoes;
         }
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {

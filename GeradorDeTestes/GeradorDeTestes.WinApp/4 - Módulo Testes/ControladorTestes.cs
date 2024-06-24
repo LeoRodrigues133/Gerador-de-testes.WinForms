@@ -17,8 +17,8 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         private IRepositorioTestes repositorioTeste;
         private TabelaTesteControl tabelaTeste;
         public IRepositorioDisciplina repositorioDisciplina;
-        private IRepositorioQuestoes repositorioQuestao;
-        private IRepositorioMateria repositorioMateria;
+        public IRepositorioQuestoes repositorioQuestao;
+        public IRepositorioMateria repositorioMateria;
 
         public ControladorTestes() { } // Ctor para deserialização;
         public ControladorTestes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio, IRepositorioQuestoes questoesRepositorio)
@@ -37,10 +37,9 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public override void Adicionar()
         {
 
-            TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria);
+            TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria, repositorioQuestao);
 
             CarregarDisciplinas(telaTeste);
-            CarregarMaterias(telaTeste);
 
             DialogResult resultado = telaTeste.ShowDialog();
 
@@ -57,10 +56,11 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         public override void Editar()
         {
-            TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria);
+            TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria, repositorioQuestao);
 
             CarregarDisciplinas(telaTeste);
             CarregarMaterias(telaTeste);
+            //CarregarQ(telaTeste);
 
             int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
 
@@ -138,11 +138,13 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             List<Disciplinas> disciplinas = repositorioDisciplina.SelecionarTodos();
 
             telaTeste.MostrarDisciplinas(disciplinas);
+
         }
 
         void CarregarMaterias(TelaTesteForm telaTeste)
         {
             List<Materias> materias = repositorioMateria.SelecionarTodos();
+
 
             telaTeste.MostrarMaterias(materias);
         }

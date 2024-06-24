@@ -20,11 +20,7 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 
         public List<Disciplinas> Disciplina { get; set; }
         public List<Teste> Teste { get; set; }
-
         public List<Materias> Materia { get; set; }
-
-
-
         public List<Questoes> Questoes { get; set; }
 
         public ContextoDados()
@@ -32,8 +28,6 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
             Disciplina = new List<Disciplinas>();
             Teste = new List<Teste>();
             Materia = new List<Materias>();
-
-
             Questoes = new List<Questoes>();
 
         }
