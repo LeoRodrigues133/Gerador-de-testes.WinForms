@@ -84,7 +84,7 @@
         "Disciplina": {
           "$ref": "4"
         },
-        "Serie": 2,
+        "Serie": 1,
         "Id": 6
       }
     ]
@@ -94,9 +94,9 @@
     "$values": [
       {
         "$id": "16",
-        "Enunciado": "A -\u003E A",
+        "Enunciado": "Qual gravura",
         "Materia": {
-          "$ref": "11"
+          "$ref": "12"
         },
         "Alternativas": {
           "$id": "17",
@@ -128,51 +128,51 @@
             }
           ]
         },
-        "Id": 2
+        "Id": 3
       },
       {
         "$id": "23",
-        "Enunciado": "Qual gravura",
+        "Enunciado": "B -\u003E teste",
         "Materia": {
-          "$ref": "12"
+          "$ref": "11"
         },
         "Alternativas": {
           "$id": "24",
           "$values": [
             {
               "$id": "25",
-              "Enunciado": "a : a",
+              "Enunciado": "a : 1",
               "Resposta": false
             },
             {
               "$id": "26",
-              "Enunciado": "b : b",
+              "Enunciado": "b : 2",
               "Resposta": false
             },
             {
               "$id": "27",
-              "Enunciado": "c : c",
+              "Enunciado": "c : 3",
               "Resposta": true
             },
             {
               "$id": "28",
-              "Enunciado": "d : d",
+              "Enunciado": "d : 4",
               "Resposta": false
             },
             {
               "$id": "29",
-              "Enunciado": "e : e",
+              "Enunciado": "e : 5",
               "Resposta": false
             }
           ]
         },
-        "Id": 3
+        "Id": 4
       },
       {
         "$id": "30",
-        "Enunciado": "B -\u003E teste",
+        "Enunciado": "B -\u003E qual",
         "Materia": {
-          "$ref": "11"
+          "$ref": "12"
         },
         "Alternativas": {
           "$id": "31",
@@ -204,13 +204,13 @@
             }
           ]
         },
-        "Id": 4
+        "Id": 5
       },
       {
         "$id": "37",
-        "Enunciado": "B -\u003E qual",
+        "Enunciado": "B -\u003E 1",
         "Materia": {
-          "$ref": "12"
+          "$ref": "13"
         },
         "Alternativas": {
           "$id": "38",
@@ -223,12 +223,12 @@
             {
               "$id": "40",
               "Enunciado": "b : 2",
-              "Resposta": false
+              "Resposta": true
             },
             {
               "$id": "41",
               "Enunciado": "c : 3",
-              "Resposta": true
+              "Resposta": false
             },
             {
               "$id": "42",
@@ -242,11 +242,11 @@
             }
           ]
         },
-        "Id": 5
+        "Id": 6
       },
       {
         "$id": "44",
-        "Enunciado": "B -\u003E 1",
+        "Enunciado": "A -\u003E 1",
         "Materia": {
           "$ref": "13"
         },
@@ -261,12 +261,12 @@
             {
               "$id": "47",
               "Enunciado": "b : 2",
-              "Resposta": true
+              "Resposta": false
             },
             {
               "$id": "48",
               "Enunciado": "c : 3",
-              "Resposta": false
+              "Resposta": true
             },
             {
               "$id": "49",
@@ -280,13 +280,13 @@
             }
           ]
         },
-        "Id": 6
+        "Id": 7
       },
       {
         "$id": "51",
-        "Enunciado": "A -\u003E 1",
+        "Enunciado": "B -\u003E 1",
         "Materia": {
-          "$ref": "13"
+          "$ref": "14"
         },
         "Alternativas": {
           "$id": "52",
@@ -304,7 +304,7 @@
             {
               "$id": "55",
               "Enunciado": "c : 3",
-              "Resposta": true
+              "Resposta": false
             },
             {
               "$id": "56",
@@ -313,88 +313,12 @@
             },
             {
               "$id": "57",
-              "Enunciado": "e : 5",
-              "Resposta": false
-            }
-          ]
-        },
-        "Id": 7
-      },
-      {
-        "$id": "58",
-        "Enunciado": "B -\u003E 1",
-        "Materia": {
-          "$ref": "14"
-        },
-        "Alternativas": {
-          "$id": "59",
-          "$values": [
-            {
-              "$id": "60",
-              "Enunciado": "a : 1",
-              "Resposta": false
-            },
-            {
-              "$id": "61",
-              "Enunciado": "b : 2",
-              "Resposta": false
-            },
-            {
-              "$id": "62",
-              "Enunciado": "c : 3",
-              "Resposta": false
-            },
-            {
-              "$id": "63",
-              "Enunciado": "d : 4",
-              "Resposta": false
-            },
-            {
-              "$id": "64",
               "Enunciado": "e : -1",
               "Resposta": true
             }
           ]
         },
         "Id": 8
-      },
-      {
-        "$id": "65",
-        "Enunciado": "1-1",
-        "Materia": {
-          "$ref": "14"
-        },
-        "Alternativas": {
-          "$id": "66",
-          "$values": [
-            {
-              "$id": "67",
-              "Enunciado": "a : 1",
-              "Resposta": false
-            },
-            {
-              "$id": "68",
-              "Enunciado": "b : 2",
-              "Resposta": false
-            },
-            {
-              "$id": "69",
-              "Enunciado": "c : 3",
-              "Resposta": false
-            },
-            {
-              "$id": "70",
-              "Enunciado": "d : 4",
-              "Resposta": false
-            },
-            {
-              "$id": "71",
-              "Enunciado": "e : 0",
-              "Resposta": true
-            }
-          ]
-        },
-        "Id": 9
       }
     ]
   }

@@ -10,12 +10,12 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 {
     public class ControladorDisciplina : ControladorBase
     {
-        IRepositorioDisciplina iRepositorio;
+        IRepositorioDisciplina repositorioDisciplina;
         TabelaDisciplinasControl tabelaDisciplinas;
 
         public ControladorDisciplina(IRepositorioDisciplina repositorio)
         {
-            iRepositorio = repositorio;
+            repositorioDisciplina = repositorio;
         }
         public override string TipoCadastro { get { return "Disciplina"; } }
 
@@ -27,7 +27,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
         public override void Adicionar()
         {
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(iRepositorio.SelecionarTodos());
+            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(repositorioDisciplina.SelecionarTodos());
 
             DialogResult resultado = telaDisciplina.ShowDialog();
 
@@ -35,28 +35,42 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             Disciplinas novaDisciplina = telaDisciplina.Disciplina;
 
-            iRepositorio.Cadastrar(novaDisciplina);
+            List<Disciplinas> disciplinas = repositorioDisciplina.SelecionarTodos();
+
+            foreach (var disciplina in disciplinas)
+            {
+                if (disciplina.Nome.ToLower() == novaDisciplina.Nome.ToLower())
+                {
+                    TelaPrincipalForm
+                        .Instancia
+                        .AtualizarRodape($"Já existe uma disciplina com este nome");
+                    return;
+                }
+            }
+
+            repositorioDisciplina.Cadastrar(novaDisciplina);
 
             CarregarDisciplinas();
 
+            TelaPrincipalForm
+               .Instancia
+               .AtualizarRodape($"O registro \"{novaDisciplina.Nome}\" foi criado com sucesso!");
         }
 
         public override void Editar()
         {
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(iRepositorio.SelecionarTodos());
+            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(repositorioDisciplina.SelecionarTodos());
 
             int idSelecionado = tabelaDisciplinas.ObterRegistroSelecionado();
 
-            Disciplinas Selecionado = iRepositorio.SelecionarPorId(idSelecionado);
+            Disciplinas Selecionado = repositorioDisciplina.SelecionarPorId(idSelecionado);
 
             if (Selecionado == null)
             {
-                MessageBox.Show(
-                 "Não é possível realizar esta ação sem um registro selecionado.",
-                 "Aviso",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning
-                 ); return;
+                TelaPrincipalForm
+                     .Instancia
+                     .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
             }
 
             telaDisciplina.Disciplina = Selecionado;
@@ -67,36 +81,64 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             Disciplinas disciplinaEditada = telaDisciplina.Disciplina;
 
-            iRepositorio.Editar(disciplinaEditada.Id, disciplinaEditada);
+            List<Disciplinas> disciplinas = repositorioDisciplina.SelecionarTodos();
+
+            foreach (var disciplina in disciplinas)
+            {
+                if (disciplina.Nome.ToLower() == disciplinaEditada.Nome.ToLower() && disciplina.Id != Selecionado.Id)
+                {
+                    TelaPrincipalForm
+                        .Instancia
+                        .AtualizarRodape($"Já existe uma disciplina com este nome.");
+                    return;
+                }
+            }
+
+            repositorioDisciplina.Editar(disciplinaEditada.Id, disciplinaEditada);
             CarregarDisciplinas();
 
+            TelaPrincipalForm
+               .Instancia
+               .AtualizarRodape($"O registro \"{disciplinaEditada.Nome}\" foi editado com sucesso!");
         }
 
         public override void Excluir()
         {
             int idSelecionado = tabelaDisciplinas.ObterRegistroSelecionado();
 
-            Disciplinas Selecionado = iRepositorio.SelecionarPorId(idSelecionado);
-            if (Selecionado == null)
+            Disciplinas disciplinaSelecionada = repositorioDisciplina.SelecionarPorId(idSelecionado);
+            if (disciplinaSelecionada == null)
             {
-                MessageBox.Show(
-                 "Não é possível realizar esta ação sem um registro selecionado.",
-                 "Aviso",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning
-                 ); return;
+                TelaPrincipalForm
+                  .Instancia
+                  .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado");
+                return;
             }
+
             DialogResult resultado = MessageBox.Show(
-               $"Você deseja realmente excluir o registro \"{Selecionado.Id}\"?",
+               $"Você deseja realmente excluir o registro \"{disciplinaSelecionada.Id}\"?",
                "Confirmar Exclusão",
                MessageBoxButtons.YesNo,
                MessageBoxIcon.Warning);
 
-            if (resultado != DialogResult.Yes) return;
+            if (resultado != DialogResult.Yes)
+                return;
 
-            iRepositorio.Excluir(Selecionado.Id);
+            bool conseguiuExcluir = repositorioDisciplina.Excluir(disciplinaSelecionada.Id);
+
+            if (!conseguiuExcluir)
+            {
+                TelaPrincipalForm
+                    .Instancia
+                    .AtualizarRodape($"Não é possível excluir a disciplina pois há matérias relacionadas.");
+                return;
+            }
+
             CarregarDisciplinas();
 
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{disciplinaSelecionada.Nome}\" foi excluído com sucesso!");
         }
 
         public override UserControl ObterListagem()
@@ -110,7 +152,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
         }
         private void CarregarDisciplinas()
         {
-            List<Disciplinas> disciplinas = iRepositorio.SelecionarTodos();
+            List<Disciplinas> disciplinas = repositorioDisciplina.SelecionarTodos();
 
             tabelaDisciplinas.AtualizarRegistros(disciplinas);
         }

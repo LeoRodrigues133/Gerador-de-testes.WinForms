@@ -22,6 +22,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public IRepositorioMateria repositorioMateria;
 
         public ControladorTestes() { } // Ctor para deserialização;
+
         public ControladorTestes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio, IRepositorioQuestoes questoesRepositorio)
         {
             repositorioTeste = testeRepositorio;
@@ -30,8 +31,11 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             repositorioQuestao = questoesRepositorio;
         }
         public override string TipoCadastro { get { return "Testes"; } }
+
         public override string ToolTipAdicionar { get { return "Cadastrar um novo teste"; } }
+
         public override string ToolTipEditar { get { return "Editar um teste existente"; } }
+
         public override string ToolTipExcluir { get { return "Excluir um teste existente"; } }
 
         public string ToolTipVisualizar { get { return "Visualziar um teste"; } }
@@ -52,10 +56,27 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             Teste novoTeste = telaTeste.Teste;
 
-            repositorioTeste.Cadastrar(novoTeste);
+            List<Teste> testes = repositorioTeste.SelecionarTodos();
 
-            CarregarTestes();
+            foreach (var teste in testes)
+            {
+                if (teste.Titulo.ToLower() == novoTeste.Titulo.ToLower())
+                {
 
+                    TelaPrincipalForm
+                        .Instancia
+                        .AtualizarRodape($"Já existe um teste com este nome.");
+                    return;
+                }
+
+                repositorioTeste.Cadastrar(novoTeste);
+
+                CarregarTestes();
+
+                TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{novoTeste.Titulo}\" foi criado com sucesso!");
+            }
         }
 
         public override void Editar()
@@ -96,30 +117,31 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
             int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
 
-            Teste Selecionado = repositorioTeste.SelecionarPorId(idSelecionado);
+            Teste testeSelecionado = repositorioTeste.SelecionarPorId(idSelecionado);
 
-            if (Selecionado == null)
+            if (testeSelecionado == null)
             {
-                MessageBox.Show(
-                 "Não é possível realizar esta ação sem um registro selecionado.",
-                 "Aviso",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning
-                 ); return;
+                TelaPrincipalForm
+                          .Instancia
+                          .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
             }
 
             DialogResult resultado = MessageBox.Show(
-               $"Você deseja realmente excluir o registro \"{Selecionado.Id}\"?",
+               $"Você deseja realmente excluir o registro \"{testeSelecionado.Id}\"?",
                "Confirmar Exclusão",
                MessageBoxButtons.YesNo,
                MessageBoxIcon.Warning);
 
             if (resultado != DialogResult.Yes) return;
 
-            repositorioTeste.Excluir(Selecionado.Id);
+            repositorioTeste.Excluir(testeSelecionado.Id);
 
             CarregarTestes();
 
+            TelaPrincipalForm
+                 .Instancia
+                 .AtualizarRodape($"O registro \"{testeSelecionado.Titulo}\" foi excluído com sucesso!");
         }
 
         public override UserControl ObterListagem()

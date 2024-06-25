@@ -104,5 +104,16 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             foreach (Materias m in materias)
                 cmbBoxMateria.Items.Add(m);
         }
+
+        public void CarregarMaterias(List<Materias> materias)
+        {
+            cmbBoxMateria.Items.Clear();
+
+            foreach (Materias m in materias)
+                cmbBoxMateria.Items.Add(m);
+            if (questao != null)
+                cmbBoxMateria.SelectedItem = questao.Materia;
+        }
+
     }
 }
