@@ -9,13 +9,18 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
 {
     public class Disciplinas : EntidadeBase
     {
-       
+
         public string Nome { get; set; } // Nome da Disciplina (Complicado de achar um nome)
 
         public Disciplinas() { } //Ctor para Deserializar
 
         public Disciplinas(string disciplina)
         {
+            Nome = disciplina;
+        }
+        public Disciplinas(int id, string disciplina)
+        {
+            id = id;
             Nome = disciplina;
         }
 

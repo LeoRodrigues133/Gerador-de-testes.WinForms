@@ -104,5 +104,11 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             foreach (Materias m in materias)
                 cmbBoxMateria.Items.Add(m);
         }
+
+        internal void MostrarAlternativas(List<Alternativas> alternativas)
+        {
+            foreach(Alternativas a in alternativas)
+                listAlternativas.Items.Add(a);
+        }
     }
 }
