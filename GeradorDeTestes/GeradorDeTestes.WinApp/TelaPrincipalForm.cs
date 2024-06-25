@@ -12,7 +12,7 @@ namespace GeradorDeTestes.WinApp
         ControladorBase controlador;
 
         ContextoDados contexto;
-        
+
         IRepositorioDisciplina repositorioDisciplina;
         IRepositorioTestes repositorioTestes;
         IRepositorioMateria repositorioMaterias;
@@ -26,9 +26,9 @@ namespace GeradorDeTestes.WinApp
             contexto = new ContextoDados(true);
 
             lblTipoCadastro.Text = string.Empty;
-            
+
             Instancia = this;
-        
+
             repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contexto);
             repositorioMaterias = new RepositorioMateriasEmArquivo(contexto);
             repositorioTestes = new RepositorioTestesEmArquivo(contexto);
@@ -56,6 +56,7 @@ namespace GeradorDeTestes.WinApp
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
 
             btnVisualizarTeste.Enabled = controladorSelecionado is IControladorVisualizar;
+            btnGerarPdf.Enabled = controladorSelecionado is IControladorVisualizar;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -67,7 +68,10 @@ namespace GeradorDeTestes.WinApp
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
 
             if (controladorSelecionado is IControladorVisualizar controladorVisualizar)
+            {
                 btnVisualizarTeste.ToolTipText = controladorVisualizar.ToolTipVisualizar;
+                btnGerarPdf.ToolTipText = controladorVisualizar.ToolTipGerarTestePdf;
+            }
         }
 
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
@@ -127,6 +131,12 @@ namespace GeradorDeTestes.WinApp
         {
             if (controlador is IControladorVisualizar controladorVisualizar)
                 controladorVisualizar.Visualizar();
+        }
+
+        private void btnGerarPdf_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorVisualizar controladorGerarTeste)
+                controladorGerarTeste.GerarTeste();
         }
     }
 }

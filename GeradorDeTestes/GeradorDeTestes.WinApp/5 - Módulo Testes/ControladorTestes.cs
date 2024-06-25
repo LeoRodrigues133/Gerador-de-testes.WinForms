@@ -36,6 +36,8 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         public string ToolTipVisualizar { get { return "Visualziar um teste"; } }
 
+        public string ToolTipGerarTestePdf { get { return "Gerar um teste"; } }
+
         public override void Adicionar()
         {
 
@@ -171,5 +173,31 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             tela.ShowDialog();
         }
 
+        public void GerarTeste()
+        {
+            int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
+
+            Teste testeSelecionado = repositorioTeste.SelecionarPorId(idSelecionado);
+
+            if (testeSelecionado == null)
+            {
+
+                TelaPrincipalForm
+                    .Instancia
+                    .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
+            }
+
+            TelaGerarPDFForm telaGerarPDF = new TelaGerarPDFForm(testeSelecionado, repositorioDisciplina.SelecionarTodos(), repositorioMateria.SelecionarTodos(), repositorioQuestao.SelecionarTodos());
+
+            DialogResult resultado = telaGerarPDF.ShowDialog();
+
+            if (resultado != DialogResult.OK)
+                return;
+
+            string caminho = telaGerarPDF.Caminho;
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"O PDF foi gerado com sucesso em: {caminho}");
+        }
     }
 }
