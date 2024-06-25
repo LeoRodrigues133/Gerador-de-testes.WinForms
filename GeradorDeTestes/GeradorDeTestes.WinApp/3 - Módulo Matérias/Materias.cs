@@ -34,6 +34,16 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             return erros;
         }
 
+        public bool VerificarRegistros(List<Materias> repositorio, Materias m)
+        {
+
+            foreach (Materias M in repositorio)
+                if (M.Nome == m.Nome)
+                    return false;
+
+            return true;
+        }
+
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
             Materias atualizado = (Materias)novoRegistro;
@@ -43,15 +53,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             Serie = atualizado.Serie;
         }
 
-        public bool VerificarRegistros(List<Materias> repositorio, Materias d)
-        {
 
-            foreach (Materias D in repositorio)
-                if (D.Nome == d.Nome)
-                    return false;
-
-            return true;
-        }
 
         public override string ToString()
         {

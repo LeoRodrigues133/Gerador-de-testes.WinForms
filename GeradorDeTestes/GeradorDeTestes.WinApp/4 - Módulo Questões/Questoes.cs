@@ -47,6 +47,13 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             return erros;
         }
+        
+        public void ModeloQuestao(int i)
+        {
+            if (Enunciado.Contains("->"))
+                Enunciado = Enunciado.Split(" ")[2];
+            Enunciado = $"{(char)(65 + i)} -> {Enunciado}";
+        }
 
         public override string ToString()
         {

@@ -10,11 +10,13 @@ namespace GeradorDeTestes.WinApp
     public partial class TelaPrincipalForm : Form
     {
         ControladorBase controlador;
+
+        ContextoDados contexto;
+
         IRepositorioDisciplina repositorioDisciplina;
         IRepositorioTestes repositorioTestes;
         IRepositorioMateria repositorioMaterias;
         IRepositorioQuestoes repositorioQuestoes;
-        ContextoDados contexto;
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -24,7 +26,9 @@ namespace GeradorDeTestes.WinApp
             contexto = new ContextoDados(true);
 
             lblTipoCadastro.Text = string.Empty;
+
             Instancia = this;
+
             repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contexto);
             repositorioMaterias = new RepositorioMateriasEmArquivo(contexto);
             repositorioTestes = new RepositorioTestesEmArquivo(contexto);
@@ -51,7 +55,8 @@ namespace GeradorDeTestes.WinApp
             btnEditar.Enabled = controladorSelecionado is ControladorBase;
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
 
-            btnVisualizarAlternativas.Enabled = controladorSelecionado is IControladorVisualizar;
+            btnVisualizarTeste.Enabled = controladorSelecionado is IControladorVisualizar;
+            btnGerarPdf.Enabled = controladorSelecionado is IControladorVisualizar;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -63,7 +68,10 @@ namespace GeradorDeTestes.WinApp
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
 
             if (controladorSelecionado is IControladorVisualizar controladorVisualizar)
-                btnVisualizarAlternativas.ToolTipText = controladorVisualizar.ToolTipVisualizar;
+            {
+                btnVisualizarTeste.ToolTipText = controladorVisualizar.ToolTipVisualizar;
+                btnGerarPdf.ToolTipText = controladorVisualizar.ToolTipGerarTestePdf;
+            }
         }
 
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
@@ -123,6 +131,12 @@ namespace GeradorDeTestes.WinApp
         {
             if (controlador is IControladorVisualizar controladorVisualizar)
                 controladorVisualizar.Visualizar();
+        }
+
+        private void btnGerarPdf_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorVisualizar controladorGerarTeste)
+                controladorGerarTeste.GerarTeste();
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 {
-    public class ControladorQuestoes : ControladorBase, IControladorVisualizar
+    public class ControladorQuestoes : ControladorBase
     {
         IRepositorioQuestoes repositorioQuestoes;
         TabelaQuestoesControl tabelaQuestoes;
@@ -36,7 +36,7 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             repositorioMaterias = materiaRepositorio;
             repositorioQuestoes = questoesRepositorio;
 
-            AtualizarRodape();
+            //AtualizarRodape();
         }
 
         public override void Adicionar()
@@ -145,10 +145,10 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             return tabelaQuestoes;
         }
-        private void AtualizarRodape()
-        {
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {repositorioQuestoes.SelecionarTodos().Count} registro(s)...");
-        }
+        //private void AtualizarRodape()
+        //{
+        //    TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {repositorioQuestoes.SelecionarTodos().Count} registro(s)...");
+        //}
         void CarregarMaterias(TelaQuestoesForm telaQuestoes)
         {
             List<Materias> materias = repositorioMaterias.SelecionarTodos();
@@ -156,13 +156,6 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             telaQuestoes.MostrarMaterias(materias);
         }
 
-        public void Visualizar()
-        {
-            int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
-
-            Questoes questaoSelecionada = repositorioQuestoes.SelecionarPorId(idSelecionado);
-
-
-        }
+   
     }
 }

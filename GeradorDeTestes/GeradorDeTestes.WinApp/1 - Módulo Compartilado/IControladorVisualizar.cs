@@ -11,6 +11,10 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 
         string ToolTipVisualizar { get; }
 
+        string ToolTipGerarTestePdf { get; }    
+
         void Visualizar();
+
+        void GerarTeste();
     }
 }
