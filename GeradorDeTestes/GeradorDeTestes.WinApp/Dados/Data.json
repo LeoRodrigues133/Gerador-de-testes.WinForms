@@ -1,0 +1,380 @@
+{
+  "$id": "1",
+  "Disciplina": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "Nome": "Geografia",
+        "Id": 2
+      },
+      {
+        "$id": "4",
+        "Nome": "Matematica",
+        "Id": 3
+      }
+    ]
+  },
+  "Teste": {
+    "$id": "5",
+    "$values": [
+      {
+        "$id": "6",
+        "Titulo": "123",
+        "Serie": "",
+        "NumQuestoes": 2,
+        "Id": 6
+      }
+    ]
+  },
+  "Materia": {
+    "$id": "7",
+    "$values": [
+      {
+        "$id": "8",
+        "Nome": "Geopolitica",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 1,
+        "Id": 3
+      },
+      {
+        "$id": "9",
+        "Nome": "Gravuras",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 2,
+        "Id": 4
+      },
+      {
+        "$id": "10",
+        "Nome": "adicao",
+        "Disciplina": {
+          "$ref": "4"
+        },
+        "Serie": 1,
+        "Id": 5
+      },
+      {
+        "$id": "11",
+        "Nome": "subtra\u00E7\u00E3o",
+        "Disciplina": {
+          "$ref": "4"
+        },
+        "Serie": 2,
+        "Id": 6
+      }
+    ]
+  },
+  "Questoes": {
+    "$id": "12",
+    "$values": [
+      {
+        "$id": "13",
+        "Enunciado": "A -\u003E A B C",
+        "Materia": {
+          "$ref": "8"
+        },
+        "Alternativas": {
+          "$id": "14",
+          "$values": [
+            {
+              "$id": "15",
+              "Enunciado": "a : a",
+              "Resposta": false
+            },
+            {
+              "$id": "16",
+              "Enunciado": "b : b",
+              "Resposta": false
+            },
+            {
+              "$id": "17",
+              "Enunciado": "c : c",
+              "Resposta": true
+            },
+            {
+              "$id": "18",
+              "Enunciado": "d : d",
+              "Resposta": false
+            },
+            {
+              "$id": "19",
+              "Enunciado": "e : e",
+              "Resposta": false
+            }
+          ]
+        },
+        "Id": 2
+      },
+      {
+        "$id": "20",
+        "Enunciado": "Qual gravura",
+        "Materia": {
+          "$ref": "9"
+        },
+        "Alternativas": {
+          "$id": "21",
+          "$values": [
+            {
+              "$id": "22",
+              "Enunciado": "a : a",
+              "Resposta": false
+            },
+            {
+              "$id": "23",
+              "Enunciado": "b : b",
+              "Resposta": false
+            },
+            {
+              "$id": "24",
+              "Enunciado": "c : c",
+              "Resposta": true
+            },
+            {
+              "$id": "25",
+              "Enunciado": "d : d",
+              "Resposta": false
+            },
+            {
+              "$id": "26",
+              "Enunciado": "e : e",
+              "Resposta": false
+            }
+          ]
+        },
+        "Id": 3
+      },
+      {
+        "$id": "27",
+        "Enunciado": "B -\u003E teste",
+        "Materia": {
+          "$ref": "8"
+        },
+        "Alternativas": {
+          "$id": "28",
+          "$values": [
+            {
+              "$id": "29",
+              "Enunciado": "a : 1",
+              "Resposta": false
+            },
+            {
+              "$id": "30",
+              "Enunciado": "b : 2",
+              "Resposta": false
+            },
+            {
+              "$id": "31",
+              "Enunciado": "c : 3",
+              "Resposta": true
+            },
+            {
+              "$id": "32",
+              "Enunciado": "d : 4",
+              "Resposta": false
+            },
+            {
+              "$id": "33",
+              "Enunciado": "e : 5",
+              "Resposta": false
+            }
+          ]
+        },
+        "Id": 4
+      },
+      {
+        "$id": "34",
+        "Enunciado": "B -\u003E qual",
+        "Materia": {
+          "$ref": "9"
+        },
+        "Alternativas": {
+          "$id": "35",
+          "$values": [
+            {
+              "$id": "36",
+              "Enunciado": "a : 1",
+              "Resposta": false
+            },
+            {
+              "$id": "37",
+              "Enunciado": "b : 2",
+              "Resposta": false
+            },
+            {
+              "$id": "38",
+              "Enunciado": "c : 3",
+              "Resposta": true
+            },
+            {
+              "$id": "39",
+              "Enunciado": "d : 4",
+              "Resposta": false
+            },
+            {
+              "$id": "40",
+              "Enunciado": "e : 5",
+              "Resposta": false
+            }
+          ]
+        },
+        "Id": 5
+      },
+      {
+        "$id": "41",
+        "Enunciado": "B -\u003E 1",
+        "Materia": {
+          "$ref": "10"
+        },
+        "Alternativas": {
+          "$id": "42",
+          "$values": [
+            {
+              "$id": "43",
+              "Enunciado": "a : 1",
+              "Resposta": false
+            },
+            {
+              "$id": "44",
+              "Enunciado": "b : 2",
+              "Resposta": true
+            },
+            {
+              "$id": "45",
+              "Enunciado": "c : 3",
+              "Resposta": false
+            },
+            {
+              "$id": "46",
+              "Enunciado": "d : 4",
+              "Resposta": false
+            },
+            {
+              "$id": "47",
+              "Enunciado": "e : 5",
+              "Resposta": false
+            }
+          ]
+        },
+        "Id": 6
+      },
+      {
+        "$id": "48",
+        "Enunciado": "1 \u002B 2",
+        "Materia": {
+          "$ref": "10"
+        },
+        "Alternativas": {
+          "$id": "49",
+          "$values": [
+            {
+              "$id": "50",
+              "Enunciado": "a : 1",
+              "Resposta": false
+            },
+            {
+              "$id": "51",
+              "Enunciado": "b : 2",
+              "Resposta": false
+            },
+            {
+              "$id": "52",
+              "Enunciado": "c : 3",
+              "Resposta": true
+            },
+            {
+              "$id": "53",
+              "Enunciado": "d : 4",
+              "Resposta": false
+            },
+            {
+              "$id": "54",
+              "Enunciado": "e : 5",
+              "Resposta": false
+            }
+          ]
+        },
+        "Id": 7
+      },
+      {
+        "$id": "55",
+        "Enunciado": "B -\u003E 1",
+        "Materia": {
+          "$ref": "11"
+        },
+        "Alternativas": {
+          "$id": "56",
+          "$values": [
+            {
+              "$id": "57",
+              "Enunciado": "a : 1",
+              "Resposta": false
+            },
+            {
+              "$id": "58",
+              "Enunciado": "b : 2",
+              "Resposta": false
+            },
+            {
+              "$id": "59",
+              "Enunciado": "c : 3",
+              "Resposta": false
+            },
+            {
+              "$id": "60",
+              "Enunciado": "d : 4",
+              "Resposta": false
+            },
+            {
+              "$id": "61",
+              "Enunciado": "e : -1",
+              "Resposta": true
+            }
+          ]
+        },
+        "Id": 8
+      },
+      {
+        "$id": "62",
+        "Enunciado": "1-1",
+        "Materia": {
+          "$ref": "11"
+        },
+        "Alternativas": {
+          "$id": "63",
+          "$values": [
+            {
+              "$id": "64",
+              "Enunciado": "a : 1",
+              "Resposta": false
+            },
+            {
+              "$id": "65",
+              "Enunciado": "b : 2",
+              "Resposta": false
+            },
+            {
+              "$id": "66",
+              "Enunciado": "c : 3",
+              "Resposta": false
+            },
+            {
+              "$id": "67",
+              "Enunciado": "d : 4",
+              "Resposta": false
+            },
+            {
+              "$id": "68",
+              "Enunciado": "e : 0",
+              "Resposta": true
+            }
+          ]
+        },
+        "Id": 9
+      }
+    ]
+  }
+}

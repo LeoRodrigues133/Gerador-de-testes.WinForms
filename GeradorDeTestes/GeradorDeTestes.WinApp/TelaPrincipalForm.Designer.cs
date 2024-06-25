@@ -40,7 +40,7 @@
             btnAdicionar = new ToolStripButton();
             btnEditar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
-            btnVisualizarAlternativas = new ToolStripButton();
+            btnVisualizarTeste = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             pnlRegistros = new Panel();
@@ -117,7 +117,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnVisualizarAlternativas, toolStripSeparator4, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnVisualizarTeste, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 35);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(914, 41);
@@ -160,16 +160,16 @@
             btnExcluir.Size = new Size(38, 38);
             btnExcluir.Click += btnExcluir_Click;
             // 
-            // btnVisualizarAlternativas
+            // btnVisualizarTeste
             // 
-            btnVisualizarAlternativas.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnVisualizarAlternativas.Enabled = false;
-            btnVisualizarAlternativas.Image = Properties.Resources.btnConfigurar;
-            btnVisualizarAlternativas.ImageTransparentColor = Color.Magenta;
-            btnVisualizarAlternativas.Name = "btnVisualizarAlternativas";
-            btnVisualizarAlternativas.Size = new Size(29, 38);
-            btnVisualizarAlternativas.Text = "toolStripButton1";
-            btnVisualizarAlternativas.Click += btnVisualizarAlternativa_Click;
+            btnVisualizarTeste.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnVisualizarTeste.Enabled = false;
+            btnVisualizarTeste.Image = Properties.Resources.btnConfigurar;
+            btnVisualizarTeste.ImageTransparentColor = Color.Magenta;
+            btnVisualizarTeste.Name = "btnVisualizarTeste";
+            btnVisualizarTeste.Size = new Size(29, 38);
+            btnVisualizarTeste.Text = "toolStripButton1";
+            btnVisualizarTeste.Click += btnVisualizarAlternativa_Click;
             // 
             // toolStripSeparator4
             // 
@@ -237,6 +237,6 @@
         private ToolStripMenuItem testesMenuItem;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem questõesToolStripMenuItem;
-        private ToolStripButton btnVisualizarAlternativas;
+        private ToolStripButton btnVisualizarTeste;
     }
 }

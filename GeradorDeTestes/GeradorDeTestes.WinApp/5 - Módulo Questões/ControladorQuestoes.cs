@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 {
-    public class ControladorQuestoes : ControladorBase, IControladorVisualizar
+    public class ControladorQuestoes : ControladorBase
     {
         IRepositorioQuestoes repositorioQuestoes;
         TabelaQuestoesControl tabelaQuestoes;
@@ -156,13 +156,6 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             telaQuestoes.MostrarMaterias(materias);
         }
 
-        public void Visualizar()
-        {
-            int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
-
-            Questoes questaoSelecionada = repositorioQuestoes.SelecionarPorId(idSelecionado);
-
-
-        }
+   
     }
 }

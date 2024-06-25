@@ -11,11 +11,12 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 {
-    public class ControladorTestes : ControladorBase
+    public class ControladorTestes : ControladorBase, IControladorVisualizar
     {
 
         private IRepositorioTestes repositorioTeste;
         private TabelaTesteControl tabelaTeste;
+
         public IRepositorioDisciplina repositorioDisciplina;
         public IRepositorioQuestoes repositorioQuestao;
         public IRepositorioMateria repositorioMateria;
@@ -31,8 +32,9 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public override string TipoCadastro { get { return "Testes"; } }
         public override string ToolTipAdicionar { get { return "Cadastrar um novo teste"; } }
         public override string ToolTipEditar { get { return "Editar um teste existente"; } }
-
         public override string ToolTipExcluir { get { return "Excluir um teste existente"; } }
+
+        public string ToolTipVisualizar { get { return "Visualziar um teste"; } }
 
         public override void Adicionar()
         {
@@ -148,5 +150,26 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             telaTeste.MostrarMaterias(materias);
         }
+
+        public void Visualizar()
+        {
+            int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
+
+            Teste testeSelecionado =
+                repositorioTeste.SelecionarPorId(idSelecionado);
+
+            if (testeSelecionado == null)
+            {
+                TelaPrincipalForm
+                    .Instancia
+                    .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
+            }
+
+            TelaVisualizarTesteForm tela = new TelaVisualizarTesteForm(testeSelecionado);
+
+            tela.ShowDialog();
+        }
+
     }
 }
