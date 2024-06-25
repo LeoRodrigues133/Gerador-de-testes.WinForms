@@ -39,7 +39,7 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
         {
             return new DataGridViewColumn[]                 {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Enunciado", HeaderText = "Teste" },
+                new DataGridViewTextBoxColumn { DataPropertyName = "Enunciado", HeaderText = "Questão" },
                 new DataGridViewTextBoxColumn { DataPropertyName = "Materia", HeaderText = "Materia" },
                 new DataGridViewTextBoxColumn { DataPropertyName = "Resposta", HeaderText = "Resposta" }
                 };

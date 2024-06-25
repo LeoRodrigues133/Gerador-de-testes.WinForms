@@ -27,7 +27,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             grid.Rows.Clear();
 
             foreach (Teste t in testes)
-                grid.Rows.Add(t.Id.ToString(), t.Titulo,t.Disciplina,t.Materia,t.NumQuestoes);
+                grid.Rows.Add(t.Id.ToString(), t.Titulo, t.Disciplina, t.Materia, t.NumQuestoes);
         }
 
         public int ObterRegistroSelecionado()

@@ -51,12 +51,11 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             decimal NumQuestoes = numQuestoes.Value;
 
             teste = new Teste(titulo, disciplina, materia, NumQuestoes);
-        }
 
-        public void MostrarDisciplinas(List<Disciplinas> disciplinas)
-        {
-            foreach (Disciplinas d in disciplinas)
-                cmbBoxDisciplina.Items.Add(d);
+            List<Questoes> q = listQuestoes.Items.Cast<Questoes>().ToList();
+
+            teste.Questoes = q;
+
         }
 
         private void btnSortearQuestoes_Click(object sender, EventArgs e)
@@ -69,11 +68,36 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
                 q.ModeloQuestao(i);
                 i++;
+
                 listQuestoes.Items.Add(q);
-                foreach (Alternativas a in q.Alternativas)
-                {
-                    listQuestoes.Items.Add(a);
-                }
+            }
+        }
+
+        private void cmbBoxDisciplina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbBoxMateria.Items.Clear();
+
+            cmbBoxMateria.Text = string.Empty;
+
+            if (cmbBoxDisciplina.SelectedItem != null)
+                cmbBoxMateria.Enabled = true;
+
+            List<Materias> materias = repositorioMateria.SelecionarTodos();
+            MostrarMaterias(materias);
+
+        }
+
+        private void chkRecuperacao_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkRecuperacao.Checked)
+            {
+                cmbBoxMateria.Enabled = false;
+                cmbBoxMateria.Text = string.Empty;
+            }
+            else
+            {
+                cmbBoxMateria.Enabled = true;
+                cmbBoxMateria.Text = string.Empty;
             }
         }
 
@@ -83,70 +107,86 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             List<Questoes> Selecionadas = new List<Questoes>();
 
-
-            for (int i = 0; i < qtdQuestoesTeste; i++)
+            if (qtdQuestoesTeste > SelecionarLista().Count)
             {
-                Random r = new();
-
-                List<Questoes> todasAsQuestoes = new List<Questoes>();
-
-                todasAsQuestoes = repositorioQuestoes.SelecionarTodos();
-
-
-                var filtradas = todasAsQuestoes.Where(q => q.Materia == cmbBoxMateria.SelectedItem).ToList();
-
-                if (filtradas == null)
-                {
-                    MessageBox.Show(
-                        "Selecione uma matéria para criar o teste!",
-                        "Aviso",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                        );
-                };
-
-
-                int indexLista = r.Next(filtradas.ToList().Count());
-
-                Questoes questaoSelecionada = filtradas[indexLista];
-
-
-                Selecionadas.Add(questaoSelecionada);
+                MessageBox.Show(
+                    "A quantidade de questões registradas é insuficiente para criar um teste.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
             }
+
+            if (qtdQuestoesTeste >= SelecionarLista().Count())
+                if (chkRecuperacao.Checked)
+                    foreach (Questoes q in SelecionarLista())
+                        Selecionadas.Add(q);
+
+                else
+                    foreach (Questoes q in SelecionarLista().Where(x => x.Materia == cmbBoxMateria.SelectedItem))
+                        Selecionadas.Add(q);
+
+            else
+
+                SelecionarAleatoriamente(qtdQuestoesTeste, Selecionadas);
 
             return Selecionadas;
         }
 
+        private void SelecionarAleatoriamente(int qtdQuestoesTeste, List<Questoes> Selecionadas)
+        {
+            while (qtdQuestoesTeste > SelecionarLista().Count()) ;
+            {
+                for (int i = 0; i < qtdQuestoesTeste; i++)
+                {
+                    int indexList = 0;
+                    Questoes questaoSelecionada = null;
+
+                    Random r = new();
+
+                    indexList = r.Next(SelecionarLista().Count());
+
+                    questaoSelecionada = SelecionarLista()[indexList];
+
+                    if (questaoSelecionada != Selecionadas.FirstOrDefault(x => x.Enunciado == questaoSelecionada.Enunciado))
+                        Selecionadas.Add(questaoSelecionada);
+
+                    //if (qtdQuestoesTeste > Selecionadas.Count())
+                    //    Selecionadas.Add(Selecionadas[r.Next(SelecionarLista().Count())]);
+                }
+            }
+        }
+
+        private List<Questoes> SelecionarLista()
+        {
+            List<Questoes> todasAsQuestoes = new List<Questoes>();
+
+            todasAsQuestoes = repositorioQuestoes.SelecionarTodos();
+
+            List<Questoes> filtradas = todasAsQuestoes.Where(q => q.Materia == cmbBoxMateria.SelectedItem).ToList();
+
+            if (chkRecuperacao.Checked == true)
+                return todasAsQuestoes;
+            else
+                return filtradas;
+
+        }
+
+        public void MostrarDisciplinas(List<Disciplinas> disciplinas)
+        {
+            foreach (Disciplinas d in disciplinas)
+                cmbBoxDisciplina.Items.Add(d);
+        }
+
         public void MostrarMaterias(List<Materias> materias)
         {
+
             List<Materias> filtradas = materias.Where(x => x.Disciplina == cmbBoxDisciplina.SelectedItem).ToList();
 
 
             foreach (Materias m in filtradas)
                 cmbBoxMateria.Items.Add(m);
-        }
-
-        public void MostrarQ(List<Questoes> questoes)
-        {
-
-            foreach (Questoes q in questoes)
-            {
-                listQuestoes.Items.Add(q);
-            }
-        }
-
-        private void cmbBoxDisciplina_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbBoxMateria.Items.Clear();
-
-            cmbBoxMateria.Text = null;
-
-            if (cmbBoxDisciplina.SelectedItem != null)
-                cmbBoxMateria.Enabled = true;
-
-            List<Materias> materias = repositorioMateria.SelecionarTodos();
-            MostrarMaterias(materias);
 
         }
     }
 }
+

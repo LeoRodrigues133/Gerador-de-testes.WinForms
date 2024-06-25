@@ -1,14 +1,5 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
 using GeradorDeTestes.WinApp._3___Módulo_Matérias;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 {
@@ -29,7 +20,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
             foreach (Materias m in materias)
             {
-                grid.Rows.Add(m.Id.ToString(), m.Nome,m.Disciplina);
+                grid.Rows.Add(m.Id.ToString(), m.Nome, m.Disciplina, $"{m.Serie}ª Série");
             }
         }
 
@@ -43,6 +34,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
                 new DataGridViewTextBoxColumn{DataPropertyName =  "Id", HeaderText = "Id" },
                 new DataGridViewTextBoxColumn{DataPropertyName =  "Titulo", HeaderText = "Titulo" },
                 new DataGridViewTextBoxColumn{DataPropertyName =  "Disciplina", HeaderText = "Disciplina" },
+                new DataGridViewTextBoxColumn{DataPropertyName =  "Serie", HeaderText = "Série" },
             };
         }
     }

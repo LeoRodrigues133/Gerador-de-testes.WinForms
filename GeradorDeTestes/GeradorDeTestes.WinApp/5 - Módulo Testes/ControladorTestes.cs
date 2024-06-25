@@ -151,8 +151,8 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
             int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
 
-            Teste testeSelecionado =
-                repositorioTeste.SelecionarPorId(idSelecionado);
+            Teste testeSelecionado = repositorioTeste.SelecionarPorId(idSelecionado);
+
 
             if (testeSelecionado == null)
             {
@@ -162,9 +162,11 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
                 return;
             }
 
-            TelaVisualizarTesteForm tela = new TelaVisualizarTesteForm(testeSelecionado);
+            TelaVisualizarTesteForm telaVisualizar = new TelaVisualizarTesteForm(testeSelecionado);
 
-            tela.ShowDialog();
+            telaVisualizar.CarregarQuestoes(testeSelecionado);
+
+            telaVisualizar.ShowDialog();
         }
 
         public void GerarTeste()

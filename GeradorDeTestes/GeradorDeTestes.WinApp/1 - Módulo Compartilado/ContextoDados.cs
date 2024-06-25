@@ -77,9 +77,6 @@ namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
             Disciplina = ctx.Disciplina;
             Teste = ctx.Teste;
             Materia = ctx.Materia;
-
-
-
             Questoes = ctx.Questoes;
         }
     }

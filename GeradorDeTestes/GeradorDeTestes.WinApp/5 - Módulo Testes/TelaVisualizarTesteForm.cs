@@ -18,18 +18,21 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             InitializeComponent();
 
             lblTitulo.Text = testeSelecionado.Titulo;
-            lblDisciplina.Text = testeSelecionado.Disciplina.Nome;
+
+            lblDisciplina.Text = testeSelecionado.Disciplina.ToString();
+
             if (testeSelecionado.Materia != null)
                 lblMateria.Text = testeSelecionado.Materia.ToString();
             else
                 lblMateria.Text = "Recuperação";
 
-            CarregarQuestoes(testeSelecionado);
         }
-        private void CarregarQuestoes(Teste testeSelecionado)
+        public void CarregarQuestoes(Teste testeSelecionado)
         {
-            foreach (Questoes questao in testeSelecionado.questoes)
+
+            foreach (Questoes questao in testeSelecionado.Questoes)
                 listQuestoes.Items.Add(questao);
+
         }
     }
 }

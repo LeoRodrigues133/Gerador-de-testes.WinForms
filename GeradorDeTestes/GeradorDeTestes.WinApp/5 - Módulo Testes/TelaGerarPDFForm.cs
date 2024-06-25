@@ -28,7 +28,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public List<Materias> materias;
         public List<Disciplinas> disciplinas;
         public List<Questoes> questoes;
-        
+
         public TelaGerarPDFForm(Teste testeSelecionado, List<Disciplinas> disciplinas, List<Materias> materias, List<Questoes> questoes)
         {
             InitializeComponent();
@@ -105,7 +105,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             int numeroQuestao = 1;
             conteudoPdf += "\n\n";
 
-            foreach (Questoes questao in testeSelecionado.questoes)
+            foreach (Questoes questao in testeSelecionado.Questoes)
             {
                 if (questoes.Find(q => q.Id == questao.Id) != null)
                 {

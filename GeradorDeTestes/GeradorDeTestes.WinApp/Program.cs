@@ -1,4 +1,5 @@
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
+using GeradorDeTestes.WinApp._4___Módulo_Testes;
 
 namespace GeradorDeTestes.WinApp
 {

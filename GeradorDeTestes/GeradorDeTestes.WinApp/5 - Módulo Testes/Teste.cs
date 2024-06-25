@@ -14,11 +14,12 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
     public class Teste : EntidadeBase
     {
         public string Titulo { get; set; }
-        public Disciplinas Disciplina;
-        public Materias Materia;
+        public Disciplinas Disciplina { get; set; }
+        public Materias Materia { get; set; }
         public string Serie { get; set; }
         public decimal NumQuestoes { get; set; }
-        public List<Questoes> questoes = new List<Questoes>();
+
+        public List<Questoes> Questoes = new List<Questoes>();
 
         public Teste() { } //Ctor para Deserializar
         public Teste(string titulo, Disciplinas disciplina, Materias materia, decimal numQuestoes)
@@ -58,6 +59,5 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             return true;
         }
-
     }
 }

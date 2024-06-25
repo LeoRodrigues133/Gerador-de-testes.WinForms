@@ -52,7 +52,6 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
         public override void Editar()
         {
 
-            CarregarDisciplinas(telaMateria);
 
             int idSelecionado = tabelaMateria.ObterRegistroSelecionado();
 
@@ -70,6 +69,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             TelaMateriaForm telaMateria = new TelaMateriaForm(repositorioMaterias.SelecionarTodos());
 
             CarregarDisciplinas(telaMateria);
+            CarregarDisciplinas(telaMateria);
 
 
             DialogResult resultado = telaMateria.ShowDialog();
@@ -80,7 +80,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
             repositorioMaterias.Editar(Selecionado.Id, materiaEditada);
 
-            CarregarMateria();
+            CarregarMaterias();
 
 
         }
@@ -134,7 +134,5 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
             telaMateria.MostrarDisciplinas(disciplinas);
         }
-
-       
     }
 }
