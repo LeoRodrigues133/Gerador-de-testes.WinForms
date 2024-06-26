@@ -79,7 +79,7 @@
             cmbBoxDisciplina.Location = new Point(90, 125);
             cmbBoxDisciplina.Name = "cmbBoxDisciplina";
             cmbBoxDisciplina.Size = new Size(217, 28);
-            cmbBoxDisciplina.TabIndex = 3;
+            cmbBoxDisciplina.TabIndex = 2;
             cmbBoxDisciplina.SelectedIndexChanged += cmbBoxDisciplina_SelectedIndexChanged;
             // 
             // lblMateria
@@ -113,7 +113,7 @@
             numQuestoes.Location = new Point(483, 121);
             numQuestoes.Name = "numQuestoes";
             numQuestoes.Size = new Size(62, 27);
-            numQuestoes.TabIndex = 5;
+            numQuestoes.TabIndex = 4;
             // 
             // chkRecuperacao
             // 
@@ -121,7 +121,7 @@
             chkRecuperacao.Location = new Point(366, 181);
             chkRecuperacao.Name = "chkRecuperacao";
             chkRecuperacao.Size = new Size(179, 24);
-            chkRecuperacao.TabIndex = 6;
+            chkRecuperacao.TabIndex = 5;
             chkRecuperacao.Text = "Prova de Recuperação";
             chkRecuperacao.UseVisualStyleBackColor = true;
             chkRecuperacao.CheckedChanged += chkRecuperacao_CheckedChanged;
@@ -142,7 +142,7 @@
             btnSortearQuestoes.Location = new Point(6, 27);
             btnSortearQuestoes.Name = "btnSortearQuestoes";
             btnSortearQuestoes.Size = new Size(159, 39);
-            btnSortearQuestoes.TabIndex = 1;
+            btnSortearQuestoes.TabIndex = 6;
             btnSortearQuestoes.Text = "Sortear Questões";
             btnSortearQuestoes.UseVisualStyleBackColor = true;
             btnSortearQuestoes.Click += btnSortearQuestoes_Click;
@@ -173,7 +173,7 @@
             btnGravar.Margin = new Padding(3, 4, 3, 4);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(109, 57);
-            btnGravar.TabIndex = 9;
+            btnGravar.TabIndex = 7;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
