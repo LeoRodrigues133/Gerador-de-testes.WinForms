@@ -38,29 +38,27 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(53, 73);
+            label1.Location = new Point(60, 49);
             label1.Name = "label1";
-            label1.Size = new Size(492, 28);
+            label1.Size = new Size(389, 21);
             label1.TabIndex = 0;
             label1.Text = "Gostaria de gerar o PDF com o gabarito das questões ?";
             // 
             // checkBoxGabarito
             // 
             checkBoxGabarito.AutoSize = true;
-            checkBoxGabarito.Location = new Point(29, 81);
-            checkBoxGabarito.Margin = new Padding(3, 4, 3, 4);
+            checkBoxGabarito.Location = new Point(39, 55);
             checkBoxGabarito.Name = "checkBoxGabarito";
-            checkBoxGabarito.Size = new Size(18, 17);
+            checkBoxGabarito.Size = new Size(15, 14);
             checkBoxGabarito.TabIndex = 1;
             checkBoxGabarito.UseVisualStyleBackColor = true;
             // 
             // btnGerarPdf
             // 
             btnGerarPdf.DialogResult = DialogResult.OK;
-            btnGerarPdf.Location = new Point(286, 128);
-            btnGerarPdf.Margin = new Padding(3, 4, 3, 4);
+            btnGerarPdf.Location = new Point(264, 90);
             btnGerarPdf.Name = "btnGerarPdf";
-            btnGerarPdf.Size = new Size(102, 45);
+            btnGerarPdf.Size = new Size(89, 34);
             btnGerarPdf.TabIndex = 2;
             btnGerarPdf.Text = "Gerar";
             btnGerarPdf.UseVisualStyleBackColor = true;
@@ -69,29 +67,28 @@
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(395, 128);
-            btnCancelar.Margin = new Padding(3, 4, 3, 4);
+            btnCancelar.Location = new Point(360, 90);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(102, 45);
+            btnCancelar.Size = new Size(89, 34);
             btnCancelar.TabIndex = 3;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
             // TelaGerarPDFForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(511, 189);
+            ClientSize = new Size(487, 146);
             Controls.Add(btnCancelar);
             Controls.Add(btnGerarPdf);
             Controls.Add(checkBoxGabarito);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaGerarPDFForm";
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Gerar PDF";
             ResumeLayout(false);
             PerformLayout();
