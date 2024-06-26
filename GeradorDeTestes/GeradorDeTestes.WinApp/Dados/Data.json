@@ -21,10 +21,38 @@
   },
   "Materia": {
     "$id": "6",
-    "$values": []
+    "$values": [
+      {
+        "$id": "7",
+        "Nome": "Adi\u00E7\u00E3o",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 2,
+        "Id": 1
+      },
+      {
+        "$id": "8",
+        "Nome": "Subtra\u00E7\u00E3o",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 2,
+        "Id": 2
+      },
+      {
+        "$id": "9",
+        "Nome": "Divis\u00E3o",
+        "Disciplina": {
+          "$ref": "3"
+        },
+        "Serie": 2,
+        "Id": 3
+      }
+    ]
   },
   "Questoes": {
-    "$id": "7",
+    "$id": "10",
     "$values": []
   }
 }
