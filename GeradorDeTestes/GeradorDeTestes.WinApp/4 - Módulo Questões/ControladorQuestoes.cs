@@ -5,6 +5,7 @@ using GeradorDeTestes.WinApp._3___Módulo_Matérias;
 using GeradorDeTestes.WinApp._4___Módulo_Testes;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,38 +28,144 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
         public override string ToolTipExcluir { get { return "Excluir uma questão"; } }
 
-        public string ToolTipVisualizar { get { return "Visualizar Alternativas"; } }
-
         public ControladorQuestoes(IRepositorioTestes testeRepositorio, IRepositorioDisciplina disciplinaRepositorio, IRepositorioMateria materiaRepositorio, IRepositorioQuestoes questoesRepositorio)
         {
             repositorioTestes = testeRepositorio;
             repositorioDisciplina = disciplinaRepositorio;
             repositorioMaterias = materiaRepositorio;
             repositorioQuestoes = questoesRepositorio;
-
-            //AtualizarRodape();
         }
 
         public override void Adicionar()
         {
-            TelaQuestoesForm telaQuestoes = new TelaQuestoesForm();
+            TelaQuestoesForm telaQuestao = new TelaQuestoesForm();
 
-            CarregarMaterias(telaQuestoes);
+            List<Materias> materiasCadastradas = repositorioMaterias.SelecionarTodos();
 
-            DialogResult resultado = telaQuestoes.ShowDialog();
+            telaQuestao.CarregarMaterias(materiasCadastradas);
 
-            if (resultado != DialogResult.OK) return;
+            DialogResult resultado = telaQuestao.ShowDialog();
 
-            Questoes novaQuestao = telaQuestoes.Questao;
+            if (resultado != DialogResult.OK)
+                return;
+
+            Questoes novaQuestao = telaQuestao.Questao;
+
+            List<Questoes> questoes = repositorioQuestoes.SelecionarTodos();
+
+            foreach (var questao in questoes)
+            {
+                if (questao.Enunciado.ToLower() == novaQuestao.Enunciado.ToLower())
+                {
+                    TelaPrincipalForm
+                        .Instancia
+                        .AtualizarRodape($"Já existe uma questão com este nome.");
+                    return;
+                }
+            }
 
             repositorioQuestoes.Cadastrar(novaQuestao);
 
             CarregarQuestoes();
 
-            TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{novaQuestao.Enunciado}\" foi criado com sucesso!");
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{novaQuestao.Enunciado}\" foi criado com sucesso!");
 
         }
 
+        public override void Editar()
+        {
+            int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
+
+            Questoes questaoSelecionada = repositorioQuestoes.SelecionarPorId(idSelecionado);
+
+            if (questaoSelecionada == null)
+            {
+                TelaPrincipalForm
+                    .Instancia
+                    .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
+            }
+
+            TelaQuestoesForm telaQuestao = new TelaQuestoesForm();
+            telaQuestao.Questao = questaoSelecionada;
+
+            List<Materias> materiasCadastradas = repositorioMaterias.SelecionarTodos();
+
+            telaQuestao.CarregarMaterias(materiasCadastradas);
+
+            DialogResult resultado = telaQuestao.ShowDialog();
+
+            if (resultado != DialogResult.OK)
+                return;
+
+            Questoes questaoEditada = telaQuestao.Questao;
+
+            List<Questoes> questoes = repositorioQuestoes.SelecionarTodos();
+
+            foreach (var questao in questoes)
+            {
+                if (questao.Enunciado.ToLower() == questaoEditada.Enunciado.ToLower() && questao.Id != questaoSelecionada.Id)
+                {
+                    TelaPrincipalForm
+                        .Instancia
+                        .AtualizarRodape($"Já existe uma questão com este nome.");
+                    return;
+                }
+            }
+
+            repositorioQuestoes.Editar(questaoSelecionada.Id, questaoEditada);
+
+            CarregarQuestoes();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{questaoEditada.Enunciado}\" foi editado com sucesso!");
+        }
+
+        public override void Excluir()
+        {
+            int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
+
+            Questoes questaoSelecionada = repositorioQuestoes.SelecionarPorId(idSelecionado);
+
+            if (questaoSelecionada == null)
+            {
+                TelaPrincipalForm
+                   .Instancia
+                   .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show(
+               $"Você deseja realmente excluir o registro \"{questaoSelecionada.Id}\"?",
+               "Confirmar Exclusão",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.Warning
+               );
+
+            if (resultado != DialogResult.Yes)
+                return;
+
+            bool conseguiuEcluir = repositorioQuestoes.Excluir(questaoSelecionada.Id);
+
+            if (!conseguiuEcluir)
+            {
+                TelaPrincipalForm
+                    .Instancia
+                    .AtualizarRodape("Não é possível excluir a questao pois há testes relacionados.");
+                return;
+            }
+
+            repositorioQuestoes.Excluir(idSelecionado);
+
+            CarregarQuestoes();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{questaoSelecionada.Enunciado}\" foi excluído com sucesso!");
+        }
         private void CarregarQuestoes()
         {
             List<Questoes> questoes = repositorioQuestoes.SelecionarTodos();
@@ -66,74 +173,10 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
             tabelaQuestoes.AtualizarRegistros(questoes);
         }
 
-        public override void Editar()
-        {
-            TelaQuestoesForm telaQuestoes = new TelaQuestoesForm();
-
-            CarregarMaterias(telaQuestoes);
-
-            int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
-
-            Questoes Selecionado = repositorioQuestoes.SelecionarPorId(idSelecionado);
-
-            CarregarAlternativas(Selecionado, telaQuestoes);
-
-            telaQuestoes.Questao = Selecionado;
-
-
-            DialogResult resultado = telaQuestoes.ShowDialog();
-
-            if (resultado != DialogResult.OK) return;
-
-            CarregarMaterias(telaQuestoes);
-
-            Questoes questaoEditada = telaQuestoes.Questao;
-
-            repositorioQuestoes.Editar(Selecionado.Id, questaoEditada);
-
-            CarregarQuestoes();
-
-            TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{questaoEditada.Enunciado}\" foi editado com sucesso!");
-        }
-
-
-        public override void Excluir()
-        {
-            int idSelecionado = tabelaQuestoes.ObterRegistroSelecionado();
-
-            Questoes Selecionado = repositorioQuestoes.SelecionarPorId(idSelecionado);
-
-            if (Selecionado == null)
-            {
-                MessageBox.Show(
-                 "Não é possível realizar esta ação sem um registro selecionado.",
-                 "Aviso",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning
-                 ); return;
-            }
-
-            DialogResult resultado = MessageBox.Show(
-               $"Você deseja realmente excluir o registro \"{Selecionado.Id}\"?",
-               "Confirmar Exclusão",
-               MessageBoxButtons.YesNo,
-               MessageBoxIcon.Warning
-               );
-
-            repositorioQuestoes.Excluir(idSelecionado);
-
-            CarregarQuestoes();
-
-            TelaPrincipalForm.Instancia.AtualizarRodape($"O registro \"{Selecionado.Enunciado}\" foi excluído com sucesso!");
-
-        }
-
         public override UserControl ObterListagem()
         {
             if (tabelaQuestoes == null)
                 tabelaQuestoes = new TabelaQuestoesControl();
-
-            List<Questoes> questoes = repositorioQuestoes.SelecionarTodos();
 
             CarregarQuestoes();
 

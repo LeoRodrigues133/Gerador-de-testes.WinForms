@@ -1,13 +1,5 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
-using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
-using GeradorDeTestes.WinApp._3___Módulo_Matérias;
-using GeradorDeTestes.WinApp._4___Módulo_Testes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 {
@@ -15,6 +7,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
     {
         public IRepositorioMateria repositorioMaterias;
         public IRepositorioDisciplina repositorioDisciplina;
+        
         TabelaMateriaControl tabelaMateria;
 
         public ControladorMateria(IRepositorioMateria materiasRepositorio, IRepositorioDisciplina disciplinaRepositorio)
@@ -22,7 +15,6 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             repositorioMaterias = materiasRepositorio;
             repositorioDisciplina = disciplinaRepositorio;
         }
-
 
         public override string TipoCadastro { get { return "Matérias"; } }
 
@@ -46,7 +38,11 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
             repositorioMaterias.Cadastrar(novaMateria);
 
-            CarregarMaterias();
+            CarregarMateria();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{novaMateria.Nome}\" foi criado com sucesso!");
         }
 
         public override void Editar()
@@ -55,60 +51,78 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
             int idSelecionado = tabelaMateria.ObterRegistroSelecionado();
 
-            Materias Selecionado = repositorioMaterias.SelecionarPorId(idSelecionado);
+            Materias materiaSelecionada = repositorioMaterias.SelecionarPorId(idSelecionado);
 
-            if (Selecionado == null)
+            if (materiaSelecionada == null)
             {
-                MessageBox.Show(
-                 "Não é possível realizar esta ação sem um registro selecionado.",
-                 "Aviso",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning
-                 ); return;
+                TelaPrincipalForm
+                   .Instancia
+                   .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
             }
-            TelaMateriaForm telaMateria = new TelaMateriaForm(repositorioMaterias.SelecionarTodos());
+            telaMateria.Materia = materiaSelecionada;
 
-            CarregarDisciplinas(telaMateria);
-            CarregarDisciplinas(telaMateria);
+            List<Disciplinas> disciplinasCadastradas = repositorioDisciplina.SelecionarTodos();
 
+            telaMateria.CarregarDisciplinas(disciplinasCadastradas);
 
             DialogResult resultado = telaMateria.ShowDialog();
 
-            if (resultado != DialogResult.OK) return;
+            if (resultado != DialogResult.OK)
+                return;
 
             Materias materiaEditada = telaMateria.Materia;
 
-            repositorioMaterias.Editar(Selecionado.Id, materiaEditada);
+            List<Materias> materias = repositorioMaterias.SelecionarTodos();
 
-            CarregarMaterias();
+           VerificarNome(materiaEditada, materias);
 
+            repositorioMaterias.Editar(materiaSelecionada.Id, materiaEditada);
 
+            CarregarMateria();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{materiaEditada.Nome}\" foi editado com sucesso!");
         }
 
         public override void Excluir()
         {
             int idSelecionado = tabelaMateria.ObterRegistroSelecionado();
 
-            Materias Selecionado = repositorioMaterias.SelecionarPorId(idSelecionado);
-            if (Selecionado == null)
+            Materias materiaSelecionada = repositorioMaterias.SelecionarPorId(idSelecionado);
+            if (materiaSelecionada == null)
             {
-                MessageBox.Show(
-                 "Não é possível realizar esta ação sem um registro selecionado.",
-                 "Aviso",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning
-                 ); return;
+                TelaPrincipalForm
+                     .Instancia
+                     .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
             }
             DialogResult resultado = MessageBox.Show(
-               $"Você deseja realmente excluir o registro \"{Selecionado.Id}\"?",
+               $"Você deseja realmente excluir o registro \"{materiaSelecionada.Id}\"?",
                "Confirmar Exclusão",
                MessageBoxButtons.YesNo,
                MessageBoxIcon.Warning);
 
-            if (resultado != DialogResult.Yes) return;
+            if (resultado != DialogResult.Yes) 
+                return;
 
-            repositorioMaterias.Excluir(Selecionado.Id);
-            CarregarMaterias();
+            bool conseguiuExcluir = repositorioMaterias.Excluir(materiaSelecionada.Id);
+
+            if (!conseguiuExcluir)
+            {
+                TelaPrincipalForm
+                    .Instancia
+                    .AtualizarRodape($"Não é possível excluir a matéria pois há questões relacionadas.");
+                return;
+            }
+
+            repositorioMaterias.Excluir(materiaSelecionada.Id);
+            CarregarMateria();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{materiaSelecionada.Nome}\" foi excluído com sucesso!");
         }
 
         public override UserControl ObterListagem()
@@ -121,7 +135,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             return tabelaMateria;
         }
 
-        private void CarregarMaterias()
+        private void CarregarMateria()
         {
             List<Materias> materias = repositorioMaterias.SelecionarTodos();
 
@@ -133,6 +147,20 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             List<Disciplinas> disciplinas = repositorioDisciplina.SelecionarTodos();
 
             telaMateria.MostrarDisciplinas(disciplinas);
+        }
+
+        private static void VerificarNome(Materias materiaRecebida, List<Materias> materias)
+        {
+            foreach (var materia in materias)
+            {
+                if (materia.Nome.ToLower() == materiaRecebida.Nome.ToLower())
+                {
+                    TelaPrincipalForm
+                        .Instancia
+                        .AtualizarRodape($"Já existe uma materia com este nome.");
+                    return;
+                }
+            }
         }
     }
 }
