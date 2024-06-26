@@ -19,16 +19,17 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public string Serie { get; set; }
         public decimal NumQuestoes { get; set; }
 
-        public List<Questoes> Questoes = new List<Questoes>();
+        public List<Questoes> Questoes { get; set; }
 
         public Teste() { } //Ctor para Deserializar
-        public Teste(string titulo, Disciplinas disciplina, Materias materia, decimal numQuestoes)
+        public Teste(string titulo, Disciplinas disciplina, Materias materia, decimal numQuestoes, List<Questoes> q)
         {
             Titulo = titulo;
             Serie = "";
             Disciplina = disciplina;
             Materia = materia;
             NumQuestoes = numQuestoes;
+            Questoes = q;
         }
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {

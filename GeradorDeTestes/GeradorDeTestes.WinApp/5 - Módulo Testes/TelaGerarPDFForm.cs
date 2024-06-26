@@ -58,9 +58,9 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             caminho = "";
 
             if (checkBoxGabarito.Checked)
-                caminho = $"{path}\\{testeSelecionado.Titulo}Gabarito.pdf";
+                caminho = $"{path}\\{testeSelecionado.Titulo}-{testeSelecionado.Disciplina}-Gabarito.pdf";
             else
-                caminho = $"{path}\\{testeSelecionado.Titulo}.pdf";
+                caminho = $"{path}\\{testeSelecionado.Titulo}-{testeSelecionado.Disciplina}.pdf";
 
             if (!File.Exists(caminho))
             {

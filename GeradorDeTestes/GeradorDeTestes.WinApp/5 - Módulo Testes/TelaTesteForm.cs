@@ -52,10 +52,10 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             decimal NumQuestoes = numQuestoes.Value;
 
-            teste = new Teste(titulo, disciplina, materia, NumQuestoes);
-
             List<Questoes> q = listQuestoes.Items.Cast<Questoes>().ToList();
 
+            teste = new Teste(titulo, disciplina, materia, NumQuestoes , q);
+            
             teste.Questoes = q;
 
         }
