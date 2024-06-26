@@ -55,8 +55,12 @@ namespace GeradorDeTestes.WinApp
             btnEditar.Enabled = controladorSelecionado is ControladorBase;
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
 
+            btnDuplicar.Enabled = controladorSelecionado is IControladorVisualizar;
             btnVisualizarTeste.Enabled = controladorSelecionado is IControladorVisualizar;
             btnGerarPdf.Enabled = controladorSelecionado is IControladorVisualizar;
+
+            if (controladorSelecionado is IControladorVisualizar)
+                btnEditar.Enabled = false;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -71,6 +75,7 @@ namespace GeradorDeTestes.WinApp
             {
                 btnVisualizarTeste.ToolTipText = controladorVisualizar.ToolTipVisualizar;
                 btnGerarPdf.ToolTipText = controladorVisualizar.ToolTipGerarTestePdf;
+                btnDuplicar.ToolTipText = controladorVisualizar.ToolTipDuplicar;
             }
         }
 
@@ -139,6 +144,10 @@ namespace GeradorDeTestes.WinApp
                 controladorGerarTeste.GerarTeste();
         }
 
-
+        private void btnDuplicar_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorVisualizar controladorDuplicar)
+                controladorDuplicar.Duplicar();
+        }
     }
 }

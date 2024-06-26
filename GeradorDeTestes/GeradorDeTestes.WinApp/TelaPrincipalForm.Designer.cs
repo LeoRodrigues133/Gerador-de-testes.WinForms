@@ -45,6 +45,7 @@ namespace GeradorDeTestes.WinApp
             btnExcluir = new ToolStripButton();
             btnVisualizarTeste = new ToolStripButton();
             btnGerarPdf = new ToolStripButton();
+            btnDuplicar = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             pnlRegistros = new Panel();
@@ -121,8 +122,8 @@ namespace GeradorDeTestes.WinApp
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnVisualizarTeste, btnGerarPdf, toolStripSeparator4, lblTipoCadastro });
-            toolStrip1.Location = new Point(0, 35);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnVisualizarTeste, btnGerarPdf, btnDuplicar, toolStripSeparator4, lblTipoCadastro });
+            toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(914, 41);
             toolStrip1.TabIndex = 2;
@@ -181,9 +182,19 @@ namespace GeradorDeTestes.WinApp
             btnGerarPdf.Image = (Image)resources.GetObject("btnGerarPdf.Image");
             btnGerarPdf.ImageTransparentColor = Color.Magenta;
             btnGerarPdf.Name = "btnGerarPdf";
-            btnGerarPdf.Size = new Size(29, 38);
+            btnGerarPdf.Size = new Size(24, 38);
             btnGerarPdf.ToolTipText = "\r\n";
             btnGerarPdf.Click += btnGerarPdf_Click;
+            // 
+            // btnDuplicar
+            // 
+            btnDuplicar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnDuplicar.Enabled = false;
+            btnDuplicar.Image = (Image)resources.GetObject("btnDuplicar.Image");
+            btnDuplicar.ImageTransparentColor = Color.Magenta;
+            btnDuplicar.Name = "btnDuplicar";
+            btnDuplicar.Size = new Size(24, 38);
+            btnDuplicar.Click += btnDuplicar_Click;
             // 
             // toolStripSeparator4
             // 
@@ -253,5 +264,6 @@ namespace GeradorDeTestes.WinApp
         private ToolStripMenuItem questõesToolStripMenuItem;
         private ToolStripButton btnVisualizarTeste;
         private ToolStripButton btnGerarPdf;
+        private ToolStripButton btnDuplicar;
     }
 }

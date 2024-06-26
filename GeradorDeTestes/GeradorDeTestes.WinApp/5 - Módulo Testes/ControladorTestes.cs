@@ -38,6 +38,8 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         public string ToolTipGerarTestePdf { get { return "Gerar um teste"; } }
 
+        public string ToolTipDuplicar { get { return "Duplicar um Teste"; } }
+
         public override void Adicionar()
         {
 
@@ -216,6 +218,54 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             string caminho = telaGerarPDF.Caminho;
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"O PDF foi gerado com sucesso em: {caminho}");
+        }
+
+        public void Duplicar()
+        {
+            int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
+
+            Teste testeSelecionado = repositorioTeste.SelecionarPorId(idSelecionado);
+
+            if (testeSelecionado == null)
+            {
+                TelaPrincipalForm
+                    .Instancia
+                    .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");
+                return;
+            }
+
+            TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria, repositorioQuestao);
+            telaTeste.Teste = testeSelecionado;
+            telaTeste.Text = "Duplicar Teste";
+
+            DialogResult resultado = telaTeste.ShowDialog();
+
+            if (resultado != DialogResult.OK)
+                return;
+
+            Teste testeEditado = telaTeste.Teste;
+
+            List<Teste> testes = repositorioTeste.SelecionarTodos();
+
+            foreach (var teste in testes)
+            {
+
+                if (teste.Titulo.ToLower() == testeEditado.Titulo.ToLower())
+                {
+                    TelaPrincipalForm
+                       .Instancia
+                      .AtualizarRodape($"Já existe um teste com este nome");
+                    return;
+                }
+            }
+
+            repositorioTeste.Cadastrar(testeEditado);
+
+            CarregarTestes();
+
+            TelaPrincipalForm
+               .Instancia
+               .AtualizarRodape($"O registro \"{testeEditado.Titulo}\" foi editado com sucesso!");
         }
     }
 }
