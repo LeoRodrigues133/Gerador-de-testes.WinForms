@@ -42,10 +42,11 @@
             btnEditar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             btnVisualizarTeste = new ToolStripButton();
+            btnGerarPdf = new ToolStripButton();
+            btnDuplicar = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             pnlRegistros = new Panel();
-            btnGerarPdf = new ToolStripButton();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -117,7 +118,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnVisualizarTeste, btnGerarPdf, toolStripSeparator4, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnVisualizarTeste, btnGerarPdf, btnDuplicar, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 41);
@@ -170,6 +171,27 @@
             btnVisualizarTeste.Size = new Size(24, 38);
             btnVisualizarTeste.Click += btnVisualizarAlternativa_Click;
             // 
+            // btnGerarPdf
+            // 
+            btnGerarPdf.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnGerarPdf.Enabled = false;
+            btnGerarPdf.Image = (Image)resources.GetObject("btnGerarPdf.Image");
+            btnGerarPdf.ImageTransparentColor = Color.Magenta;
+            btnGerarPdf.Name = "btnGerarPdf";
+            btnGerarPdf.Size = new Size(24, 38);
+            btnGerarPdf.ToolTipText = "\r\n";
+            btnGerarPdf.Click += btnGerarPdf_Click;
+            // 
+            // btnDuplicar
+            // 
+            btnDuplicar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnDuplicar.Enabled = false;
+            btnDuplicar.Image = (Image)resources.GetObject("btnDuplicar.Image");
+            btnDuplicar.ImageTransparentColor = Color.Magenta;
+            btnDuplicar.Name = "btnDuplicar";
+            btnDuplicar.Size = new Size(24, 38);
+            btnDuplicar.Click += btnDuplicar_Click;
+            // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
@@ -189,17 +211,6 @@
             pnlRegistros.Name = "pnlRegistros";
             pnlRegistros.Size = new Size(800, 356);
             pnlRegistros.TabIndex = 3;
-            // 
-            // btnGerarPdf
-            // 
-            btnGerarPdf.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnGerarPdf.Enabled = false;
-            btnGerarPdf.Image = (Image)resources.GetObject("btnGerarPdf.Image");
-            btnGerarPdf.ImageTransparentColor = Color.Magenta;
-            btnGerarPdf.Name = "btnGerarPdf";
-            btnGerarPdf.Size = new Size(24, 38);
-            btnGerarPdf.ToolTipText = "\r\n";
-            btnGerarPdf.Click += btnGerarPdf_Click;
             // 
             // TelaPrincipalForm
             // 
@@ -247,5 +258,6 @@
         private ToolStripMenuItem questõesToolStripMenuItem;
         private ToolStripButton btnVisualizarTeste;
         private ToolStripButton btnGerarPdf;
+        private ToolStripButton btnDuplicar;
     }
 }
