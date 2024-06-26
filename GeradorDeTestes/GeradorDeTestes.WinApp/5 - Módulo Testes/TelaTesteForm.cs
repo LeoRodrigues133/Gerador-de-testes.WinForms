@@ -54,8 +54,8 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             List<Questoes> q = listQuestoes.Items.Cast<Questoes>().ToList();
 
-            teste = new Teste(titulo, disciplina, materia, NumQuestoes , q);
-            
+            teste = new Teste(titulo, disciplina, materia, NumQuestoes, q);
+
             teste.Questoes = q;
 
         }
@@ -190,6 +190,21 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             foreach (Materias m in filtradas)
                 cmbBoxMateria.Items.Add(m);
 
+        }
+
+        public void TravarInfos(TelaTesteForm tela, Teste t)
+        {
+            txtTitulo.Text = t.Titulo + "Duplicado";
+            cmbBoxDisciplina.SelectedItem = t.Disciplina;
+            cmbBoxMateria.SelectedItem = t.Materia;
+            numQuestoes.Value = t.NumQuestoes;
+
+            txtTitulo.Enabled = false;
+            cmbBoxMateria.Enabled = false;
+            cmbBoxDisciplina.Enabled = false;
+            chkRecuperacao.Checked = true;
+            chkRecuperacao.Enabled = false;
+            numQuestoes.Enabled = false;
         }
     }
 }

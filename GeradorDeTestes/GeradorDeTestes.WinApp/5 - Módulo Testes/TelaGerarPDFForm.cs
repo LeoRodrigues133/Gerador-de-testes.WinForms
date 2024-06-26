@@ -42,7 +42,10 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
                     page.PageColor(Colors.White);
                     page.DefaultTextStyle(x => x.FontSize(20));
 
-                    page.Header().Text(testeSelecionado.Titulo).SemiBold().FontSize(30).AlignCenter().FontFamily(Fonts.SegoeUI);
+                    if (checkBoxGabarito.Checked == true)
+                        page.Header().Text($"{testeSelecionado.Titulo}(Gabarito)").SemiBold().FontSize(30).AlignCenter().FontFamily(Fonts.SegoeUI);
+                    else
+                        page.Header().Text(testeSelecionado.Titulo).SemiBold().FontSize(30).AlignCenter().FontFamily(Fonts.SegoeUI);
 
                     page.Content()
                     .PaddingVertical(1, Unit.Centimetre)

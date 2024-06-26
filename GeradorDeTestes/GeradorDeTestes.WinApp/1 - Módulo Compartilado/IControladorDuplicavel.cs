@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 {
-    public interface IControladorVisualizar
+    public interface IControladorDuplicavel
     {
-        string ToolTipVisualizar { get; }
-
-        void Visualizar();
+        string ToolTipDuplicar { get; }
+        
+        void Duplicar();
     }
 }

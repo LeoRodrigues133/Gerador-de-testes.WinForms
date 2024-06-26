@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.WinApp._1___Módulo_Compartilado
 {
-    public interface IControladorVisualizar
+    public interface IControladorGeradorPDF
     {
-        string ToolTipVisualizar { get; }
-
-        void Visualizar();
+        string ToolTipGerarTestePdf { get; }
+        void GerarTeste();
     }
 }

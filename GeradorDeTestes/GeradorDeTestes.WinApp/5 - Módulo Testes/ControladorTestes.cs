@@ -6,7 +6,7 @@ using GeradorDeTestes.WinApp._5___Módulo_Questões;
 
 namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 {
-    public class ControladorTestes : ControladorBase, IControladorVisualizar
+    public class ControladorTestes : ControladorBase, IControladorVisualizar, IControladorDuplicavel, IControladorGeradorPDF
     {
 
         private IRepositorioTestes repositorioTeste;
@@ -66,21 +66,20 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
                         .AtualizarRodape($"Já existe um teste com este nome.");
                     return;
                 }
-
-                repositorioTeste.Cadastrar(novoTeste);
-
-                CarregarTestes();
-
-                TelaPrincipalForm
-                .Instancia
-                .AtualizarRodape($"O registro \"{novoTeste.Titulo}\" foi criado com sucesso!");
             }
+
+            repositorioTeste.Cadastrar(novoTeste);
+
+            CarregarTestes();
+
+            TelaPrincipalForm
+            .Instancia
+            .AtualizarRodape($"O registro \"{novoTeste.Titulo}\" foi criado com sucesso!");
         }
 
         public override void Editar()
         {
             TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria, repositorioQuestao);
-
 
             int idSelecionado = tabelaTeste.ObterRegistroSelecionado();
 
@@ -235,7 +234,13 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             }
 
             TelaTesteForm telaTeste = new TelaTesteForm(repositorioDisciplina, repositorioMateria, repositorioQuestao);
+
+            CarregarDisciplinas(telaTeste);
+
             telaTeste.Teste = testeSelecionado;
+
+            telaTeste.TravarInfos(telaTeste, testeSelecionado);
+
             telaTeste.Text = "Duplicar Teste";
 
             DialogResult resultado = telaTeste.ShowDialog();

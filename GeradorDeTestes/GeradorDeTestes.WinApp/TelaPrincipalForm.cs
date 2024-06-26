@@ -72,11 +72,14 @@ namespace GeradorDeTestes.WinApp
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
 
             if (controladorSelecionado is IControladorVisualizar controladorVisualizar)
-            {
                 btnVisualizarTeste.ToolTipText = controladorVisualizar.ToolTipVisualizar;
-                btnGerarPdf.ToolTipText = controladorVisualizar.ToolTipGerarTestePdf;
-                btnDuplicar.ToolTipText = controladorVisualizar.ToolTipDuplicar;
-            }
+
+            if (controladorSelecionado is IControladorGeradorPDF controladorGeradorPDF)
+                btnGerarPdf.ToolTipText = controladorGeradorPDF.ToolTipGerarTestePdf;
+
+            if (controladorSelecionado is IControladorDuplicavel controladorDuplicavel)
+                btnDuplicar.ToolTipText = controladorDuplicavel.ToolTipDuplicar;
+
         }
 
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
@@ -140,14 +143,15 @@ namespace GeradorDeTestes.WinApp
 
         private void btnGerarPdf_Click(object sender, EventArgs e)
         {
-            if (controlador is IControladorVisualizar controladorGerarTeste)
+            if (controlador is IControladorGeradorPDF controladorGerarTeste)
                 controladorGerarTeste.GerarTeste();
         }
 
         private void btnDuplicar_Click(object sender, EventArgs e)
         {
-            if (controlador is IControladorVisualizar controladorDuplicar)
+            if (controlador is IControladorDuplicavel controladorDuplicar)
                 controladorDuplicar.Duplicar();
+
         }
     }
 }
