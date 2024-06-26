@@ -42,7 +42,7 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             List<Materias> materiasCadastradas = repositorioMaterias.SelecionarTodos();
 
-            telaQuestao.CarregarMaterias(materiasCadastradas);
+            CarregarMaterias(telaQuestao);
 
             DialogResult resultado = telaQuestao.ShowDialog();
 
@@ -93,7 +93,7 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
             List<Materias> materiasCadastradas = repositorioMaterias.SelecionarTodos();
 
-            telaQuestao.CarregarMaterias(materiasCadastradas);
+            CarregarMaterias(telaQuestao);
 
             DialogResult resultado = telaQuestao.ShowDialog();
 

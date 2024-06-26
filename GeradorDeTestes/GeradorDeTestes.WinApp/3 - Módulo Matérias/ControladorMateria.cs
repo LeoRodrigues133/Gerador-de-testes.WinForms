@@ -47,7 +47,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
         public override void Editar()
         {
-
+            TelaMateriaForm telaMateria = new TelaMateriaForm(repositorioMaterias.SelecionarTodos());
 
             int idSelecionado = tabelaMateria.ObterRegistroSelecionado();
 
@@ -73,9 +73,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
 
             Materias materiaEditada = telaMateria.Materia;
 
-            List<Materias> materias = repositorioMaterias.SelecionarTodos();
-
-           VerificarNome(materiaEditada, materias);
+           VerificarNome(materiaEditada, repositorioMaterias.SelecionarTodos());
 
             repositorioMaterias.Editar(materiaSelecionada.Id, materiaEditada);
 
@@ -130,7 +128,7 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             if (tabelaMateria == null)
                 tabelaMateria = new TabelaMateriaControl();
 
-            CarregarMaterias();
+            CarregarMateria();
 
             return tabelaMateria;
         }

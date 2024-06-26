@@ -59,7 +59,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
         public override void Editar()
         {
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(iRepositorio.SelecionarTodos());
+            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(repositorioDisciplina.SelecionarTodos());
 
             int idSelecionado = tabelaDisciplinas.ObterRegistroSelecionado();
 
@@ -73,8 +73,6 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
                 return;
             }
 
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(iRepositorio.SelecionarTodos());
-
             telaDisciplina.Disciplina = Selecionado;
 
             DialogResult resultado = telaDisciplina.ShowDialog();
@@ -83,7 +81,7 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplina
 
             Disciplinas disciplinaEditada = telaDisciplina.Disciplina;
 
-            iRepositorio.Editar(disciplinaEditada.Id, disciplinaEditada);
+            repositorioDisciplina.Editar(disciplinaEditada.Id, disciplinaEditada);
             CarregarDisciplinas();
 
         }
