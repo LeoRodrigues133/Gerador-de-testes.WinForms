@@ -1,5 +1,6 @@
 ﻿using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
 using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +54,13 @@ namespace GeradorDeTestes.WinApp._2___Módulo_Disciplinas
             }
 
             TelaPrincipalForm.Instancia.AtualizarRodape("Um novo registro de Disciplina foi adicionado.");
+
+        }
+
+        private void txtDisciplina_KeyPress(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+                btnGravar.PerformClick();
 
         }
     }

@@ -13,7 +13,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 {
     public partial class TabelaTesteControl : UserControl
     {
-        public TabelaTesteControl()
+        public TabelaTesteControl(TelaTesteForm t)
         {
             InitializeComponent();
             grid.Columns.AddRange(CriarColunas());
@@ -27,7 +27,10 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             grid.Rows.Clear();
 
             foreach (Teste t in testes)
-                grid.Rows.Add(t.Id.ToString(), t.Titulo, t.Disciplina, t.Materia, t.NumQuestoes);
+                if (t.Materia == null) 
+                    grid.Rows.Add(t.Id.ToString(), t.Titulo, t.Disciplina, "Recuperação", t.NumQuestoes); 
+                else
+                    grid.Rows.Add(t.Id.ToString(), t.Titulo, t.Disciplina, t.Materia, t.NumQuestoes);
         }
 
         public int ObterRegistroSelecionado()

@@ -98,7 +98,8 @@
             txtMateria.Margin = new Padding(3, 4, 3, 4);
             txtMateria.Name = "txtMateria";
             txtMateria.Size = new Size(465, 27);
-            txtMateria.TabIndex = 5;
+            txtMateria.TabIndex = 1;
+            txtMateria.KeyUp += txtMateria_PressKey;
             // 
             // rdb1Serie
             // 
@@ -107,7 +108,7 @@
             rdb1Serie.Margin = new Padding(3, 4, 3, 4);
             rdb1Serie.Name = "rdb1Serie";
             rdb1Serie.Size = new Size(81, 24);
-            rdb1Serie.TabIndex = 6;
+            rdb1Serie.TabIndex = 3;
             rdb1Serie.TabStop = true;
             rdb1Serie.Text = "1º Série";
             rdb1Serie.UseVisualStyleBackColor = true;
@@ -119,7 +120,7 @@
             rdb2Serie.Margin = new Padding(3, 4, 3, 4);
             rdb2Serie.Name = "rdb2Serie";
             rdb2Serie.Size = new Size(81, 24);
-            rdb2Serie.TabIndex = 7;
+            rdb2Serie.TabIndex = 4;
             rdb2Serie.TabStop = true;
             rdb2Serie.Text = "2º Série";
             rdb2Serie.UseVisualStyleBackColor = true;
@@ -131,7 +132,7 @@
             cmbBoxDisciplina.Margin = new Padding(3, 4, 3, 4);
             cmbBoxDisciplina.Name = "cmbBoxDisciplina";
             cmbBoxDisciplina.Size = new Size(138, 28);
-            cmbBoxDisciplina.TabIndex = 8;
+            cmbBoxDisciplina.TabIndex = 2;
             // 
             // btnSalvar
             // 
@@ -141,7 +142,7 @@
             btnSalvar.Margin = new Padding(3, 4, 3, 4);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(107, 48);
-            btnSalvar.TabIndex = 9;
+            btnSalvar.TabIndex = 5;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = false;
             btnSalvar.Click += btnSalvar_Click;
@@ -154,7 +155,7 @@
             btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(107, 48);
-            btnCancelar.TabIndex = 10;
+            btnCancelar.TabIndex = 6;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
             // 

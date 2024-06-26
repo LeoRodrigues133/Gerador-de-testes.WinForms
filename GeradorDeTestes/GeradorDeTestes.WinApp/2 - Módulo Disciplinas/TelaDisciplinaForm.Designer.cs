@@ -71,7 +71,8 @@
             txtDisciplina.Margin = new Padding(3, 4, 3, 4);
             txtDisciplina.Name = "txtDisciplina";
             txtDisciplina.Size = new Size(401, 27);
-            txtDisciplina.TabIndex = 1;
+            txtDisciplina.TabIndex = 0;
+            txtDisciplina.KeyUp += txtDisciplina_KeyPress;
             // 
             // btnGravar
             // 
@@ -80,7 +81,7 @@
             btnGravar.Margin = new Padding(3, 4, 3, 4);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(109, 57);
-            btnGravar.TabIndex = 2;
+            btnGravar.TabIndex = 1;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -108,6 +109,7 @@
             Controls.Add(txtId);
             Controls.Add(lblId);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            KeyPreview = true;
             Margin = new Padding(3, 4, 3, 4);
             Name = "TelaDisciplinaForm";
             StartPosition = FormStartPosition.CenterParent;

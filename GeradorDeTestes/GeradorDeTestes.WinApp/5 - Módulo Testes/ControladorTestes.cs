@@ -11,6 +11,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         private IRepositorioTestes repositorioTeste;
         private TabelaTesteControl tabelaTeste;
+        TelaTesteForm telaTeste;
 
         public IRepositorioDisciplina repositorioDisciplina;
         public IRepositorioQuestoes repositorioQuestao;
@@ -119,7 +120,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public override UserControl ObterListagem()
         {
             if (tabelaTeste == null)
-                tabelaTeste = new TabelaTesteControl();
+                tabelaTeste = new TabelaTesteControl(telaTeste);
 
             CarregarTestes();
 
@@ -177,7 +178,6 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             if (testeSelecionado == null)
             {
-
                 TelaPrincipalForm
                     .Instancia
                     .AtualizarRodape($"Não é possível realizar esta ação sem um registro selecionado.");

@@ -138,5 +138,7 @@ namespace GeradorDeTestes.WinApp
             if (controlador is IControladorVisualizar controladorGerarTeste)
                 controladorGerarTeste.GerarTeste();
         }
+
+
     }
 }

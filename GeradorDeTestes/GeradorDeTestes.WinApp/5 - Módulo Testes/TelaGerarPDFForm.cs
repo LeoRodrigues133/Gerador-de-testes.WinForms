@@ -4,26 +4,17 @@ using GeradorDeTestes.WinApp._5___Módulo_Questões;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 {
     public partial class TelaGerarPDFForm : Form
     {
-        private string caminho = "";
+        string conteudoPdf = "";
+        string caminho = "";
         public string Caminho { get { return caminho; } }
-        public string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-        private string conteudoPdf = "";
+
+        public string path = Directory.GetCurrentDirectory().Split("bin")[0] + "\\Dados";
+
         public Teste testeSelecionado;
         public List<Materias> materias;
         public List<Disciplinas> disciplinas;
@@ -32,6 +23,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         public TelaGerarPDFForm(Teste testeSelecionado, List<Disciplinas> disciplinas, List<Materias> materias, List<Questoes> questoes)
         {
             InitializeComponent();
+
             this.testeSelecionado = testeSelecionado;
             this.materias = materias;
             this.disciplinas = disciplinas;
@@ -66,9 +58,9 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
             caminho = "";
 
             if (checkBoxGabarito.Checked)
-                caminho = $"{path}\\ProvaComGabarito.pdf";
+                caminho = $"{path}\\{testeSelecionado.Titulo}Gabarito.pdf";
             else
-                caminho = $"{path}\\Prova.pdf";
+                caminho = $"{path}\\{testeSelecionado.Titulo}.pdf";
 
             if (!File.Exists(caminho))
             {
@@ -76,8 +68,11 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
                 return;
             }
 
-            DialogResult resposta = MessageBox.Show("O arquivo PDF já existe! Deseja substitui-lo?", "Aviso",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult resposta = MessageBox.Show(
+                "O arquivo PDF já existe! Deseja substitui-lo?",
+                "Aviso",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
 
             if (resposta != DialogResult.Yes)
             {
@@ -91,34 +86,32 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         private void ConfigurarPDF()
         {
             foreach (Disciplinas d in disciplinas)
-            {
                 if (d.Id == testeSelecionado.Disciplina.Id)
                     conteudoPdf += $"Disciplina: {d}.\n";
-            }
 
-            foreach (Materias m in materias)
+            if (testeSelecionado.Materia == null)
+                conteudoPdf += $"Recuperação: \n\n";
+            else
             {
-                if (m.Id == testeSelecionado.Materia.Id)
-                    conteudoPdf += $"Matéria: {m}.\n\n";
+                foreach (Materias m in materias)
+                    if (m.Id == testeSelecionado.Materia.Id)
+                        conteudoPdf += $"Matéria: {m}.\n\n";
             }
 
-            int numeroQuestao = 1;
             conteudoPdf += "\n\n";
 
             foreach (Questoes questao in testeSelecionado.Questoes)
             {
                 if (questoes.Find(q => q.Id == questao.Id) != null)
                 {
-                    conteudoPdf += $"{numeroQuestao}) {questao}\n";
-                    numeroQuestao++;
+                    conteudoPdf += $" {questao}\n";
 
-                    foreach (Alternativas alternativa in questao.Alternativas)
-                    {
-                        if (checkBoxGabarito.Checked && alternativa.Resposta)
-                            conteudoPdf += $"(X) {alternativa}\n";
-                        else
-                            conteudoPdf += $"( ) {alternativa}\n";
-                    }
+                    if (checkBoxGabarito.Checked == true)
+                        conteudoPdf += $"Alternativa correta é {questao.Alternativas.FirstOrDefault(x => x.Resposta)}";
+                    else
+                        foreach (Alternativas alternativa in questao.Alternativas)
+                            conteudoPdf += $"(    ) {alternativa}\n";
+
 
                     conteudoPdf += "\n";
                 }

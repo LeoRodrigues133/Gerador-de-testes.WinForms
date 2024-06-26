@@ -1,5 +1,6 @@
 ﻿using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
 using GeradorDeTestes.WinApp._3___Módulo_Matérias;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -107,8 +108,17 @@ namespace GeradorDeTestes.WinApp._5___Módulo_Questões
 
         internal void MostrarAlternativas(List<Alternativas> alternativas)
         {
-            foreach(Alternativas a in alternativas)
+            foreach (Alternativas a in alternativas)
                 listAlternativas.Items.Add(a);
+        }
+
+        private void txtAlternativa_PressKey(object sender, KeyEventArgs e)
+        {
+            if (txtAlternativa.Focused && e.KeyCode == Keys.Enter)
+            {
+                btnAdicionar.PerformClick();
+            }
+
         }
     }
 }

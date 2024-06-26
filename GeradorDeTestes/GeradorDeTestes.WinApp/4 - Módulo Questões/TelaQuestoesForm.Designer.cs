@@ -50,7 +50,7 @@
             cmbBoxMateria.Margin = new Padding(3, 4, 3, 4);
             cmbBoxMateria.Name = "cmbBoxMateria";
             cmbBoxMateria.Size = new Size(282, 28);
-            cmbBoxMateria.TabIndex = 0;
+            cmbBoxMateria.TabIndex = 1;
             // 
             // lblMateria
             // 
@@ -95,7 +95,8 @@
             txtAlternativa.Multiline = true;
             txtAlternativa.Name = "txtAlternativa";
             txtAlternativa.Size = new Size(282, 67);
-            txtAlternativa.TabIndex = 2;
+            txtAlternativa.TabIndex = 3;
+            txtAlternativa.KeyUp += txtAlternativa_PressKey;
             // 
             // btnAdicionar
             // 
@@ -103,7 +104,7 @@
             btnAdicionar.Margin = new Padding(3, 4, 3, 4);
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(98, 49);
-            btnAdicionar.TabIndex = 3;
+            btnAdicionar.TabIndex = 4;
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.UseVisualStyleBackColor = true;
             btnAdicionar.Click += btnAdicionar_Click;
@@ -127,7 +128,7 @@
             listAlternativas.Location = new Point(0, 67);
             listAlternativas.Name = "listAlternativas";
             listAlternativas.Size = new Size(408, 202);
-            listAlternativas.TabIndex = 4;
+            listAlternativas.TabIndex = 5;
             // 
             // btnRemover
             // 
@@ -135,7 +136,7 @@
             btnRemover.Margin = new Padding(3, 4, 3, 4);
             btnRemover.Name = "btnRemover";
             btnRemover.Size = new Size(126, 31);
-            btnRemover.TabIndex = 3;
+            btnRemover.TabIndex = 6;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = true;
             btnRemover.Click += btnRemover_Click;
@@ -147,7 +148,7 @@
             btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(109, 57);
-            btnCancelar.TabIndex = 10;
+            btnCancelar.TabIndex = 8;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -158,7 +159,7 @@
             btnGravar.Margin = new Padding(3, 4, 3, 4);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(109, 57);
-            btnGravar.TabIndex = 11;
+            btnGravar.TabIndex = 7;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;

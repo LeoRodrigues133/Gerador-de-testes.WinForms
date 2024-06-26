@@ -12,6 +12,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         IRepositorioTestes repositorioTestes;
         IRepositorioMateria repositorioMateria;
         IRepositorioDisciplina repositorioDisciplina;
+        Materias materia = null;
         public List<Questoes> questoes;
         TelaTesteForm telaTeste;
         ControladorTestes controlador;
@@ -42,11 +43,12 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+
             string titulo = txtTitulo.Text.Trim();
 
             Disciplinas disciplina = (Disciplinas)cmbBoxDisciplina.SelectedItem;
 
-            Materias materia = (Materias)cmbBoxMateria.SelectedItem;
+            materia = (Materias)cmbBoxMateria.SelectedItem;
 
             decimal NumQuestoes = numQuestoes.Value;
 
@@ -61,16 +63,24 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         private void btnSortearQuestoes_Click(object sender, EventArgs e)
         {
             listQuestoes.Items.Clear();
+            int i = 1;
 
-            int i = 0;
-            foreach (Questoes q in SortearQuestoes())
-            {
+            if (cmbBoxDisciplina.SelectedItem == null)
+                MessageBox.Show(
+                    "Você deve selecionar uma disciplina",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
+            else
+                foreach (Questoes q in SortearQuestoes())
+                {
 
-                q.ModeloQuestao(i);
-                i++;
+                    q.ModeloQuestao(i);
+                    i++;
 
-                listQuestoes.Items.Add(q);
-            }
+                    listQuestoes.Items.Add(q);
+                }
         }
 
         private void cmbBoxDisciplina_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,25 +144,20 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         private void SelecionarAleatoriamente(int qtdQuestoesTeste, List<Questoes> Selecionadas)
         {
-            while (qtdQuestoesTeste > SelecionarLista().Count()) ;
+
+            while (qtdQuestoesTeste > Selecionadas.Count())
             {
-                for (int i = 0; i < qtdQuestoesTeste; i++)
-                {
-                    int indexList = 0;
-                    Questoes questaoSelecionada = null;
+                int indexList = 0;
+                Questoes questaoSelecionada = null;
+                Random r = new();
 
-                    Random r = new();
+                indexList = r.Next(SelecionarLista().Count());
 
-                    indexList = r.Next(SelecionarLista().Count());
+                questaoSelecionada = SelecionarLista()[indexList];
 
-                    questaoSelecionada = SelecionarLista()[indexList];
+                if (questaoSelecionada != Selecionadas.FirstOrDefault(x => x.Enunciado == questaoSelecionada.Enunciado))
+                    Selecionadas.Add(questaoSelecionada);
 
-                    if (questaoSelecionada != Selecionadas.FirstOrDefault(x => x.Enunciado == questaoSelecionada.Enunciado))
-                        Selecionadas.Add(questaoSelecionada);
-
-                    //if (qtdQuestoesTeste > Selecionadas.Count())
-                    //    Selecionadas.Add(Selecionadas[r.Next(SelecionarLista().Count())]);
-                }
             }
         }
 
@@ -181,7 +186,6 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
         {
 
             List<Materias> filtradas = materias.Where(x => x.Disciplina == cmbBoxDisciplina.SelectedItem).ToList();
-
 
             foreach (Materias m in filtradas)
                 cmbBoxMateria.Items.Add(m);

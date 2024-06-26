@@ -47,11 +47,11 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
             Disciplinas disciplina = (Disciplinas)cmbBoxDisciplina.SelectedItem;
             int serie = 0;
 
-            if (rdb1Serie.Checked)serie = 1;
-            else if (rdb2Serie.Checked)serie = 2;
-            
+            if (rdb1Serie.Checked) serie = 1;
+            else if (rdb2Serie.Checked) serie = 2;
+
             materia = new Materias(nomeMateria, disciplina, serie);
-            
+
             if (!materia.VerificarRegistros(rMaterias, materia))
             {
                 MessageBox.Show(
@@ -63,13 +63,19 @@ namespace GeradorDeTestes.WinApp._3___Módulo_Matérias
                 DialogResult = DialogResult.Cancel;
             }
 
-            
+
 
         }
         public void MostrarDisciplinas(List<Disciplinas> disciplinas)
         {
             foreach (Disciplinas d in disciplinas)
                 cmbBoxDisciplina.Items.Add(d);
+        }
+
+        private void txtMateria_PressKey(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnSalvar.PerformClick();
         }
     }
 }
