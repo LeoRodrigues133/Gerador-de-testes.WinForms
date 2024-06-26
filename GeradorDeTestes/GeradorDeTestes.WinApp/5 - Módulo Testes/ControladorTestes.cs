@@ -250,6 +250,7 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
             Teste testeEditado = telaTeste.Teste;
 
+
             List<Teste> testes = repositorioTeste.SelecionarTodos();
 
             foreach (var teste in testes)
@@ -264,6 +265,8 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
                 }
             }
 
+            testeEditado.Titulo = testeEditado.Titulo + " Duplicado";
+            
             repositorioTeste.Cadastrar(testeEditado);
 
             CarregarTestes();

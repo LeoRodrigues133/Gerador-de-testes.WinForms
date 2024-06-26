@@ -194,12 +194,11 @@ namespace GeradorDeTestes.WinApp._4___Módulo_Testes
 
         public void TravarInfos(TelaTesteForm tela, Teste t)
         {
-            txtTitulo.Text = t.Titulo + "Duplicado";
+
             cmbBoxDisciplina.SelectedItem = t.Disciplina;
             cmbBoxMateria.SelectedItem = t.Materia;
             numQuestoes.Value = t.NumQuestoes;
 
-            txtTitulo.Enabled = false;
             cmbBoxMateria.Enabled = false;
             cmbBoxDisciplina.Enabled = false;
             chkRecuperacao.Checked = true;
