@@ -1,9 +1,22 @@
-using GeradorDeTestes.WinApp._1___Módulo_Compartilado;
-using GeradorDeTestes.WinApp._2___Módulo_Disciplina;
-using GeradorDeTestes.WinApp._2___Módulo_Disciplinas;
-using GeradorDeTestes.WinApp._3___Módulo_Matérias;
-using GeradorDeTestes.WinApp._4___Módulo_Testes;
-using GeradorDeTestes.WinApp._5___Módulo_Questões;
+#region   MDS QUANTO  USING
+
+using GeradorDeTestes.Domain.MóduloTestes;
+using GeradorDeTestes.Domain.MóduloMatérias;
+using GeradorDeTestes.Domain.MóduloQuestões;
+using GeradorDeTestes.Domain.MóduloDisciplinas;
+using GeradorDeTestes.View.Control.MóduloTestes;
+using GeradorDeTestes.Infra.Arquivos.MóduloTestes;
+using GeradorDeTestes.View.Control.MóduloMatérias;
+using GeradorDeTestes.Infra.Arquivos.MóduloMatérias;
+using GeradorDeTestes.Domain.MóduloCompartilhado;
+using GeradorDeTestes.View.Control.MóduloQuestões;
+using GeradorDeTestes.View.Control.MóduloDisciplinas;
+using GeradorDeTestes.Infra.Arquivos.MóduloQuestões;
+using GeradorDeTestes.Infra.Arquivos.MóduloDisciplinas;
+using GeradorDeTestes.View.Control.MóduloCompartilhado;
+using GeradorDeTestes.Infra.Arquivos.MóduloCompartilhado;
+
+#endregion
 
 namespace GeradorDeTestes.WinApp
 {
@@ -13,10 +26,10 @@ namespace GeradorDeTestes.WinApp
 
         ContextoDados contexto;
 
-        IRepositorioDisciplina repositorioDisciplina;
         IRepositorioTestes repositorioTestes;
         IRepositorioMateria repositorioMaterias;
         IRepositorioQuestoes repositorioQuestoes;
+        IRepositorioDisciplina repositorioDisciplina;
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
